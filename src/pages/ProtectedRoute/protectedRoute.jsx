@@ -9,7 +9,6 @@ export function ProtectedRoute({ children }) {
   const parsedUser = JSON.parse(loggedInUser || '""');
 
   useEffect(() => {
-    console.log(parsedUser);
     if (!parsedUser.token) {
       navigate("/login");
     }
