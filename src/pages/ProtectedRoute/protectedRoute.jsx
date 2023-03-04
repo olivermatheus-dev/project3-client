@@ -1,8 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-export function ProtectedRoute(props) {
-  const { component: Component } = props;
+export function ProtectedRoute({ children }) {
   const navigate = useNavigate();
 
   const loggedInUser = localStorage.getItem("loggedInUser");
@@ -11,10 +10,10 @@ export function ProtectedRoute(props) {
 
   useEffect(() => {
     console.log(parsedUser);
-    if (parsedUser.token) {
+    if (!parsedUser.token) {
       navigate("/login");
     }
   }, []);
 
-  return <Component />;
+  return <>{children}</>;
 }

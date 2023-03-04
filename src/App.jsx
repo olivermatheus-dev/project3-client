@@ -16,9 +16,14 @@ function App() {
           <Route path="*" element={<NotFound />} />
           <Route path="/sign-up" element={<Signup />} />
           <Route path="/login" element={<Login />} />
+          {/* <Route path="/profile" element={<Profile />} /> */}
           <Route
             path="/profile"
-            element={<ProtectedRoute component={<Profile />} />}
+            element={
+              <ProtectedRoute>
+                <Profile />
+              </ProtectedRoute>
+            }
           />
         </Routes>
       </AuthContextComponent>

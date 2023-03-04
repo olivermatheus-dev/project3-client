@@ -16,7 +16,6 @@ export function Profile() {
 
   function handleLogOut() {
     localStorage.removeItem("loggedInUser");
-    setLoggedInUser(null);
     navigate("/");
   }
 
