@@ -26,9 +26,8 @@ export function Login() {
 
       localStorage.setItem("loggedInUser", JSON.stringify(response.data));
 
-      // corrigir código abaixo
-      // navigate("/profile");
-      navigate("/");
+      navigate("/profile");
+
       //
     } catch (error) {
       console.log(error);
