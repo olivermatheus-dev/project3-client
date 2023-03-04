@@ -1,5 +1,6 @@
-export function ToggleButtonTheme(theme) {
-  // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+import { useEffect, useState } from "react";
+
+export function ToggleButtonTheme() {
   if (
     localStorage.theme === "dark" ||
     (!("theme" in localStorage) &&
@@ -9,21 +10,22 @@ export function ToggleButtonTheme(theme) {
   } else {
     document.documentElement.classList.remove("dark");
   }
-
-  // Whenever the user explicitly chooses light mode
+  const [themeSelected, setThemeSelected] = useState("");
   function toggleThemeMode() {
     document.documentElement.classList.toggle("dark");
+
     localStorage.theme = document.documentElement.classList.contains("dark")
       ? "dark"
       : "light";
   }
+
   localStorage.theme = "light";
 
   // Whenever the user explicitly chooses dark mode
   localStorage.theme = "dark";
 
   // Whenever the user explicitly chooses to respect the OS preference
-  localStorage.removeItem("theme");
+  // localStorage.removeItem("theme");
 
   return (
     <>
@@ -38,7 +40,7 @@ export function ToggleButtonTheme(theme) {
           className="sr-only"
         />
 
-        <div className="shadow-card flex h-[46px] w-[82px] items-center justify-center rounded-md bg-white">
+        <div className="shadow-card flex h-[40px] w-[40px] items-center justify-center rounded-md bg-white ">
           <div
             className="light bg-primary flex h-9 w-9 items-center justify-center rounded text-white"
             onClick={toggleThemeMode}
@@ -49,7 +51,7 @@ export function ToggleButtonTheme(theme) {
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="w-6 h-6 text-black"
+              className="w-6 h-6 text-emerald-600"
             >
               <path
                 strokeLinecap="round"
@@ -58,7 +60,8 @@ export function ToggleButtonTheme(theme) {
               />
             </svg>
           </div>
-          <div className="dark text-body-color flex h-9 w-9 items-center justify-center rounded">
+
+          {/* <div className="dark text-body-color flex h-9 w-9 items-center justify-center rounded">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -73,7 +76,7 @@ export function ToggleButtonTheme(theme) {
                 d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"
               />
             </svg>
-          </div>
+          </div> */}
         </div>
       </label>
     </>
