@@ -6,11 +6,15 @@ import { Login } from "./pages/Login/login.jsx";
 import { Profile } from "./pages/Profile/profile.jsx";
 import { AuthContextComponent } from "./config/context/authContext.jsx";
 import { ProtectedRoute } from "./pages/ProtectedRoute/protectedRoute.jsx";
+import { Navbar } from "./components/Navbar/navbar.jsx";
 
 function App() {
   return (
-    <div className="App">
+    <div className="App bg-slate-100 dark:bg-zinc-700 h-screen">
       <AuthContextComponent>
+        <div className="">
+          <Navbar />
+        </div>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="*" element={<NotFound />} />
