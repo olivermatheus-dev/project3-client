@@ -41,7 +41,7 @@ export function Navbar() {
                 <ul className="flex items-center gap-6 text-sm">
                   <li>
                     <Link
-                      className="text-lg font-medium text-gray-500 transition hover:text-gray-500/75 dark:text-gray-200 dark:hover:text-emerald-300"
+                      className="text-base font-medium text-gray-500 transition hover:text-gray-500/75 dark:text-gray-200 dark:hover:text-emerald-300"
                       to="/"
                     >
                       Home
@@ -49,7 +49,7 @@ export function Navbar() {
                   </li>
                   <li>
                     <Link
-                      className="text-lg font-medium text-gray-500 transition hover:text-gray-500/75 dark:text-gray-200 dark:hover:text-emerald-300"
+                      className="text-base font-medium text-gray-500 transition hover:text-gray-500/75 dark:text-gray-200 dark:hover:text-emerald-300"
                       to="/"
                     >
                       Mais Curtidos
