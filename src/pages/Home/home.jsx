@@ -1,6 +1,7 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { api } from "../../config/api/api";
 import { TabBox } from "../../components/TabBox/tabbox";
+import statusUser from "../../config/zustand/statusUser";
 
 export function Home() {
   useEffect(() => {

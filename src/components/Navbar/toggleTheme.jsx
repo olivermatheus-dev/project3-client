@@ -10,7 +10,7 @@ export function ToggleButtonTheme() {
   } else {
     document.documentElement.classList.remove("dark");
   }
-  const [themeSelected, setThemeSelected] = useState("");
+  // const [themeSelected, setThemeSelected] = useState("");
   function toggleThemeMode() {
     document.documentElement.classList.toggle("dark");
 
