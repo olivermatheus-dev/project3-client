@@ -6,6 +6,7 @@ import { ButtonEditProfile } from "./btnEditProfile.jsx";
 import { AuthContext } from "../../config/context/authContext.jsx";
 import { dateConverter } from "../../config/functions/dateConverter.js";
 import { Modal } from "../../components/Modal/modal.jsx";
+import { UpdateProfile } from "./updateProfile.jsx";
 
 export function Profile() {
   const [loading, setLoading] = useState(false);
@@ -53,7 +54,11 @@ export function Profile() {
                   >
                     <ButtonEditProfile />
                   </span>
-                  {isOpen && <Modal> Oi </Modal>}
+                  {isOpen && (
+                    <Modal setIsOpen={setIsOpen}>
+                      <UpdateProfile />
+                    </Modal>
+                  )}
                 </div>
                 <div className="flex flex-col items-center">
                   <img
