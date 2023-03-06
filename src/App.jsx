@@ -7,6 +7,7 @@ import { Profile } from "./pages/Profile/profile.jsx";
 import { AuthContextComponent } from "./config/context/authContext.jsx";
 import { ProtectedRoute } from "./pages/ProtectedRoute/protectedRoute.jsx";
 import { Navbar } from "./components/Navbar/navbar.jsx";
+import { CreateTab } from "./pages/CreateTab/createtab.jsx";
 
 function App() {
   return (
@@ -20,6 +21,14 @@ function App() {
           <Route path="*" element={<NotFound />} />
           <Route path="/sign-up" element={<Signup />} />
           <Route path="/login" element={<Login />} />
+          <Route
+            path="/create/tab"
+            element={
+              <ProtectedRoute>
+                <CreateTab />
+              </ProtectedRoute>
+            }
+          />
           {/* <Route path="/profile" element={<Profile />} /> */}
           <Route
             path="/profile"
