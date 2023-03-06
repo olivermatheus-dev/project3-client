@@ -1,15 +1,32 @@
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { api } from "../../config/api/api";
+import { TabBox } from "../../components/TabBox/tabbox";
+import statusUser from "../../config/zustand/statusUser";
 
 export function Home() {
+  useEffect(() => {
+    async function fetchTabs() {
+      try {
+        const res = await api.get("/tab/all-tabs");
+        console.log(res.data);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    fetchTabs();
+  }, []);
+
   return (
-    <>
-      <h1 className="mb-10">Home</h1>
-      <Link to="/login" className="bg-slate-500 p-2 px-5 rounded-full">
-        <button>Login</button>
-      </Link>
-      <Link to="/sign-up" className="bg-slate-500 p-2 px-5 rounded-full">
-        <button>Sign up</button>
-      </Link>
-    </>
+    <div className="h-full">
+      <div className="py-6 w-screen flex flex-col items-center gap-6 ">
+        <TabBox />
+        <TabBox />
+        <TabBox />
+        <TabBox />
+        <TabBox />
+        <TabBox />
+        <TabBox />
+      </div>
+    </div>
   );
 }
