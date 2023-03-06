@@ -50,7 +50,7 @@ export function ToggleButtonTheme() {
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
                 stroke="currentColor"
-                className="w-6 h-6 text-emerald-600"
+                className="w-6 h-6 text-emerald-600 hover:text-emerald-500 transition"
               >
                 <path
                   strokeLinecap="round"
@@ -65,7 +65,7 @@ export function ToggleButtonTheme() {
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
                 stroke="currentColor"
-                className="w-5 h-5  text-emerald-600"
+                className="w-5 h-5  text-emerald-600 hover:text-emerald-500 transition"
               >
                 <path
                   strokeLinecap="round"
