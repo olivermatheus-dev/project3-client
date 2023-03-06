@@ -1,12 +1,21 @@
-import { Fragment } from "react";
+import { Fragment, useContext } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../config/context/authContext.jsx";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
 export function MenuToggle() {
+  const { loggedInUser, setLoggedInUser } = useContext(AuthContext);
+
+  function handleLogOut() {
+    localStorage.removeItem("loggedInUser");
+    setLoggedInUser(null);
+    navigate("/");
+  }
+
   return (
     <Menu as="div" className="relative inline-block text-left  ">
       <div>
@@ -135,6 +144,7 @@ export function MenuToggle() {
                     active ? "bg-gray-100 text-gray-900" : "text-gray-500",
                     "block px-4 py-2 text-sm"
                   )}
+                  onClick={handleLogOut}
                 >
                   Sair
                 </Link>

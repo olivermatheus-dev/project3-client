@@ -1,13 +1,16 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { api } from "../../config/api/api.jsx";
 import { ButtonLogout } from "./btnlogout.jsx";
 import { ButtonEditProfile } from "./btnEditProfile.jsx";
+import { AuthContext } from "../../config/context/authContext.jsx";
 
 export function Profile() {
   const [loading, setLoading] = useState(false);
   const [user, setUser] = useState({ name: "", email: "" });
   const navigate = useNavigate();
+
+  const { loggedInUser, setLoggedInUser } = useContext(AuthContext);
 
   useEffect(() => {
     async function fetchUser() {
@@ -22,10 +25,11 @@ export function Profile() {
     }
 
     fetchUser();
-  }, []);
+  }, [loggedInUser]);
 
   function handleLogOut() {
     localStorage.removeItem("loggedInUser");
+    setLoggedInUser(null);
     navigate("/");
   }
 

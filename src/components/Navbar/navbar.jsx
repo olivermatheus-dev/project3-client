@@ -5,18 +5,26 @@ import { ToggleButtonTheme } from "./toggleTheme.jsx";
 import { AuthContext } from "../../config/context/authContext";
 import { api } from "../../config/api/api";
 import { MenuToggle } from "./dropdownmenu.jsx";
+
 export function Navbar() {
-  const { loggedInUser } = useContext(AuthContext);
-  console.log(loggedInUser);
+  const navigate = useNavigate();
+  const { loggedInUser, setLoggedInUser } = useContext(AuthContext);
+
   const [user, setUser] = useState({ name: "", email: "" });
+
   useEffect(() => {
     async function fetchUser() {
-      const response = await api.get("/user/profile");
-      setUser(response.data);
+      try {
+        const response = await api.get("/user/profile");
+        setUser(response.data);
+      } catch (err) {
+        console.log(err);
+        navigate("/");
+      }
     }
 
     fetchUser();
-  }, []);
+  }, [loggedInUser]);
 
   return (
     <>
