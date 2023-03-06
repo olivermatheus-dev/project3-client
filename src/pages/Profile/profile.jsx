@@ -1,29 +1,100 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { api } from "../../config/api/api.jsx";
+import { ButtonLogout } from "./btnlogout.jsx";
+import { ButtonEditProfile } from "./btnEditProfile.jsx";
+import { AuthContext } from "../../config/context/authContext.jsx";
 
 export function Profile() {
+  const [loading, setLoading] = useState(false);
   const [user, setUser] = useState({ name: "", email: "" });
   const navigate = useNavigate();
+
+  const { loggedInUser, setLoggedInUser } = useContext(AuthContext);
+
   useEffect(() => {
     async function fetchUser() {
-      const response = await api.get("/user/profile");
-      setUser(response.data);
+      try {
+        const response = await api.get("/user/profile");
+
+        setLoading(true);
+        setUser(response.data);
+      } catch (err) {
+        console.log(err);
+      }
     }
 
     fetchUser();
-  }, []);
+  }, [loggedInUser]);
 
   function handleLogOut() {
     localStorage.removeItem("loggedInUser");
+    setLoggedInUser(null);
     navigate("/");
   }
 
+  const data = new Date(user.createdAt);
+  const options = { timeZone: "UTC", dateStyle: "full", timeStyle: "medium" };
+  const dataFormatada = data.toLocaleDateString();
+  console.log(dataFormatada);
   return (
     <>
-      <h1>{user.name}</h1>
-      <p>{user.email}</p>
-      <button onClick={handleLogOut}>Sair</button>
+      {!loading && <div> Carregando</div>}
+      {loading && (
+        <div className="py-10">
+          <div className="container w-full h-screen block sm:flex gap-4">
+            <div className="flex flex-col gap-4 items-center  py-6 container rounded-md shadow-2xl  sm:w-1/3 bg-white dark:bg-zinc-800">
+              <div className=" py-6 container rounded-md shadow-xl bg-white dark:bg-emerald-700">
+                <div className=" w-full flex justify-end pb-1">
+                  <ButtonEditProfile />
+                </div>
+                <div className="flex flex-col items-center">
+                  <img
+                    src={user.img}
+                    className="w-20 rounded-full outline  outline-offset-4 outline-emerald-400"
+                  />
+                  <div className="flex gap-3">
+                    <div className="pt-2 font-bold flex flex-col items-center ">
+                      <span className="dark:text-zinc-100">250</span>
+                      <span className="text-xs dark:text-zinc-100 font-normal">
+                        Followers
+                      </span>
+                    </div>
+                    <div className="pt-2 font-bold flex flex-col items-center ">
+                      <span className="dark:text-zinc-100">250</span>
+                      <span className="text-xs dark:text-zinc-100 font-normal">
+                        Following
+                      </span>
+                    </div>
+                  </div>
+
+                  <h1 className="text-lg font-bold dark:text-zinc-100">
+                    {user.name}
+                  </h1>
+
+                  <h1 className=" dark:text-zinc-100">@{user.username}</h1>
+                  {/* <p className=" dark:text-zinc-100">{user.email}</p> */}
+                  <p className="dark:text-zinc-100 text-xs pt-2">
+                    User desde:{dataFormatada}
+                  </p>
+                </div>
+              </div>
+              <div className="flex flex-col gap-2 items-center  py-6 container rounded-md shadow-xl bg-white dark:bg-emerald-700">
+                <button onClick={handleLogOut}>
+                  <ButtonLogout />
+                </button>
+              </div>
+            </div>
+            <div className="container py-8 mt-4 sm:mt-0 rounded-md shadow-2xl  sm:w-2/3  bg-white dark:bg-zinc-800">
+              <div className="container rounded-md shadow-2xl ">
+                <h1 className="text-2xl font-bold dark:text-zinc-100">
+                  Seus tabs mais recentes
+                </h1>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }
