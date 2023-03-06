@@ -10,6 +10,7 @@ import { UpdateProfile } from "./updateProfile.jsx";
 
 export function Profile() {
   const [loading, setLoading] = useState(false);
+  const [updated, setUpdated] = useState(false);
   const [user, setUser] = useState({ name: "", email: "" });
   const navigate = useNavigate();
 
@@ -28,7 +29,7 @@ export function Profile() {
     }
 
     fetchUser();
-  }, [loggedInUser]);
+  }, [loggedInUser, updated]);
 
   function handleLogOut() {
     localStorage.removeItem("loggedInUser");
@@ -56,7 +57,10 @@ export function Profile() {
                   </span>
                   {isOpen && (
                     <Modal setIsOpen={setIsOpen}>
-                      <UpdateProfile />
+                      <UpdateProfile
+                        updated={updated}
+                        setUpdated={setUpdated}
+                      />
                     </Modal>
                   )}
                 </div>
