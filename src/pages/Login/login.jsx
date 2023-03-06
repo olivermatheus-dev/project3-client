@@ -57,8 +57,9 @@ export function Login() {
                 type="email"
                 name="email"
                 value={form.email}
+                placeholder="Seu e-mail"
                 onChange={handleChange}
-                className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-500 bg-white border rounded-lg dark:bg-gray-800 dark:border-gray-600 dark:placeholder-emerald-400 focus:border-emerald-400 dark:focus:border-emerald-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-emerald-300"
+                className="block w-full px-4 py-2 mt-2 text-gray-700 dark:text-gray-200 placeholder-gray-500 bg-white border rounded-lg dark:bg-zinc-700 dark:border-gray-600 dark:placeholder-gray-400 focus:border-emerald-400 dark:focus:border-emerald-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-emerald-300"
               />
             </div>
 
@@ -67,8 +68,9 @@ export function Login() {
                 type="password"
                 name="password"
                 value={form.password}
+                placeholder="Digite sua senha..."
                 onChange={handleChange}
-                className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-500 bg-white border rounded-lg dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 focus:border-emerald-400 dark:focus:border-emerald-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-emerald-300"
+                className="block w-full px-4 py-2 mt-2 text-gray-700 dark:text-gray-200 placeholder-gray-500 bg-white border rounded-lg dark:bg-zinc-700 dark:border-gray-600 dark:placeholder-gray-400 focus:border-emerald-400 dark:focus:border-emerald-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-emerald-300"
               />
             </div>
 
@@ -92,14 +94,14 @@ export function Login() {
 
         <div className="flex items-center justify-center py-4 text-center bg-gray-50 dark:bg-emerald-600">
           <span className="text-sm  text-gray-600 dark:text-zinc-700 dark:font-semibold">
-            Don't have an account?{" "}
+            Ainda não tem uma conta?{" "}
           </span>
 
           <Link
             to="/sign-up"
             className="mx-2 text-sm font-bold text-zinc-700 dark:text-zinc-100 hover:underline"
           >
-            Register
+            Clique aqui
           </Link>
         </div>
       </div>

@@ -1,10 +1,14 @@
-// import { create } from "zustand";
+import { useEffect } from "react";
+import { create } from "zustand";
 
-// const statusUser = create((set) => ({
-//   statusUserLogged: false,
-//   userLogged: () => set((state) => ({ statusUserLogged: true })),
-//   userNotLogged: () => set((state) => ({ statusUserLogged: false })),
-//   //   userLogged: () => set({ statusUser: true }),
-// }));
+const statusUser = create((set) => ({
+  statusUserLogged: false,
+  userLogged: () => set((state) => ({ statusUserLogged: true })),
+  userNotLogged: () => set((state) => ({ statusUserLogged: false })),
+}));
 
-// export default statusUser;
+// const loggedInUser = localStorage.getItem("loggedInUser");
+
+// const parsedUser = JSON.parse(loggedInUser || '""');
+
+export default statusUser;
