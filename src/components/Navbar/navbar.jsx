@@ -30,7 +30,10 @@ export function Navbar() {
 
   return (
     <div>
-      <header aria-label="Site Header" className="bg-white dark:bg-zinc-800">
+      <header
+        aria-label="Site Header"
+        className="bg-gray-50 shadow-md dark:bg-zinc-800"
+      >
         <div className="mx-auto  px-4 sm:px-6 lg:px-20">
           <div className="flex h-16 items-center justify-between">
             <div className="flex md:items-center gap-4">
