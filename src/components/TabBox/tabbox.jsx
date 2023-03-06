@@ -8,12 +8,12 @@ export function TabBox() {
           <span className="text-sm font-light text-gray-600 dark:text-gray-400">
             Mar 10, 2019
           </span>
-          <a
-            className="px-3 py-1 text-sm font-bold text-gray-100 transition-colors duration-300 transform bg-gray-600 rounded cursor-pointer hover:bg-gray-500"
+          <div
+            className="z-0 px-3 py-1 text-sm font-bold text-gray-100 transition-colors duration-300 transform bg-gray-600 rounded cursor-pointer hover:bg-gray-500"
             role="button"
           >
             Design
-          </a>
+          </div>
         </div>
 
         <div className="mt-1">

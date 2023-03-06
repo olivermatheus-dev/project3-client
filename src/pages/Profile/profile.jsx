@@ -4,6 +4,8 @@ import { api } from "../../config/api/api.jsx";
 import { ButtonLogout } from "./btnlogout.jsx";
 import { ButtonEditProfile } from "./btnEditProfile.jsx";
 import { AuthContext } from "../../config/context/authContext.jsx";
+import { dateConverter } from "../../config/functions/dateConverter.js";
+import { Modal } from "../../components/Modal/modal.jsx";
 
 export function Profile() {
   const [loading, setLoading] = useState(false);
@@ -33,10 +35,8 @@ export function Profile() {
     navigate("/");
   }
 
-  const data = new Date(user.createdAt);
-  const options = { timeZone: "UTC", dateStyle: "full", timeStyle: "medium" };
-  const dataFormatada = data.toLocaleDateString();
-  console.log(dataFormatada);
+  const [isOpen, setIsOpen] = useState(false);
+  console.log(isOpen);
   return (
     <>
       {!loading && <div> Carregando</div>}
@@ -46,7 +46,14 @@ export function Profile() {
             <div className="flex flex-col gap-4 items-center  py-6 container rounded-md shadow-2xl  sm:w-1/3 bg-white dark:bg-zinc-800">
               <div className=" py-6 container rounded-md shadow-xl bg-white dark:bg-emerald-700">
                 <div className=" w-full flex justify-end pb-1">
-                  <ButtonEditProfile />
+                  <span
+                    onClick={() => {
+                      setIsOpen(true);
+                    }}
+                  >
+                    <ButtonEditProfile />
+                  </span>
+                  {isOpen && <Modal> Oi </Modal>}
                 </div>
                 <div className="flex flex-col items-center">
                   <img
@@ -55,27 +62,30 @@ export function Profile() {
                   />
                   <div className="flex gap-3">
                     <div className="pt-2 font-bold flex flex-col items-center ">
-                      <span className="dark:text-zinc-100">250</span>
+                      <span className="dark:text-zinc-100">
+                        {user.follower.length}
+                      </span>
                       <span className="text-xs dark:text-zinc-100 font-normal">
                         Followers
                       </span>
                     </div>
                     <div className="pt-2 font-bold flex flex-col items-center ">
-                      <span className="dark:text-zinc-100">250</span>
+                      <span className="dark:text-zinc-100">
+                        {user.following.length}
+                      </span>
                       <span className="text-xs dark:text-zinc-100 font-normal">
                         Following
                       </span>
                     </div>
                   </div>
-
                   <h1 className="text-lg font-bold dark:text-zinc-100">
                     {user.name}
                   </h1>
 
                   <h1 className=" dark:text-zinc-100">@{user.username}</h1>
-                  {/* <p className=" dark:text-zinc-100">{user.email}</p> */}
+
                   <p className="dark:text-zinc-100 text-xs pt-2">
-                    User desde:{dataFormatada}
+                    User desde: {dateConverter(user.createdAt)}
                   </p>
                 </div>
               </div>
