@@ -27,7 +27,7 @@ export function Navbar() {
   }, [loggedInUser]);
 
   return (
-    <>
+    <div>
       <header aria-label="Site Header" className="bg-white dark:bg-zinc-800">
         <div className="mx-auto  px-4 sm:px-6 lg:px-20">
           <div className="flex h-16 items-center justify-between">
@@ -113,6 +113,6 @@ export function Navbar() {
           </div>
         </div>
       </header>
-    </>
+    </div>
   );
 }
