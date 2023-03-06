@@ -1,14 +1,20 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
-import { api } from "../../config/api/api";
 import { TabBox } from "../../components/TabBox/tabbox";
-import statusUser from "../../config/zustand/statusUser";
+import { apiNoToken } from "../../config/api/apiNoToken";
 
 export function Home() {
+  const [tabs, setTabs] = useState("");
+  const [loading, setLoading] = useState(false);
+
   useEffect(() => {
     async function fetchTabs() {
       try {
-        const res = await api.get("/tab/all-tabs");
-        console.log(res.data);
+        // const res = await apiNoToken.get("/tab/all-tabs");
+        const res = await apiNoToken.get("/tab/all-tabs");
+
+        setTabs(res.data);
+        setLoading(!loading);
       } catch (err) {
         console.log(err);
       }
@@ -19,13 +25,14 @@ export function Home() {
   return (
     <div className="h-full">
       <div className="py-6 w-screen flex flex-col items-center gap-6 ">
-        <TabBox />
-        <TabBox />
-        <TabBox />
-        <TabBox />
-        <TabBox />
-        <TabBox />
-        <TabBox />
+        {loading &&
+          tabs.map((e) => {
+            return (
+              <div key={e._id}>
+                <TabBox tab={e} />
+              </div>
+            );
+          })}
       </div>
     </div>
   );
