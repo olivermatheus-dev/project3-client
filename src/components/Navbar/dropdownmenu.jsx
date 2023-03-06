@@ -54,6 +54,7 @@ export function MenuToggle() {
                     active ? "" : "text-emerald-600",
                     "block px-4 py-1 text-xs font-semibold flex gap-1"
                   )}
+                  to="/profile"
                 >
                   <div className="flex items-center justify-center">
                     <svg
@@ -81,7 +82,7 @@ export function MenuToggle() {
                     "block px-4 py-2 text-sm"
                   )}
                 >
-                  Acesse seu perfil
+                  Crie sua tab
                 </Link>
               )}
             </Menu.Item>
@@ -98,7 +99,7 @@ export function MenuToggle() {
               )}
             </Menu.Item>
 
-            <Menu.Item>
+            {/* <Menu.Item>
               {({ active }) => (
                 <Link
                   className={classNames(
@@ -123,8 +124,8 @@ export function MenuToggle() {
                   <h1>Configuração</h1>
                 </Link>
               )}
-            </Menu.Item>
-            <Menu.Item>
+            </Menu.Item> */}
+            {/* <Menu.Item>
               {({ active }) => (
                 <Link
                   className={classNames(
@@ -135,7 +136,7 @@ export function MenuToggle() {
                   Editar perfil
                 </Link>
               )}
-            </Menu.Item>
+            </Menu.Item> */}
 
             <Menu.Item>
               {({ active }) => (
