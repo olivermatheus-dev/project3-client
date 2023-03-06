@@ -21,7 +21,6 @@ export function Signup() {
 
   function handleImage(e) {
     setImg(e.target.files[0]);
-    console.log(e.target.files[0]);
   }
 
   async function handleUpload() {

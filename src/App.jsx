@@ -10,7 +10,7 @@ import { Navbar } from "./components/Navbar/navbar.jsx";
 
 function App() {
   return (
-    <div className="App bg-slate-100 dark:bg-zinc-700 h-full">
+    <div className="App bg-slate-100 dark:bg-zinc-700 h-full w-full ">
       <AuthContextComponent>
         <div className="">
           <Navbar />
