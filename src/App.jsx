@@ -8,6 +8,7 @@ import { AuthContextComponent } from "./config/context/authContext.jsx";
 import { ProtectedRoute } from "./pages/ProtectedRoute/protectedRoute.jsx";
 import { Navbar } from "./components/Navbar/navbar.jsx";
 import { CreateTab } from "./pages/CreateTab/createtab.jsx";
+import { TabDetails } from "./pages/TabDetails/tabDetails.jsx";
 
 function App() {
   return (
@@ -21,6 +22,8 @@ function App() {
           <Route path="*" element={<NotFound />} />
           <Route path="/sign-up" element={<Signup />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/tab/:tabId" element={<TabDetails />} />
+
           <Route
             path="/create/tab"
             element={

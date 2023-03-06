@@ -15,8 +15,10 @@ export function Navbar() {
   useEffect(() => {
     async function fetchUser() {
       try {
-        const response = await api.get("/user/profile");
-        setUser(response.data);
+        if (loggedInUser) {
+          const response = await api.get("/user/profile");
+          setUser(response.data);
+        }
       } catch (err) {
         console.log(err);
         navigate("/");
