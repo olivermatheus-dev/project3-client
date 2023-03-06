@@ -30,6 +30,7 @@ export function Profile() {
 
     fetchUser();
   }, [loggedInUser, updated]);
+  console.log(updated);
 
   function handleLogOut() {
     localStorage.removeItem("loggedInUser");
@@ -38,12 +39,12 @@ export function Profile() {
   }
 
   const [isOpen, setIsOpen] = useState(false);
-  console.log(isOpen);
+
   return (
     <>
       {!loading && <div> Carregando</div>}
       {loading && (
-        <div className="py-10">
+        <div className="py-4 w-screen">
           <div className="container w-full h-screen block sm:flex gap-4">
             <div className="flex flex-col gap-4 items-center  py-6 container rounded-md shadow-2xl  sm:w-1/3 bg-white dark:bg-zinc-800">
               <div className=" py-6 container rounded-md shadow-xl bg-white dark:bg-emerald-700">
