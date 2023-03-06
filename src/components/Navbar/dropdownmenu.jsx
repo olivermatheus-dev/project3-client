@@ -1,4 +1,4 @@
-import { Fragment, useContext } from "react";
+import { Fragment, useContext, useState } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../config/context/authContext.jsx";
@@ -81,6 +81,7 @@ export function MenuToggle() {
                     active ? "bg-gray-100 text-gray-900" : "text-gray-500",
                     "block px-4 py-2 text-sm"
                   )}
+                  to="/create/tab"
                 >
                   Crie sua tab
                 </Link>
