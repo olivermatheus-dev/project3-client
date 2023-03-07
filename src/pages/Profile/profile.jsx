@@ -1,15 +1,14 @@
 import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { api } from "../../config/api/api.jsx";
-import { ButtonLogout } from "./btnlogout.jsx";
 import { ButtonEditProfile } from "./btnEditProfile.jsx";
 import { AuthContext } from "../../config/context/authContext.jsx";
 import { dateConverter } from "../../config/functions/dateConverter.js";
 import { Modal } from "../../components/Modal/modal.jsx";
 import { UpdateProfile } from "./updateProfile.jsx";
-import { TabBox } from "../../components/TabBox/tabbox.jsx";
 import { TabBoxProfile } from "../../components/TabBox/tabboxprofile.jsx";
 import { ButtonFollow } from "./btnFollow.jsx";
+import { ButtonLogout } from "./btnlogout.jsx";
 
 export function Profile() {
   const [loading, setLoading] = useState(false);
@@ -23,19 +22,20 @@ export function Profile() {
   const { loggedInUser, setLoggedInUser } = useContext(AuthContext);
 
   useEffect(() => {
-    async function fetchUser() {
+    async function fetchUserPerfil() {
       try {
         const response = await api.get(`/user/profile/${params.username}`);
 
         setTabs(response.data.tabsId);
         setLoading(true);
         setUser(response.data);
+        console.log(response.data);
       } catch (err) {
         console.log(err);
       }
     }
 
-    fetchUser();
+    fetchUserPerfil();
   }, [loggedInUser, updated]);
 
   let userId;
@@ -104,6 +104,7 @@ export function Profile() {
                     <ButtonFollow
                       user={userId}
                       perfil={user._id}
+                      follower={user.follower}
                       setUpdated={setUpdated}
                     />
                   )}
