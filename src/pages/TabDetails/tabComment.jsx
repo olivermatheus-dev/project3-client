@@ -3,19 +3,8 @@ import { useParams } from "react-router-dom";
 import { api } from "../../config/api/api.jsx";
 
 export function TabComment({ comments, setUpdatePage }) {
-  //const { setLoggedInUser } = useContext(AuthContext);
   console.log(comments);
   const [content, setContent] = useState("");
-  //   useEffect(() => {
-  //     async function fetchComments() {
-  //       try {
-  //       } catch (err) {
-  //         console.log(err);
-  //       }
-  //     }
-  //     fetchComments();
-  //   }, []);
-
   const params = useParams();
   async function handleSubmit(e) {
     e.preventDefault();
@@ -32,7 +21,10 @@ export function TabComment({ comments, setUpdatePage }) {
       console.log(error);
     }
   }
-
+  let userId;
+  if (localStorage.getItem("loggedInUser")) {
+    userId = JSON.parse(localStorage.getItem("loggedInUser") || '""').user._id;
+  }
   return (
     <>
       <div>
@@ -48,30 +40,31 @@ export function TabComment({ comments, setUpdatePage }) {
                 comments.map((comment) => {
                   return <div>{comment.content}</div>;
                 })}
-
-              <form onSubmit={handleSubmit}>
-                <div className="flex gap-5">
-                  <div className="w-full mt-4">
-                    <input
-                      type="text"
-                      name="content"
-                      value={content}
-                      placeholder="Comente aqui!"
-                      onChange={(e) => setContent(e.target.value)}
-                      className="block w-full px-4 py-2 mt-2 text-gray-700 dark:text-gray-200 placeholder-gray-500 bg-white border rounded-lg dark:bg-zinc-700 dark:border-gray-600 dark:placeholder-gray-400 focus:border-emerald-400 dark:focus:border-emerald-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-emerald-300"
-                    />
+              {userId && (
+                <form onSubmit={handleSubmit}>
+                  <div className="flex gap-5">
+                    <div className="w-full mt-4">
+                      <input
+                        type="text"
+                        name="content"
+                        value={content}
+                        placeholder="Comente aqui!"
+                        onChange={(e) => setContent(e.target.value)}
+                        className="block w-full px-4 py-2 mt-2 text-gray-700 dark:text-gray-200 placeholder-gray-500 bg-white border rounded-lg dark:bg-zinc-700 dark:border-gray-600 dark:placeholder-gray-400 focus:border-emerald-400 dark:focus:border-emerald-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-emerald-300"
+                      />
+                    </div>
                   </div>
-                </div>
 
-                <div className="flex items-center justify-center mt-4">
-                  <button
-                    type="submit"
-                    className="px-6 py-2 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-emerald-500 rounded-lg hover:bg-emerald-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50"
-                  >
-                    Criar Tab
-                  </button>
-                </div>
-              </form>
+                  <div className="flex items-center justify-center mt-4">
+                    <button
+                      type="submit"
+                      className="px-6 py-2 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-emerald-500 rounded-lg hover:bg-emerald-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50"
+                    >
+                      Criar Comentário
+                    </button>
+                  </div>
+                </form>
+              )}
             </div>
           </div>
         </div>
