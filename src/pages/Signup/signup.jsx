@@ -53,11 +53,11 @@ export function Signup() {
   }
 
   return (
-    <div className="flex">
+    <div className="flex h-screen items-center">
       <div className="w-1/2">
         <h1>Adicionar logo bonitinho</h1>
       </div>
-      <div className="w-1/2 h-4/6 flex items-center justify-center py-10">
+      <div className="w-2/3 h-5/6 flex items-center justify-center py-10">
         <div className="-mt-20 w-11/12 sm:w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-md dark:bg-zinc-800">
           <div className="px-6 py-4">
             <h3 className="mt-3 text-xl font-medium text-center text-zinc-600 dark:text-emerald-400">
