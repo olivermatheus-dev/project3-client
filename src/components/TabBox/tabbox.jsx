@@ -40,19 +40,22 @@ export function TabBox({ tab }) {
             Read more
           </Link>
 
-          <div className="flex items-center">
+          <Link
+            to={`/profile/${tab.authorId.username}/user`}
+            className="flex items-center"
+          >
             <img
               className=" object-cover  w-6 h-6  sm:w-10 sm:h-10  mx-1  sm:mx-4 rounded-full sm:block"
               src={tab.authorId.img}
               alt="avatar"
             />
-            <a
+            <div
               className="font-bold text-gray-700 cursor-pointer dark:text-gray-200"
               role="link"
             >
               {tab.authorId.name}
-            </a>
-          </div>
+            </div>
+          </Link>
         </div>
       </div>
     </>

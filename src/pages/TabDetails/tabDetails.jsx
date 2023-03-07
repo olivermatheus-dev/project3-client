@@ -48,12 +48,12 @@ export function TabDetails() {
                         </div>
                       </div>
                     </address>
-                    <h1 className="mb-1 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-2 lg:text-4xl dark:text-white">
+                    <h1 className="mb-1 text-3xl font-semibold leading-tight text-gray-900 lg:mb-2 lg:text-4xl dark:text-emerald-500">
                       {tab.title}
                     </h1>
                   </header>
                   <p
-                    className="pb-6"
+                    className="pb-6 text-zinc-50"
                     dangerouslySetInnerHTML={{ __html: tab.content }}
                   />
                   {userId === tab.authorId._id && (
