@@ -53,7 +53,7 @@ export function Profile() {
 
   return (
     <>
-      {!loading && <div> Carregando</div>}
+      {!loading && <div className="h-[1080px] w-screen bg-zinc-500"></div>}
       {loading && (
         <div className="py-4 w-screen">
           <div className="container w-full h-screen block sm:flex gap-4">
@@ -72,6 +72,7 @@ export function Profile() {
                       <UpdateProfile
                         updated={updated}
                         setUpdated={setUpdated}
+                        setIsOpen={setIsOpen}
                       />
                     </Modal>
                   )}
