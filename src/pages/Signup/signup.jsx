@@ -15,6 +15,8 @@ export function Signup() {
     confirmPassword: "",
   });
 
+  const [imageUploaded, setImageUploaded] = useState(false);
+
   const [img, setImg] = useState("");
 
   function handleChange(e) {
@@ -23,6 +25,7 @@ export function Signup() {
 
   function handleImage(e) {
     setImg(e.target.files[0]);
+    setImageUploaded(true);
   }
 
   async function handleUpload() {
@@ -55,7 +58,7 @@ export function Signup() {
   return (
     <div className="flex h-screen items-center">
       <div className="w-1/2">
-        <h1>Adicionar logo bonitinho</h1>
+        <h1>Adicionar algo bonitinho</h1>
       </div>
       <div className="w-2/3 h-5/6 flex items-center justify-center py-10">
         <div className="-mt-20 w-11/12 sm:w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-md dark:bg-zinc-800">
@@ -69,42 +72,82 @@ export function Signup() {
             </p>
 
             <form onSubmit={handleSubmit}>
-              <div>
-                <label
-                  htmlFor="formImg"
-                  className="flex flex-col items-center w-full max-w-lg p-3 mx-auto mt-2 text-center bg-white border-2 border-gray-300 border-dashed cursor-pointer dark:bg-zinc-800 dark:border-gray-700  rounded-xl"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth="1.5"
-                    stroke="currentColor"
-                    className="w-8 h-8 text-gray-500 dark:text-gray-400"
+              {!imageUploaded && (
+                <div>
+                  <label
+                    htmlFor="formImg"
+                    className="flex flex-col items-center w-full max-w-lg p-3 mx-auto mt-2 text-center bg-white border-2 border-gray-300 border-dashed cursor-pointer dark:bg-zinc-800 dark:border-gray-700  rounded-xl"
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M12 16.5V9.75m0 0l3 3m-3-3l-3 3M6.75 19.5a4.5 4.5 0 01-1.41-8.775 5.25 5.25 0 0110.233-2.33 3 3 0 013.758 3.848A3.752 3.752 0 0118 19.5H6.75z"
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth="1.5"
+                      stroke="currentColor"
+                      className="w-8 h-8 text-gray-500 dark:text-gray-400"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M12 16.5V9.75m0 0l3 3m-3-3l-3 3M6.75 19.5a4.5 4.5 0 01-1.41-8.775 5.25 5.25 0 0110.233-2.33 3 3 0 013.758 3.848A3.752 3.752 0 0118 19.5H6.75z"
+                      />
+                    </svg>
+
+                    <h2 className="mt-1 font-medium tracking-wide text-zinc-700 dark:text-gray-200">
+                      Foto de Perfil
+                    </h2>
+
+                    <p className="mt-2 text-xs tracking-wide text-zinc-500 dark:text-gray-400">
+                      Selecione uma imagem em PNG ou JPG. (clique aqui)
+                    </p>
+
+                    <input
+                      id="formImg"
+                      type="file"
+                      className="hidden"
+                      onChange={handleImage}
                     />
-                  </svg>
+                  </label>
+                </div>
+              )}
+              {imageUploaded && (
+                <div>
+                  <label
+                    htmlFor="formImg"
+                    className="flex flex-col items-center w-full max-w-lg p-3 mx-auto mt-2 text-center bg-white border-2 border-emerald-500  cursor-pointer dark:bg-zinc-800 dark:border-gray-700  rounded-xl"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="1.5"
+                      stroke="currentColor"
+                      className="w-8 h-8 text-emerald-500 dark:text-emerald-500"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M4.5 12.75l6 6 9-13.5"
+                      />
+                    </svg>
 
-                  <h2 className="mt-1 font-medium tracking-wide text-zinc-700 dark:text-gray-200">
-                    Foto de Perfil
-                  </h2>
+                    <h2 className="mt-1 font-medium tracking-wide text-zinc-700 dark:text-gray-200">
+                      Foto de Perfil
+                    </h2>
 
-                  <p className="mt-2 text-xs tracking-wide text-zinc-500 dark:text-gray-400">
-                    Arraste ou selecione uma imagem em PNG ou JPG.
-                  </p>
+                    <p className="mt-2 text-xs tracking-wide text-zinc-500 dark:text-gray-400">
+                      Upload realizado com sucesso!
+                    </p>
 
-                  <input
-                    id="formImg"
-                    type="file"
-                    className="hidden"
-                    onChange={handleImage}
-                  />
-                </label>
-              </div>
+                    <input
+                      id="formImg"
+                      type="file"
+                      className="hidden"
+                      onChange={handleImage}
+                    />
+                  </label>
+                </div>
+              )}
 
               <div className="w-full mt-4">
                 <input

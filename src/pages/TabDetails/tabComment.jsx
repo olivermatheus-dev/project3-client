@@ -2,8 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { api } from "../../config/api/api.jsx";
 
-export function TabComment({ comments, setUpdatePage }) {
-  console.log(comments);
+export function TabComment({ comments, setUpdatePage, user }) {
   const [content, setContent] = useState("");
   const params = useParams();
   async function handleSubmit(e) {
@@ -21,10 +20,23 @@ export function TabComment({ comments, setUpdatePage }) {
       console.log(error);
     }
   }
+
+  async function handleDelete(e) {
+    try {
+      await api.delete(`/comment/delete/${e.target.value}`);
+      setUpdatePage((state) => {
+        return !state;
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   let userId;
   if (localStorage.getItem("loggedInUser")) {
     userId = JSON.parse(localStorage.getItem("loggedInUser") || '""').user._id;
   }
+  console.log(comments);
   return (
     <>
       <div>
@@ -34,11 +46,27 @@ export function TabComment({ comments, setUpdatePage }) {
               <div className="flex justify-center mx-auto"></div>
 
               <p className="mt-1 text-center text-gray-500 dark:text-gray-400">
-                Preencha as informações para criar o seu tab.
+                Comentários
               </p>
               {comments &&
                 comments.map((comment) => {
-                  return <div>{comment.content}</div>;
+                  return (
+                    <div className="container flex">
+                      <div className="dark:text-zinc-50">
+                        @{user.username}: {comment.content}
+                      </div>
+
+                      {comment.authorId === userId && (
+                        <button
+                          className="bg-red-500 py-2 px-3 rounded-lg"
+                          onClick={handleDelete}
+                          value={comment._id}
+                        >
+                          delete
+                        </button>
+                      )}
+                    </div>
+                  );
                 })}
               {userId && (
                 <form onSubmit={handleSubmit}>

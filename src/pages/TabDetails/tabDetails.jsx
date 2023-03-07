@@ -69,6 +69,7 @@ export function TabDetails() {
                   <TabComment
                     comments={comment}
                     setUpdatePage={setUpdatePage}
+                    user={tab.authorId}
                   />
                 </article>
               </div>
