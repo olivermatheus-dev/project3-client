@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import { api } from "../../config/api/api.jsx";
+import { useParams } from "react-router-dom";
 
 export function UpdateProfile({ setUpdated, updated }) {
   const storedUser = localStorage.getItem("loggedInUser");
+  const params = useParams();
   const [userForm, setUserForm] = useState({
     name: "seu nome",
     username: "seu user",
@@ -10,7 +12,7 @@ export function UpdateProfile({ setUpdated, updated }) {
   useEffect(() => {
     async function fetchUser() {
       try {
-        const response = await api.get("/user/profile");
+        const response = await api.get(`/user/profile/${params.username}`);
         setUserForm({ ...response.data });
       } catch (err) {
         console.log(err);
