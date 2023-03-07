@@ -4,7 +4,7 @@ import { dateConverter } from "../../config/functions/dateConverter.js";
 export function TabBox({ tab }) {
   return (
     <>
-      <div className="max-w-2xl px-8 py-3 bg-white rounded-lg shadow-md dark:bg-zinc-800  hover:scale-105 transition duration-300 ease-in-out">
+      <div className="max-w-2xl sm:w-[700px] px-8 py-3 bg-white rounded-lg dark:bg-zinc-800  shadow-md hover:scale-105 transition duration-300 ease-in-out">
         <div className="flex items-center justify-between">
           <span className="text-sm font-light text-gray-600 dark:text-gray-400">
             {dateConverter(tab.createdAt)}
@@ -40,19 +40,22 @@ export function TabBox({ tab }) {
             Read more
           </Link>
 
-          <div className="flex items-center">
+          <Link
+            to={`/profile/${tab.authorId.username}/user`}
+            className="flex items-center"
+          >
             <img
-              className="hidden object-cover w-10 h-10 mx-4 rounded-full sm:block"
+              className=" object-cover  w-6 h-6  sm:w-10 sm:h-10  mx-1  sm:mx-4 rounded-full sm:block"
               src={tab.authorId.img}
               alt="avatar"
             />
-            <a
+            <div
               className="font-bold text-gray-700 cursor-pointer dark:text-gray-200"
               role="link"
             >
               {tab.authorId.name}
-            </a>
-          </div>
+            </div>
+          </Link>
         </div>
       </div>
     </>

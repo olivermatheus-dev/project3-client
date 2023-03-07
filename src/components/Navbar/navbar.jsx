@@ -16,7 +16,9 @@ export function Navbar() {
     async function fetchUser() {
       try {
         if (loggedInUser) {
-          const response = await api.get("/user/profile");
+          const response = await api.get(
+            `/user/profile/${loggedInUser.user.username}`
+          );
           setUser(response.data);
         }
       } catch (err) {
@@ -30,7 +32,10 @@ export function Navbar() {
 
   return (
     <div>
-      <header aria-label="Site Header" className="bg-white dark:bg-zinc-800">
+      <header
+        aria-label="Site Header"
+        className="bg-gray-50 shadow-md dark:bg-zinc-800"
+      >
         <div className="mx-auto  px-4 sm:px-6 lg:px-20">
           <div className="flex h-16 items-center justify-between">
             <div className="flex md:items-center gap-4">
@@ -95,7 +100,10 @@ export function Navbar() {
               )}
               {loggedInUser && (
                 <div className="flex w-48 gap-3">
-                  <Link to="/profile" className="flex gap-3">
+                  <Link
+                    to={`/profile/${user.username}/user`}
+                    className="flex gap-3"
+                  >
                     <img
                       src={user.img}
                       className="w-8 h-8 object-cover rounded-full outline outline-offset-2 outline-2 outline-emerald-500"
