@@ -26,13 +26,15 @@ export function Home() {
     <div className="h-screen">
       <div className="py-6 w-screen flex flex-col items-center gap-6 ">
         {loading &&
-          tabs.map((e) => {
-            return (
-              <div key={e._id}>
-                <TabBox tab={e} />
-              </div>
-            );
-          })}
+          tabs
+            .map((e) => {
+              return (
+                <div key={e._id}>
+                  <TabBox tab={e} />
+                </div>
+              );
+            })
+            .reverse()}
       </div>
     </div>
   );
