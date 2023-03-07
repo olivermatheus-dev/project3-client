@@ -101,7 +101,7 @@ export function Navbar() {
               {loggedInUser && (
                 <div className="flex w-48 gap-3">
                   <Link
-                    to={`/profile/${user.username}/user`}
+                    to={`/redirect/${user.username}/`}
                     className="flex gap-3"
                   >
                     <img
@@ -112,7 +112,7 @@ export function Navbar() {
                       {user.username}
                     </h1>
                   </Link>
-                  <MenuToggle />
+                  <MenuToggle username={user.username} />
                 </div>
               )}
 

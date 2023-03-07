@@ -1,34 +1,49 @@
-import { useEffect } from "react";
+import { useState } from "react";
 import { api } from "../../config/api/api";
 
-export function ButtonFollow({ user, perfil, setUpdated }) {
-  async function handleClick() {
+export function ButtonFollow({ user, perfil, setUpdated, follower }) {
+  const filterFollower = follower.find(
+    (currentElement) => currentElement._id === user
+  );
+
+  const isFollowing = !!filterFollower;
+
+  async function handleFollow() {
     try {
       await api.put(`/follow/add/${perfil}`);
+      setUpdated((state) => !state);
     } catch (error) {
       console.log(error);
     }
   }
 
-  // useEffect(() => {
-  //     async function fetchUser() {
-  //       try {
-  //         const response = await api.get(`/user/profile/${params.username}`);
-
-  //       } catch (err) {
-  //         console.log(err);
-  //       }
-  //     }
-
-  //     fetchUser();
-  //   }, []);
+  async function handleUnfollow() {
+    try {
+      await api.put(`/follow/remove/${perfil}`);
+      setUpdated((state) => !state);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   return (
-    <button
-      className="bg-cyan-600 py-2 px-3 rounded-md shadow-md"
-      onClick={handleClick}
-    >
-      Seguir
-    </button>
+    <>
+      {!isFollowing && (
+        <button
+          className="bg-sky-600 py-2 px-3 rounded-md shadow-md my-2"
+          onClick={handleFollow}
+        >
+          Follow
+        </button>
+      )}
+      {isFollowing && (
+        <button
+          className="bg-red-500 py-2 px-3 rounded-md shadow-md my-2"
+          onClick={handleUnfollow}
+        >
+          Unfollow
+        </button>
+      )}
+    </>
   );
 }
