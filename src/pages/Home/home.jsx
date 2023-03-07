@@ -23,7 +23,7 @@ export function Home() {
   }, []);
 
   return (
-    <div className="h-full">
+    <div className="h-screen">
       <div className="py-6 w-screen flex flex-col items-center gap-6 ">
         {loading &&
           tabs.map((e) => {

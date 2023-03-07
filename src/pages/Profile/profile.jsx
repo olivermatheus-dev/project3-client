@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { api } from "../../config/api/api.jsx";
 import { ButtonLogout } from "./btnlogout.jsx";
 import { ButtonEditProfile } from "./btnEditProfile.jsx";
@@ -14,12 +14,15 @@ export function Profile() {
   const [user, setUser] = useState({ name: "", email: "" });
   const navigate = useNavigate();
 
+  const params = useParams();
+  console.log(params.username);
   const { loggedInUser, setLoggedInUser } = useContext(AuthContext);
 
   useEffect(() => {
     async function fetchUser() {
       try {
-        const response = await api.get("/user/profile");
+        const response = await api.get(`/user/profile/${params.username}`);
+        console.log(response.data);
 
         setLoading(true);
         setUser(response.data);
@@ -108,7 +111,7 @@ export function Profile() {
             <div className="container py-8 mt-4 sm:mt-0 rounded-md shadow-2xl  sm:w-2/3  bg-white dark:bg-zinc-800">
               <div className="container rounded-md shadow-2xl ">
                 <h1 className="text-2xl font-bold dark:text-zinc-100">
-                  Seus tabs mais recentes
+                  Tabs recentes
                 </h1>
               </div>
             </div>
