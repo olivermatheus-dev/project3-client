@@ -1,14 +1,14 @@
 import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { api } from "../../config/api/api.jsx";
-import { ButtonLogout } from "./btnlogout.jsx";
 import { ButtonEditProfile } from "./btnEditProfile.jsx";
 import { AuthContext } from "../../config/context/authContext.jsx";
 import { dateConverter } from "../../config/functions/dateConverter.js";
 import { Modal } from "../../components/Modal/modal.jsx";
 import { UpdateProfile } from "./updateProfile.jsx";
-import { TabBox } from "../../components/TabBox/tabbox.jsx";
 import { TabBoxProfile } from "../../components/TabBox/tabboxprofile.jsx";
+import { ButtonFollow } from "./btnFollow.jsx";
+import { ButtonLogout } from "./btnlogout.jsx";
 
 export function Profile() {
   const [loading, setLoading] = useState(false);
@@ -18,25 +18,30 @@ export function Profile() {
   const navigate = useNavigate();
 
   const params = useParams();
-  console.log(params);
+
   const { loggedInUser, setLoggedInUser } = useContext(AuthContext);
 
   useEffect(() => {
-    async function fetchUser() {
+    async function fetchUserPerfil() {
       try {
         const response = await api.get(`/user/profile/${params.username}`);
-        console.log(response.data.tabsId);
+
         setTabs(response.data.tabsId);
         setLoading(true);
         setUser(response.data);
+        console.log(response.data);
       } catch (err) {
         console.log(err);
       }
     }
 
-    fetchUser();
+    fetchUserPerfil();
   }, [loggedInUser, updated]);
-  console.log(updated);
+
+  let userId;
+  if (localStorage.getItem("loggedInUser")) {
+    userId = JSON.parse(localStorage.getItem("loggedInUser") || '""').user._id;
+  }
 
   function handleLogOut() {
     localStorage.removeItem("loggedInUser");
@@ -60,7 +65,7 @@ export function Profile() {
                       setIsOpen(true);
                     }}
                   >
-                    <ButtonEditProfile />
+                    {user._id === userId && <ButtonEditProfile />}
                   </span>
                   {isOpen && (
                     <Modal setIsOpen={setIsOpen}>
@@ -94,6 +99,16 @@ export function Profile() {
                       </span>
                     </div>
                   </div>
+
+                  {user._id !== userId && (
+                    <ButtonFollow
+                      user={userId}
+                      perfil={user._id}
+                      follower={user.follower}
+                      setUpdated={setUpdated}
+                    />
+                  )}
+
                   <h1 className="text-lg font-bold dark:text-zinc-100">
                     {user.name}
                   </h1>
@@ -105,11 +120,13 @@ export function Profile() {
                   </p>
                 </div>
               </div>
-              <div className="flex flex-col gap-2 items-center  py-6 container rounded-md shadow-xl bg-white dark:bg-emerald-700">
-                <button onClick={handleLogOut}>
-                  <ButtonLogout />
-                </button>
-              </div>
+              {user._id === userId && (
+                <div className="flex flex-col gap-2 items-center  py-6 container rounded-md shadow-xl bg-white dark:bg-emerald-700">
+                  <button onClick={handleLogOut}>
+                    <ButtonLogout />
+                  </button>
+                </div>
+              )}
             </div>
             <div className="container py-8 mt-4 sm:mt-0 rounded-md shadow-2xl  sm:w-2/3  bg-white  dark:bg-zinc-800/20">
               <div className="container rounded-md shadow-2xl dark:bg-zinc-600">

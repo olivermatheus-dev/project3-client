@@ -10,6 +10,7 @@ import { Navbar } from "./components/Navbar/navbar.jsx";
 import { CreateTab } from "./pages/CreateTab/createtab.jsx";
 import { TabDetails } from "./pages/TabDetails/tabDetails.jsx";
 import { useNavigate } from "react-router-dom";
+import { Redirect } from "./pages/Redirect/index.jsx";
 
 function App() {
   //const navigate = useNavigate();
@@ -43,6 +44,7 @@ function App() {
               </ProtectedRoute>
             }
           />
+          <Route path="/redirect/:userId" element={<Redirect />} />
         </Routes>
       </AuthContextComponent>
     </div>
