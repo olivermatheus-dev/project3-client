@@ -9,8 +9,10 @@ import { ProtectedRoute } from "./pages/ProtectedRoute/protectedRoute.jsx";
 import { Navbar } from "./components/Navbar/navbar.jsx";
 import { CreateTab } from "./pages/CreateTab/createtab.jsx";
 import { TabDetails } from "./pages/TabDetails/tabDetails.jsx";
+import { useNavigate } from "react-router-dom";
 
 function App() {
+  //const navigate = useNavigate();
   return (
     <div className="App bg-slate-100 dark:bg-zinc-700 h-full w-full ">
       <AuthContextComponent>
