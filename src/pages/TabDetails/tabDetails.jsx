@@ -3,10 +3,13 @@ import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { apiNoToken } from "../../config/api/apiNoToken";
 import { dateConverter } from "../../config/functions/dateConverter";
+import { TabComment } from "./tabComment.jsx";
 
 export function TabDetails() {
   const [tab, setTab] = useState();
   const [loading, setLoading] = useState(false);
+  const [comment, setComment] = useState([]);
+  const [updatePage, setUpdatePage] = useState(false);
   const params = useParams();
 
   useEffect(() => {
@@ -14,19 +17,21 @@ export function TabDetails() {
       try {
         const response = await apiNoToken.get(`/tab/details/${params.tabId}`);
         setTab(response.data);
-        setLoading(!loading);
+        setComment(response.data.commentsId);
+        console.log(response.data);
+        setLoading(true);
       } catch (error) {
         console.log(error);
       }
     }
     fetchTab();
-  }, []);
+  }, [updatePage]);
 
   let userId;
   if (localStorage.getItem("loggedInUser")) {
     userId = JSON.parse(localStorage.getItem("loggedInUser") || '""').user._id;
   }
-
+  console.log(updatePage);
   return (
     <>
       {loading && (
@@ -61,6 +66,10 @@ export function TabDetails() {
                       Editar
                     </Link>
                   )}
+                  <TabComment
+                    comments={comment}
+                    setUpdatePage={setUpdatePage}
+                  />
                 </article>
               </div>
             </main>
