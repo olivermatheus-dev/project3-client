@@ -10,6 +10,7 @@ import { TabBoxProfile } from "../../components/TabBox/tabboxprofile.jsx";
 import { ButtonFollow } from "./btnFollow.jsx";
 import { ButtonLogout } from "./btnlogout.jsx";
 import { motion } from "framer-motion";
+import { Loading } from "../../components/Loading/index.jsx";
 
 export function Profile() {
   const [loading, setLoading] = useState(false);
@@ -58,10 +59,10 @@ export function Profile() {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
     >
-      {!loading && <div className="h-[1080px] w-screen bg-zinc-500"></div>}
+      {!loading && <Loading />}
       {loading && (
-        <div className="py-4 w-screen">
-          <div className="container w-full h-screen block sm:flex gap-4">
+        <div className="py-4 w-screen h-full">
+          <div className="container w-full block sm:flex gap-4">
             <div className="flex flex-col gap-4 items-center  py-6 container rounded-md shadow-2xl  sm:w-1/3 bg-white dark:bg-zinc-800 transition duration-300 ease-in-out">
               <div className=" py-6 container rounded-md shadow-xl bg-white dark:bg-emerald-700">
                 <div className=" w-full flex justify-end pb-1">
@@ -134,22 +135,18 @@ export function Profile() {
                 </div>
               )}
             </div>
-            <div className="container py-8 mt-4 sm:mt-0 rounded-md shadow-2xl  sm:w-2/3  bg-white  dark:bg-zinc-800/20">
+            <div className=" mt-4 sm:mt-0 rounded-md shadow-2xl  sm:w-4/6  bg-white  dark:bg-zinc-800/20">
               <div className="container rounded-md shadow-2xl dark:bg-zinc-600">
                 <h1 className="text-2xl font-bold dark:text-zinc-100 pt-4">
                   Tabs recentes
                 </h1>
                 <div
-                  className="flex flex-col gap-4 py-5
-                "
+                  style={{ maxHeight: "800px", overflow: "auto" }}
+                  className="flex flex-col gap-2 py-5 px-5 scrollbar-thin dark:scrollbar-thumb-emerald-600 scrollbar-thumb-emerald-500 scrollbar-track-gray-200 dark:scrollbar-track-zinc-500 scrollbar-thumb-rounded-full scrollbar-track-rounded-full"
                 >
-                  {tabs.map((e) => {
-                    return (
-                      <div key={e._id}>
-                        <TabBoxProfile tab={e} />
-                      </div>
-                    );
-                  })}
+                  {tabs.map((tab) => (
+                    <TabBoxProfile key={tab._id} tab={tab} />
+                  ))}
                 </div>
               </div>
             </div>

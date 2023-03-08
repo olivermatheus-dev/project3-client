@@ -4,7 +4,7 @@ import { dateConverter } from "../../config/functions/dateConverter.js";
 export function TabBoxProfile({ tab }) {
   return (
     <>
-      <div className="max-w-2xl sm:w-[700px] px-8 py-3 bg-white rounded-lg dark:bg-zinc-800  shadow-md hover:scale-105 transition duration-300 ease-in-out">
+      <div className="max-w-2xl sm:w-[700px] px-8 py-3  bg-white rounded-lg dark:bg-zinc-800  shadow-md hover:scale-105 transition duration-300 ease-in-out">
         <div className="flex items-center justify-between">
           <span className="text-sm font-light text-gray-600 dark:text-gray-400">
             {dateConverter(tab.createdAt)}
