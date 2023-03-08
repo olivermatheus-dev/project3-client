@@ -13,7 +13,6 @@ export function MenuToggle({ username }) {
   function handleLogOut() {
     localStorage.removeItem("loggedInUser");
     setLoggedInUser(null);
-    navigate("/");
   }
 
   return (
@@ -110,6 +109,7 @@ export function MenuToggle({ username }) {
                     "block px-4 py-2 text-sm"
                   )}
                   onClick={handleLogOut}
+                  to="/"
                 >
                   Sair
                 </Link>
