@@ -35,7 +35,7 @@ export function Navbar() {
     <div>
       <header
         aria-label="Site Header"
-        className="bg-gray-50 shadow-md dark:bg-zinc-800"
+        className="bg-gray-50 shadow-md dark:bg-zinc-800 fixed w-screen"
       >
         <div className="mx-auto  px-4 sm:px-6 lg:px-20">
           <div className="flex h-16 items-center justify-between">
@@ -104,7 +104,7 @@ export function Navbar() {
                 </div>
               )}
               {loggedInUser && (
-                <div className="flex sm:w-48 gap-2 sm:gap-3">
+                <div className="flex sm:w-24 md:w-48 gap-2 sm:gap-3">
                   <Link
                     to={`/redirect/${user.username}/`}
                     className="flex gap-3"
@@ -113,7 +113,7 @@ export function Navbar() {
                       src={user.img}
                       className="w-8 h-8 object-cover rounded-full outline outline-offset-2 outline-2 outline-emerald-500"
                     />
-                    <h1 className="dark:text-zinc-100 my-auto hidden sm:block ">
+                    <h1 className="dark:text-zinc-100 my-auto hidden md:block ">
                       {user.username}
                     </h1>
                   </Link>
