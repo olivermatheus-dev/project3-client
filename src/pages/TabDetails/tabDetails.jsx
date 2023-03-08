@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import { apiNoToken } from "../../config/api/apiNoToken";
 import { dateConverter } from "../../config/functions/dateConverter";
 import { TabComment } from "./tabComment.jsx";
+import { Loading } from "../../components/Loading";
 
 export function TabDetails() {
   const [tab, setTab] = useState();
@@ -77,7 +78,7 @@ export function TabDetails() {
           </div>
         </>
       )}
-      {!loading && <h1>Carregando </h1>}
+      {!loading && <Loading />}
     </>
   );
 }
