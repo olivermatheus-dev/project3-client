@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { apiNoToken } from "../../config/api/apiNoToken";
 import _ from "lodash";
-import { TabBoxNavbar } from "./tabboxnavbar";
+import { TabBoxNavbar } from "../TabBox/tabboxnavbar";
 
 export function SearchBar() {
   const [search, setSearch] = useState("");
