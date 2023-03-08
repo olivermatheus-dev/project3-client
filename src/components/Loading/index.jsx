@@ -1,12 +1,14 @@
 import { motion } from "framer-motion";
-export function NotFound() {
+
+export function Loading() {
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
+      className="h-screen w-screen transition-all duration-500 bg-zinc-700"
     >
-      <h1>Página não encontrada</h1>
+      Loading
     </motion.div>
   );
 }

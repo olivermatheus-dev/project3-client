@@ -2,6 +2,8 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { TabBox } from "../../components/TabBox/tabbox";
 import { apiNoToken } from "../../config/api/apiNoToken";
+import { motion } from "framer-motion";
+import { Loading } from "../../components/Loading";
 
 export function Home() {
   const [tabs, setTabs] = useState("");
@@ -23,7 +25,12 @@ export function Home() {
   }, []);
 
   return (
-    <div className="h-screen">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
+      {!loading && <Loading />}
       <div className="py-6 w-screen flex flex-col items-center gap-6 ">
         {loading &&
           tabs
@@ -36,6 +43,6 @@ export function Home() {
             })
             .reverse()}
       </div>
-    </div>
+    </motion.div>
   );
 }

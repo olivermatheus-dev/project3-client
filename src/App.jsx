@@ -11,43 +11,50 @@ import { CreateTab } from "./pages/CreateTab/createtab.jsx";
 import { TabDetails } from "./pages/TabDetails/tabDetails.jsx";
 import { useNavigate } from "react-router-dom";
 import { Redirect } from "./pages/Redirect/index.jsx";
+import { motion } from "framer-motion";
 
 function App() {
   //const navigate = useNavigate();
   return (
-    <div className="App bg-slate-100 dark:bg-zinc-700 h-full w-full ">
-      <AuthContextComponent>
-        <div className="">
-          <Navbar />
-        </div>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="*" element={<NotFound />} />
-          <Route path="/sign-up" element={<Signup />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/tab/:tabId" element={<TabDetails />} />
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
+      <div className="App bg-slate-100 dark:bg-zinc-700 h-full w-full ">
+        <AuthContextComponent>
+          <div className="">
+            <Navbar />
+          </div>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="*" element={<NotFound />} />
+            <Route path="/sign-up" element={<Signup />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/tab/:tabId" element={<TabDetails />} />
 
-          <Route
-            path="/create/tab"
-            element={
-              <ProtectedRoute>
-                <CreateTab />
-              </ProtectedRoute>
-            }
-          />
-          {/* <Route path="/profile" element={<Profile />} /> */}
-          <Route
-            path="/profile/:username/user"
-            element={
-              <ProtectedRoute>
-                <Profile />
-              </ProtectedRoute>
-            }
-          />
-          <Route path="/redirect/:userId" element={<Redirect />} />
-        </Routes>
-      </AuthContextComponent>
-    </div>
+            <Route
+              path="/create/tab"
+              element={
+                <ProtectedRoute>
+                  <CreateTab />
+                </ProtectedRoute>
+              }
+            />
+            {/* <Route path="/profile" element={<Profile />} /> */}
+            <Route
+              path="/profile/:username/user"
+              element={
+                <ProtectedRoute>
+                  <Profile />
+                </ProtectedRoute>
+              }
+            />
+            <Route path="/redirect/:userId" element={<Redirect />} />
+          </Routes>
+        </AuthContextComponent>
+      </div>
+    </motion.div>
   );
 }
 

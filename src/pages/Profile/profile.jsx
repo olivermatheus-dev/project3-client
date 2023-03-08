@@ -9,6 +9,7 @@ import { UpdateProfile } from "./updateProfile.jsx";
 import { TabBoxProfile } from "../../components/TabBox/tabboxprofile.jsx";
 import { ButtonFollow } from "./btnFollow.jsx";
 import { ButtonLogout } from "./btnlogout.jsx";
+import { motion } from "framer-motion";
 
 export function Profile() {
   const [loading, setLoading] = useState(false);
@@ -52,7 +53,11 @@ export function Profile() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
       {!loading && <div className="h-[1080px] w-screen bg-zinc-500"></div>}
       {loading && (
         <div className="py-4 w-screen">
@@ -151,6 +156,6 @@ export function Profile() {
           </div>
         </div>
       )}
-    </>
+    </motion.div>
   );
 }
