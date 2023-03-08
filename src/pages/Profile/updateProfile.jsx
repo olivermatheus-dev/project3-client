@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { api } from "../../config/api/api.jsx";
 import { useParams } from "react-router-dom";
+import { motion } from "framer-motion";
 
 export function UpdateProfile({ setUpdated, updated, setIsOpen }) {
   const storedUser = localStorage.getItem("loggedInUser");
@@ -60,7 +61,11 @@ export function UpdateProfile({ setUpdated, updated, setIsOpen }) {
     }
   }
   return (
-    <>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
       <div className="px-6 py-4">
         <h3 className="mt-3 text-xl font-medium text-center text-zinc-600 dark:text-emerald-400">
           Atualize suas informações
@@ -185,6 +190,6 @@ export function UpdateProfile({ setUpdated, updated, setIsOpen }) {
           </div>
         </form>
       </div>
-    </>
+    </motion.div>
   );
 }

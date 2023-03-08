@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { api } from "../../config/api/api";
+import { motion } from "framer-motion";
 
 export function ButtonFollow({ user, perfil, setUpdated, follower }) {
   const filterFollower = follower.find(
@@ -29,20 +30,32 @@ export function ButtonFollow({ user, perfil, setUpdated, follower }) {
   return (
     <>
       {!isFollowing && (
-        <button
-          className="bg-sky-600 py-2 px-3 rounded-md shadow-md my-2"
-          onClick={handleFollow}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
         >
-          Follow
-        </button>
+          <button
+            className="bg-sky-600 py-2 px-3 rounded-md shadow-md my-2"
+            onClick={handleFollow}
+          >
+            Follow
+          </button>
+        </motion.div>
       )}
       {isFollowing && (
-        <button
-          className="bg-red-500 py-2 px-3 rounded-md shadow-md my-2"
-          onClick={handleUnfollow}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
         >
-          Unfollow
-        </button>
+          <button
+            className="bg-red-500 py-2 px-3 rounded-md shadow-md my-2"
+            onClick={handleUnfollow}
+          >
+            Unfollow
+          </button>
+        </motion.div>
       )}
     </>
   );
