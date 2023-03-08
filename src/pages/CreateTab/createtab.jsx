@@ -77,7 +77,7 @@ export function CreateTab() {
                       name="category"
                       onChange={(e) => setCategory(e.target.value)}
                     >
-                      <option value="">Selecione uma categoria</option>
+                      <option value="outro">Selecione uma categoria</option>
                       <option value="react">React</option>
                       <option value="javascript">JavaScript</option>
                       <option value="nextjs">NextJs</option>
