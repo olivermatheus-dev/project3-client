@@ -12,6 +12,7 @@ import { TabDetails } from "./pages/TabDetails/tabDetails.jsx";
 import { useNavigate } from "react-router-dom";
 import { Redirect } from "./pages/Redirect/index.jsx";
 import { motion } from "framer-motion";
+import { LoadingTeste } from "./pages/teste/teste.jsx";
 
 function App() {
   //const navigate = useNavigate();
@@ -32,7 +33,7 @@ function App() {
             <Route path="/sign-up" element={<Signup />} />
             <Route path="/login" element={<Login />} />
             <Route path="/tab/:tabId" element={<TabDetails />} />
-
+            <Route path="/teste" element={<LoadingTeste />} />
             <Route
               path="/create/tab"
               element={
