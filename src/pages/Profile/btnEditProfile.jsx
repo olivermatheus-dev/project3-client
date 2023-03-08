@@ -1,7 +1,7 @@
 export function ButtonEditProfile() {
   return (
     <>
-      <div className="w-7 h-7 dark:hover:bg-white/40 hover:bg-black/40 rounded-sm flex items-center justify-center transition">
+      <div className="w-7 h-7 cursor-pointer dark:hover:bg-white/40 hover:bg-black/40 rounded-sm flex items-center justify-center transition">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"

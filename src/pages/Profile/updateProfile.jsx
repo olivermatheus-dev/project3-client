@@ -9,7 +9,12 @@ export function UpdateProfile({ setUpdated, updated, setIsOpen }) {
   const [userForm, setUserForm] = useState({
     name: "seu nome",
     username: "seu user",
+    aboutMe: "",
+    externalURL: "",
+    seniority: "",
+    specialization: "",
   });
+
   useEffect(() => {
     async function fetchUser() {
       try {
@@ -66,8 +71,8 @@ export function UpdateProfile({ setUpdated, updated, setIsOpen }) {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
     >
-      <div className="px-6 py-4">
-        <h3 className="mt-3 text-xl font-medium text-center text-zinc-600 dark:text-emerald-400">
+      <div className="px-6 h-auto">
+        <h3 className=" text-xl font-medium text-center text-zinc-600 dark:text-emerald-400">
           Atualize suas informações
         </h3>
 
@@ -154,7 +159,7 @@ export function UpdateProfile({ setUpdated, updated, setIsOpen }) {
           )}
           <div className="w-full mt-4">
             <input
-              type="name"
+              type="text"
               name="name"
               value={userForm.name}
               onChange={handleChange}
@@ -164,7 +169,7 @@ export function UpdateProfile({ setUpdated, updated, setIsOpen }) {
           </div>
           <div className="w-full mt-4">
             <input
-              type="username"
+              type="text"
               name="username"
               value={userForm.username}
               onChange={handleChange}
@@ -172,14 +177,65 @@ export function UpdateProfile({ setUpdated, updated, setIsOpen }) {
               className="block w-full px-4 py-2 mt-2 text-gray-700 dark:text-gray-200 placeholder-gray-500 bg-white border rounded-lg dark:bg-zinc-700 dark:border-gray-600 dark:placeholder-gray-400 focus:border-emerald-400 dark:focus:border-emerald-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-emerald-300"
             />
           </div>
-
-          <div className="flex items-center justify-between mt-4">
-            <a
-              href="#"
-              className="text-sm text-gray-600 dark:text-gray-200 hover:text-gray-500"
+          <div className="w-full mt-4">
+            <input
+              type="text"
+              name="specialization"
+              value={userForm.specialization}
+              onChange={handleChange}
+              placeholder="Sua especialização profissional, ex: Front-end Developer"
+              className="block w-full px-4 py-2 mt-2 text-gray-700 dark:text-gray-200 placeholder-gray-500 bg-white border rounded-lg dark:bg-zinc-700 dark:border-gray-600 dark:placeholder-gray-400 focus:border-emerald-400 dark:focus:border-emerald-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-emerald-300"
+            />
+          </div>
+          <div className="w-full mt-4">
+            <select
+              value={userForm.seniority}
+              className="block w-full px-4 py-2 mt-2 text-gray-700 dark:text-gray-200 placeholder-gray-500 bg-white border rounded-lg dark:bg-zinc-700 dark:border-gray-600 dark:placeholder-gray-400 focus:border-emerald-400 dark:focus:border-emerald-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-emerald-300"
+              id="seniority"
+              name="seniority"
+              onChange={handleChange}
             >
-              Falta preencher
-            </a>
+              <option value="">Selecione sua senioridade</option>
+              <option value="Entusiasta">Entusiasta</option>
+              <option value="Estudante">Estudante</option>
+              <option value="Estagiário">Estagiário</option>
+              <option value="Júnior">Júnior</option>
+              <option value="Pleno">Pleno</option>
+              <option value="Sênior">Sênior</option>
+              <option value="Especialista">Especialista</option>
+            </select>
+          </div>
+          <div className="w-full mt-4">
+            <input
+              type="text"
+              name="aboutMe"
+              value={userForm.aboutMe}
+              onChange={handleChange}
+              placeholder="Fale brevemente sobre você..."
+              className="block w-full px-4 py-2 mt-2 text-gray-700 dark:text-gray-200 placeholder-gray-500 bg-white border rounded-lg dark:bg-zinc-700 dark:border-gray-600 dark:placeholder-gray-400 focus:border-emerald-400 dark:focus:border-emerald-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-emerald-300"
+            />
+          </div>
+
+          <div className="w-full mt-4">
+            <input
+              type="text"
+              name="externalURL"
+              value={userForm.externalURL}
+              onChange={handleChange}
+              placeholder="Url externa que ficará visível no seu pc, sugerimos o seu perfil profissional."
+              className="block w-full px-4 py-2 mt-2 text-gray-700 dark:text-gray-200 placeholder-gray-500 bg-white border rounded-lg dark:bg-zinc-700 dark:border-gray-600 dark:placeholder-gray-400 focus:border-emerald-400 dark:focus:border-emerald-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-emerald-300"
+            />
+          </div>
+
+          <div className="flex items-center justify-between  mt-4">
+            <p
+              href="#"
+              className="text-sm text-gray-600/30 dark:text-gray-200/30 hover:text-gray-500 w-2/3 transition-all "
+            >
+              *Um perfil completo ajuda a expandir suas conexões com outras
+              pessoas. Dedique um pouco do seu tempo para deixar o seu perfil
+              atualizado.
+            </p>
 
             <button
               type="submit"
