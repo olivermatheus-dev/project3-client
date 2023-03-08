@@ -5,6 +5,8 @@ import { apiNoToken } from "../../config/api/apiNoToken";
 import { dateConverter } from "../../config/functions/dateConverter";
 import { TabComment } from "./tabComment.jsx";
 import { Loading } from "../../components/Loading";
+import { TabUpdate } from "./tabUpdate";
+import { Modal } from "../../components/Modal/modal";
 
 export function TabDetails() {
   const [tab, setTab] = useState();
@@ -12,6 +14,7 @@ export function TabDetails() {
   const [comment, setComment] = useState([]);
   const [updatePage, setUpdatePage] = useState(false);
   const params = useParams();
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     async function fetchTab() {
@@ -19,7 +22,7 @@ export function TabDetails() {
         const response = await apiNoToken.get(`/tab/details/${params.tabId}`);
         setTab(response.data);
         setComment(response.data.commentsId);
-        console.log(response.data);
+        // console.log(response.data);
         setLoading(true);
       } catch (error) {
         console.log(error);
@@ -32,7 +35,7 @@ export function TabDetails() {
   if (localStorage.getItem("loggedInUser")) {
     userId = JSON.parse(localStorage.getItem("loggedInUser") || '""').user._id;
   }
-  console.log(updatePage);
+  // console.log(updatePage);
   return (
     <>
       {loading && (
@@ -41,35 +44,53 @@ export function TabDetails() {
             <main className="container w-5/6 dark:bg-zinc-600 bg-gray-50 my-5 shadow-xl">
               <div className="flex justify-between   py-5 px-2 ">
                 <article className="mx-auto w-full">
-                  <header className="mb-4 lg:mb-6 not-format">
-                    <address className="flex items-center mb-6 not-italic ">
-                      <div className=" inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">
-                        <div>
-                          <img
-                            src={tab.authorId.img}
-                            className="rounded-full w-16 h-16"
-                          />
-                          <p className="text-xl font-bold text-gray-900 dark:text-white">
-                            {tab.authorId.name}
-                          </p>
-                          <p className="text-base font-light text-gray-500 dark:text-gray-400">
-                            <time>{dateConverter(tab.createdAt)}</time>
-                          </p>
+                  <div className="flex gap-20">
+                    <header className="mb-4 lg:mb-6 not-format">
+                      <address className="flex items-center mb-6 not-italic ">
+                        <div className=" inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">
+                          <div>
+                            <img
+                              src={tab.authorId.img}
+                              className="rounded-full w-16 h-16"
+                            />
+                            <p className="text-xl font-bold text-gray-900 dark:text-white">
+                              {tab.authorId.name}
+                            </p>
+                            <p className="text-base font-light text-gray-500 dark:text-gray-400">
+                              <time>{dateConverter(tab.createdAt)}</time>
+                            </p>
+                          </div>
                         </div>
-                      </div>
-                    </address>
-                    <h1 className="mb-1 text-3xl font-semibold leading-tight text-gray-900 lg:mb-2 lg:text-4xl dark:text-emerald-500">
-                      {tab.title}
-                    </h1>
-                  </header>
-                  <p
-                    className="pb-6 text-zinc-50"
-                    dangerouslySetInnerHTML={{ __html: tab.content }}
-                  />
+                      </address>
+                    </header>
+                    <div>
+                      <h1 className="mb-1 text-3xl font-semibold leading-tight text-gray-900 lg:mb-2 lg:text-4xl dark:text-emerald-500">
+                        {tab.title}
+                      </h1>
+                      <p
+                        className="pb-6 text-zinc-50"
+                        dangerouslySetInnerHTML={{ __html: tab.content }}
+                      />
+                    </div>
+                  </div>
                   {userId === tab.authorId._id && (
-                    <Link className="rounded-sm shadow-xl bg-emerald-500 py-2 px-3">
-                      Editar
-                    </Link>
+                    <div>
+                      <Link
+                        className="rounded-sm shadow-xl bg-emerald-500 py-2 px-3"
+                        onClick={setIsOpen}
+                      >
+                        Editar
+                      </Link>
+                      {isOpen && (
+                        <Modal setIsOpen={setIsOpen}>
+                          <TabUpdate
+                            updatePage={updatePage}
+                            setUpdatePage={setUpdatePage}
+                            setIsOpen={setIsOpen}
+                          />
+                        </Modal>
+                      )}
+                    </div>
                   )}
                 </article>
               </div>
