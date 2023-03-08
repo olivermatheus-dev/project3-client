@@ -35,7 +35,7 @@ export function Navbar() {
     <div>
       <header
         aria-label="Site Header"
-        className="bg-gray-50 shadow-md dark:bg-zinc-800 fixed w-screen"
+        className="bg-gray-50 shadow-md dark:bg-zinc-800 fixed w-screen z-40"
       >
         <div className="mx-auto  px-4 sm:px-6 lg:px-20">
           <div className="flex h-16 items-center justify-between">
