@@ -24,35 +24,35 @@ function App() {
     >
       <div className="App bg-slate-100 dark:bg-zinc-700 h-full w-full ">
         <AuthContextComponent>
-          <div className="">
-            <Navbar />
+          <Navbar />
+          <div className="pt-20">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="*" element={<NotFound />} />
+              <Route path="/sign-up" element={<Signup />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/tab/:tabId" element={<TabDetails />} />
+              <Route path="/teste" element={<LoadingTeste />} />
+              <Route
+                path="/create/tab"
+                element={
+                  <ProtectedRoute>
+                    <CreateTab />
+                  </ProtectedRoute>
+                }
+              />
+              {/* <Route path="/profile" element={<Profile />} /> */}
+              <Route
+                path="/profile/:username/user"
+                element={
+                  <ProtectedRoute>
+                    <Profile />
+                  </ProtectedRoute>
+                }
+              />
+              <Route path="/redirect/:userId" element={<Redirect />} />
+            </Routes>
           </div>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="*" element={<NotFound />} />
-            <Route path="/sign-up" element={<Signup />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/tab/:tabId" element={<TabDetails />} />
-            <Route path="/teste" element={<LoadingTeste />} />
-            <Route
-              path="/create/tab"
-              element={
-                <ProtectedRoute>
-                  <CreateTab />
-                </ProtectedRoute>
-              }
-            />
-            {/* <Route path="/profile" element={<Profile />} /> */}
-            <Route
-              path="/profile/:username/user"
-              element={
-                <ProtectedRoute>
-                  <Profile />
-                </ProtectedRoute>
-              }
-            />
-            <Route path="/redirect/:userId" element={<Redirect />} />
-          </Routes>
         </AuthContextComponent>
       </div>
     </motion.div>
