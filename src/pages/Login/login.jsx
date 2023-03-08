@@ -7,9 +7,10 @@ import { motion } from "framer-motion";
 
 export function Login() {
   const [form, setForm] = useState({
-    email: "",
+    emailOrUsername: "",
     password: "",
   });
+  const [loginCheck, setLoginCheck] = useState("");
 
   const navigate = useNavigate();
 
@@ -34,6 +35,7 @@ export function Login() {
       //
     } catch (error) {
       console.log(error);
+      setLoginCheck(error.response.data);
     }
   }
 
@@ -61,13 +63,18 @@ export function Login() {
             <form onSubmit={handleSubmit}>
               <div className="w-full mt-4">
                 <input
-                  type="email"
-                  name="email"
-                  value={form.email}
-                  placeholder="Seu e-mail"
+                  type="text"
+                  name="emailOrUsername"
+                  value={form.emailOrUsername}
+                  placeholder="Seu e-mail ou seu username"
                   onChange={handleChange}
                   className="block w-full px-4 py-2 mt-2 text-gray-700 dark:text-gray-200 placeholder-gray-500 bg-white border rounded-lg dark:bg-zinc-700 dark:border-gray-600 dark:placeholder-gray-400 focus:border-emerald-400 dark:focus:border-emerald-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-emerald-300"
                 />
+                {loginCheck && (
+                  <p className="text-red-500 font-semibold text-sm pl-2">
+                    *Senha, username ou e-mail incorreto
+                  </p>
+                )}
               </div>
 
               <div className="w-full mt-4">
