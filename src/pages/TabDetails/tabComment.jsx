@@ -36,7 +36,7 @@ export function TabComment({ comments, setUpdatePage, user }) {
   if (localStorage.getItem("loggedInUser")) {
     userId = JSON.parse(localStorage.getItem("loggedInUser") || '""').user._id;
   }
-  console.log(comments);
+
   return (
     <>
       <div>
@@ -53,7 +53,7 @@ export function TabComment({ comments, setUpdatePage, user }) {
                   return (
                     <div className="container flex">
                       <div className="dark:text-zinc-50">
-                        @{user.username}: {comment.content}
+                        @{comment.authorId.username}: {comment.content}
                       </div>
 
                       {comment.authorId === userId && (
