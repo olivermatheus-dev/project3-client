@@ -53,6 +53,13 @@ export function Profile() {
 
   const [isOpen, setIsOpen] = useState(false);
 
+  //regex tirar http
+  let semHttps = "";
+  const url = user.externalURL;
+  if (user.externalURL) {
+    semHttps = url.replace(/^https?:\/\//i, "");
+  }
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -63,8 +70,8 @@ export function Profile() {
       {loading && (
         <div className="py-4 w-screen h-full">
           <div className="container w-full block sm:flex gap-4">
-            <div className="flex flex-col gap-4 items-center  py-6 container rounded-md shadow-2xl  sm:w-1/3 bg-white dark:bg-zinc-800 transition duration-300 ease-in-out">
-              <div className=" py-6 container rounded-md shadow-xl bg-white dark:bg-emerald-700">
+            <div className="flex flex-col gap-4 items-center  py-6 container rounded-md shadow-2xl  sm:w-1/3 bg-zinc-50 dark:bg-zinc-800 transition duration-300 ease-in-out">
+              <div className=" py-6 container rounded-md shadow-xl bg-zinc-50 dark:bg-emerald-700">
                 <div className=" w-full flex justify-end pb-1">
                   <span
                     onClick={() => {
@@ -115,28 +122,43 @@ export function Profile() {
                       setUpdated={setUpdated}
                     />
                   )}
+                  <div className="flex gap-1">
+                    <h1 className="text-emerald-600 text-base dark:text-zinc-100 font-medium italic py-1">
+                      {user.seniority} -
+                    </h1>
 
+                    <h1 className="text-emerald-600 text-base dark:text-zinc-100 font-medium italic py-1">
+                      {user.specialization}
+                    </h1>
+                  </div>
+                  <div className="w-5/6 rounded-xl h-[2px] bg-zinc-100/40 my-1" />
                   <h1 className="text-lg font-bold dark:text-zinc-100">
                     {user.name}
                   </h1>
 
-                  <h1 className=" dark:text-zinc-100">@{user.username}</h1>
+                  <h1 className=" dark:text-zinc-100 font-medium">
+                    @{user.username}
+                  </h1>
+                  <p className="w-5/6 text-center my-1 dark:text-zinc-100">
+                    {" "}
+                    {user.aboutMe}
+                  </p>
+                  <div className="w-5/6 rounded-xl h-[2px] bg-zinc-100/40 my-1" />
+                  <a
+                    className="text-sm font-semibold dark:text-zinc-100"
+                    href={user.externalURL}
+                  >
+                    {semHttps}
+                  </a>
 
                   <p className="dark:text-zinc-100 text-xs pt-2">
                     User desde: {dateConverter(user.createdAt)}
                   </p>
                 </div>
               </div>
-              {user._id === userId && (
-                <div className="flex flex-col gap-2 items-center  py-6 container rounded-md shadow-xl bg-white dark:bg-emerald-700">
-                  <button onClick={handleLogOut}>
-                    <ButtonLogout />
-                  </button>
-                </div>
-              )}
             </div>
-            <div className=" mt-4 sm:mt-0 rounded-md shadow-2xl  sm:w-4/6  bg-white  dark:bg-zinc-800/20">
-              <div className="container rounded-md shadow-2xl dark:bg-zinc-600">
+            <div className="  sm:w-4/6 ">
+              <div className="container rounded-md shadow-2xl dark:bg-zinc-600 bg-zinc-50">
                 <h1 className="text-2xl font-bold dark:text-zinc-100 pt-4">
                   Tabs recentes
                 </h1>
