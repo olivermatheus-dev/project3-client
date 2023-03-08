@@ -25,7 +25,10 @@ function App() {
       <div className="App bg-slate-100 dark:bg-zinc-700 h-full w-full ">
         <AuthContextComponent>
           <Navbar />
-          <div className="pt-20">
+          <div
+            style={{ maxHeight: "800px" }}
+            className="overflow-auto  pt-20 w-full scrollbar-thin dark:scrollbar-thumb-emerald-600 scrollbar-thumb-emerald-500 scrollbar-track-gray-200 dark:scrollbar-track-zinc-500 scrollbar-thumb-rounded-full scrollbar-track-rounded-full"
+          >
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="*" element={<NotFound />} />
