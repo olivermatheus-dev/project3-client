@@ -40,24 +40,18 @@ export function Navbar() {
         <div className="mx-auto  px-4 sm:px-6 lg:px-20">
           <div className="flex h-16 items-center justify-between">
             <div className="flex md:items-center gap-4">
-              <Link
-                to="/"
-                className="hidden sm:block text-emerald-600"
-                href="/"
-              >
-                <span className="sr-only dark:text-white">Home</span>
-
+              <Link to="/" className="hidden sm:block text-emerald-600">
                 <img src={logo} />
               </Link>
 
-              <div className="flex">
+              <Link to="/" className="flex">
                 <h1 className="text-2xl font-medium text-emerald-500 transition hover:text-gray-500/75 dark:text-emerald-400 dark:hover:text-emerald-300">
                   Ceos
                 </h1>
                 <h1 className="text-2xl font-medium text-zinc-700 transition hover:text-gray-500/75 dark:text-gray-200 dark:hover:text-emerald-300">
                   Tab
                 </h1>
-              </div>
+              </Link>
             </div>
 
             <div className="hidden md:block">
