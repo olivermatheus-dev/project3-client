@@ -53,7 +53,7 @@ export function TabBox({ tab }) {
               className="font-bold text-gray-700 cursor-pointer dark:text-gray-200"
               role="link"
             >
-              {tab.authorId.name}
+              @{tab.authorId.username}
             </div>
           </Link>
         </div>
