@@ -5,6 +5,7 @@ import { ToggleButtonTheme } from "./toggleTheme.jsx";
 import { AuthContext } from "../../config/context/authContext";
 import { api } from "../../config/api/api";
 import { MenuToggle } from "./dropdownmenu.jsx";
+import { SearchBar } from "./searchbar";
 
 export function Navbar() {
   const navigate = useNavigate();
@@ -39,7 +40,11 @@ export function Navbar() {
         <div className="mx-auto  px-4 sm:px-6 lg:px-20">
           <div className="flex h-16 items-center justify-between">
             <div className="flex md:items-center gap-4">
-              <Link to="/" className="block text-emerald-600" href="/">
+              <Link
+                to="/"
+                className="hidden sm:block text-emerald-600"
+                href="/"
+              >
                 <span className="sr-only dark:text-white">Home</span>
 
                 <img src={logo} />
@@ -77,8 +82,8 @@ export function Navbar() {
                 </ul>
               </nav>
             </div>
-
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-1">
+              <SearchBar />
               {!loggedInUser && (
                 <div className="flex gap-4">
                   <Link
@@ -99,7 +104,7 @@ export function Navbar() {
                 </div>
               )}
               {loggedInUser && (
-                <div className="flex w-48 gap-3">
+                <div className="flex sm:w-48 gap-2 sm:gap-3">
                   <Link
                     to={`/redirect/${user.username}/`}
                     className="flex gap-3"
@@ -108,7 +113,7 @@ export function Navbar() {
                       src={user.img}
                       className="w-8 h-8 object-cover rounded-full outline outline-offset-2 outline-2 outline-emerald-500"
                     />
-                    <h1 className="dark:text-zinc-100 my-auto ">
+                    <h1 className="dark:text-zinc-100 my-auto hidden sm:block ">
                       {user.username}
                     </h1>
                   </Link>

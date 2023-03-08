@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 export function Signup() {
   const [usernameCheck, setUsernameCheck] = useState("");
+
   const [emailCheck, setEmailCheck] = useState("");
   const navigate = useNavigate();
   const [form, setForm] = useState({
