@@ -3,7 +3,7 @@ import { dateConverter } from "../../config/functions/dateConverter";
 import { api } from "../../config/api/api";
 
 export function CommentBox({ comment, userId, setUpdatePage }) {
-  console.log(comment);
+  // console.log(comment);
 
   async function handleDelete() {
     try {
