@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import { apiNoToken } from "../../config/api/apiNoToken";
 import { dateConverter } from "../../config/functions/dateConverter";
 import { TabComment } from "./tabComment.jsx";
+import { Loading } from "../../components/Loading";
 
 export function TabDetails() {
   const [tab, setTab] = useState();
@@ -36,7 +37,7 @@ export function TabDetails() {
     <>
       {loading && (
         <>
-          <div className="h-screen">
+          <div className="h-full">
             <main className="container w-5/6 dark:bg-zinc-600 bg-gray-50 my-5 shadow-xl">
               <div className="flex justify-between   py-5 px-2 ">
                 <article className="mx-auto w-full">
@@ -44,6 +45,10 @@ export function TabDetails() {
                     <address className="flex items-center mb-6 not-italic ">
                       <div className=" inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">
                         <div>
+                          <img
+                            src={tab.authorId.img}
+                            className="rounded-full w-16 h-16"
+                          />
                           <p className="text-xl font-bold text-gray-900 dark:text-white">
                             {tab.authorId.name}
                           </p>
@@ -66,18 +71,18 @@ export function TabDetails() {
                       Editar
                     </Link>
                   )}
-                  <TabComment
-                    comments={comment}
-                    setUpdatePage={setUpdatePage}
-                    user={tab.authorId}
-                  />
                 </article>
               </div>
             </main>
+            <TabComment
+              comments={comment}
+              setUpdatePage={setUpdatePage}
+              user={tab.authorId}
+            />
           </div>
         </>
       )}
-      {!loading && <h1>Carregando </h1>}
+      {!loading && <Loading />}
     </>
   );
 }

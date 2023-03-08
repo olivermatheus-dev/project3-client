@@ -1,7 +1,45 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { TabBox } from "../../components/TabBox/tabbox";
 import { apiNoToken } from "../../config/api/apiNoToken";
+import { motion, useViewportScroll } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import { Loading } from "../../components/Loading";
+
+function AnimatedTabBox({ tab }) {
+  const [ref, inView] = useInView();
+  const boxVariants = {
+    hidden: { opacity: 0, y: 100 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8, ease: "easeInOut", staggerChildren: 0.2 },
+    },
+  };
+
+  const contentVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeInOut" },
+    },
+  };
+
+  return (
+    <div ref={ref}>
+      <motion.div
+        initial="hidden"
+        animate={inView ? "visible" : "hidden"}
+        variants={boxVariants}
+        style={{ opacity: 0 }}
+      >
+        <TabBox tab={tab}>
+          <motion.div variants={contentVariants}>{tab.content}</motion.div>
+        </TabBox>
+      </motion.div>
+    </div>
+  );
+}
 
 export function Home() {
   const [tabs, setTabs] = useState("");
@@ -10,7 +48,6 @@ export function Home() {
   useEffect(() => {
     async function fetchTabs() {
       try {
-        // const res = await apiNoToken.get("/tab/all-tabs");
         const res = await apiNoToken.get("/tab/all-tabs");
 
         setTabs(res.data);
@@ -23,19 +60,16 @@ export function Home() {
   }, []);
 
   return (
-    <div className="h-screen">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
+      {!loading && <Loading />}
       <div className="py-6 w-screen flex flex-col items-center gap-6 ">
         {loading &&
-          tabs
-            .map((e) => {
-              return (
-                <div key={e._id}>
-                  <TabBox tab={e} />
-                </div>
-              );
-            })
-            .reverse()}
+          tabs.map((e) => <AnimatedTabBox key={e._id} tab={e} />).reverse()}
       </div>
-    </div>
+    </motion.div>
   );
 }
