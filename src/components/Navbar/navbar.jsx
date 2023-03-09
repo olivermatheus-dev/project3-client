@@ -6,6 +6,7 @@ import { AuthContext } from "../../config/context/authContext";
 import { api } from "../../config/api/api";
 import { MenuToggle } from "./dropdownmenu.jsx";
 import { useUserInfo } from "../../config/context/userInfoHook";
+import { CategoryDropDown } from "./categorydropdown";
 
 export function Navbar() {
   const navigate = useNavigate();
@@ -46,7 +47,6 @@ export function Navbar() {
               <Link to="/" className="hidden sm:block text-emerald-600">
                 <img src={logo} />
               </Link>
-
               <Link to="/" className="flex">
                 <h1 className="text-2xl font-medium text-emerald-500 transition hover:text-gray-500/75 dark:text-emerald-400 dark:hover:text-emerald-300">
                   Ceos
@@ -55,6 +55,7 @@ export function Navbar() {
                   Tab
                 </h1>
               </Link>
+              <CategoryDropDown />
             </div>
 
             <div className="hidden lg:block">
@@ -143,7 +144,7 @@ export function Navbar() {
                 </div>
               )}
 
-              <div className="hidden sm:flex">
+              <div className="flex">
                 <ToggleButtonTheme />
               </div>
             </div>
