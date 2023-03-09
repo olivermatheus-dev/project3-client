@@ -66,8 +66,8 @@ export function Profile() {
       {loading && (
         <div className="py-4 w-screen h-full">
           <div className="container w-full block sm:flex gap-4">
-            <div className="flex flex-col gap-4 items-center  py-6 container rounded-md shadow-2xl  sm:w-1/3 bg-zinc-50 dark:bg-emerald-500/20 transition duration-300 ease-in-out">
-              <div className=" py-6 container rounded-md shadow-xl bg-zinc-50 dark:bg-zinc-600">
+            <div className="flex flex-col gap-4 items-center  py-6 container rounded-md shadow-2xl  sm:w-1/3 bg-zinc-50 dark:bg-zinc-600 transition duration-300 ease-in-out">
+              <div className=" py-6 container rounded-md shadow-xl bg-zinc-50 dark:bg-zinc-800">
                 <div className=" w-full flex justify-end pb-1">
                   <span
                     onClick={() => {
