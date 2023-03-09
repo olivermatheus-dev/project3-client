@@ -1,10 +1,16 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { api } from "../../config/api/api.jsx";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
+import { AuthContext } from "../../config/context/authContext.jsx";
+import { useUserInfo } from "../../config/context/userInfoHook.jsx";
 
 export function UpdateProfile({ setUpdated, updated, setIsOpen }) {
-  const storedUser = localStorage.getItem("loggedInUser");
+  const { setLoggedInUser } = useContext(AuthContext);
+  const { userInfo } = useUserInfo();
+  const navigate = useNavigate();
+  const [usernameCheck, setUsernameCheck] = useState("");
+
   const params = useParams();
   const [userForm, setUserForm] = useState({
     name: "seu nome",
@@ -58,21 +64,41 @@ export function UpdateProfile({ setUpdated, updated, setIsOpen }) {
     e.preventDefault();
     try {
       const imgURL = await handleUpload();
-      await api.put("/user/update", { ...userForm, img: imgURL });
+      await api.put(`/user/update/${params.username}`, {
+        ...userForm,
+        img: imgURL,
+      });
       setUpdated(!updated);
+      setIsOpen((state) => !state);
+      navigate(`/profile/${userForm.username}/user`);
+    } catch (err) {
+      console.log(err);
+      setUsernameCheck(err.response.data.keyValue);
+    }
+  }
+  async function handleDelete() {
+    try {
+      await api.delete(`user/delete/${params.username}`);
+      if (userInfo.username === params.username) {
+        localStorage.removeItem("loggedInUser");
+        setLoggedInUser(null);
+      }
+
+      navigate("/");
       setIsOpen((state) => !state);
     } catch (err) {
       console.log(err);
     }
   }
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
     >
-      <div className="px-6 h-auto">
-        <h3 className=" text-xl font-medium text-center text-zinc-600 dark:text-emerald-400">
+      <div className="px-6 h-auto ">
+        <h3 className="-mt-2 text-xl font-medium text-center text-zinc-600 dark:text-emerald-400">
           Atualize suas informações
         </h3>
 
@@ -176,6 +202,11 @@ export function UpdateProfile({ setUpdated, updated, setIsOpen }) {
               placeholder="Seu username"
               className="block w-full px-4 py-2 mt-2 text-gray-700 dark:text-gray-200 placeholder-gray-500 bg-white border rounded-lg dark:bg-zinc-700 dark:border-gray-600 dark:placeholder-gray-400 focus:border-emerald-400 dark:focus:border-emerald-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-emerald-300"
             />
+            {usernameCheck.username && (
+              <p className="text-red-500 font-semibold text-sm pl-2">
+                *Username já utilizado
+              </p>
+            )}
           </div>
           <div className="w-full mt-4">
             <input
@@ -245,6 +276,12 @@ export function UpdateProfile({ setUpdated, updated, setIsOpen }) {
             </button>
           </div>
         </form>
+        <p
+          onClick={handleDelete}
+          className="-mb-4 mt-5 cursor-pointer text-sm text-gray-600/30 dark:text-gray-200/30 hover:text-gray-500 w-2/3 transition-all "
+        >
+          Quer deletar sua conta? Clique aqui
+        </p>
       </div>
     </motion.div>
   );

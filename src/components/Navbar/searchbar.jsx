@@ -44,10 +44,10 @@ export function SearchBar() {
   return (
     <>
       <div
-        className="flex flex-col fixed mx-auto right-16 sm:right-40 md:right-72 top-1 w-36 sm:w-60 z-50 "
+        className="flex flex-col fixed mx-auto right-16 sm:right-40 md:right-72 top-1 w-36 sm:w-72 z-50 "
         ref={searchBarRef}
       >
-        <div className="w-28 sm:w-44 absolute">
+        <div className="w-28 sm:w-56 absolute">
           <label
             htmlFor="searchBar"
             className="relative block overflow-hidden border-b border-gray-200 pt-3 focus-within:border-emerald-600"

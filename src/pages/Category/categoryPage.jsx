@@ -4,6 +4,7 @@ import { apiNoToken } from "../../config/api/apiNoToken";
 import { motion, useViewportScroll } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { Loading } from "../../components/Loading";
+import { useParams } from "react-router-dom";
 
 function AnimatedTabBox({ tab }) {
   const [ref, inView] = useInView();
@@ -41,23 +42,26 @@ function AnimatedTabBox({ tab }) {
   );
 }
 
-export function Home() {
+export function CategoryPage() {
   const [tabs, setTabs] = useState("");
   const [loading, setLoading] = useState(false);
+  const params = useParams();
 
   useEffect(() => {
     async function fetchTabs() {
       try {
-        const res = await apiNoToken.get("/tab/all-tabs");
+        const res = await apiNoToken.get(
+          `/tab/category/${params.category}/${params.page}`
+        );
 
         setTabs(res.data);
-        setLoading(!loading);
+        setLoading(true);
       } catch (err) {
         console.log(err);
       }
     }
     fetchTabs();
-  }, []);
+  }, [params]);
 
   return (
     <motion.div
@@ -67,8 +71,7 @@ export function Home() {
     >
       {!loading && <Loading />}
       <div className="py-6 w-full flex flex-col items-center gap-6 ">
-        {loading &&
-          tabs.map((e) => <AnimatedTabBox key={e._id} tab={e} />).reverse()}
+        {loading && tabs.map((e) => <AnimatedTabBox key={e._id} tab={e} />)}
       </div>
     </motion.div>
   );
