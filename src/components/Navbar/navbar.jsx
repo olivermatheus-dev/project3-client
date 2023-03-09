@@ -5,7 +5,6 @@ import { ToggleButtonTheme } from "./toggleTheme.jsx";
 import { AuthContext } from "../../config/context/authContext";
 import { api } from "../../config/api/api";
 import { MenuToggle } from "./dropdownmenu.jsx";
-import { SearchBar } from "./searchbar";
 import { useUserInfo } from "../../config/context/userInfoHook";
 
 export function Navbar() {
@@ -107,7 +106,6 @@ export function Navbar() {
               </nav>
             </div>
             <div className="flex items-center gap-1">
-              <SearchBar />
               {!loggedInUser && (
                 <div className="flex gap-4">
                   <Link
