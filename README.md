@@ -73,7 +73,7 @@ No perfil de outro usuário você pode segui-lo para ver mais tabs do mesmo em s
 
 **Um perfil mais completo**
 
-Posteriormente a criação de seu perfil você pode adicionar novas informações como sua área de atuação e nível de senioridade além claro de falar um pouco mais sobre você e deixar um link externo para contato como por exemplo seu LinkedIn.
+Posteriormente a criação de seu perfil você pode adicionar novas informações como sua área de atuação e nível de senioridade além, claro de falar um pouco mais sobre você e deixar um link externo para contato como por exemplo seu LinkedIn.
 
 
 ![enter image description here](https://i.imgur.com/u5lqVBT.png)
