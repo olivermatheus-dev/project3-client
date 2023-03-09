@@ -91,6 +91,15 @@ export function Profile() {
                   )}
                 </div>
                 <div className="flex flex-col items-center">
+                  {user.role === "ADMIN" && (
+                    <div className="flex flex-col items-center">
+                      <p>👑</p>
+                      <h1 className="text-emerald-600 text-base dark:text-zinc-100 font-medium italic pb-3">
+                        ADMIN
+                      </h1>
+                    </div>
+                  )}
+
                   <img
                     src={user.img}
                     className="w-20 rounded-full outline  outline-offset-4 outline-emerald-400"
