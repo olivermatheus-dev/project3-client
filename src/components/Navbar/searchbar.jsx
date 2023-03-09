@@ -69,7 +69,11 @@ export function SearchBar() {
           {results.length > 0 && (
             <div className="flex flex-col gap-2">
               {results.map((currentElement) => {
-                return <TabBoxNavbar tab={currentElement} />;
+                {
+                  !currentElement.username ? (
+                    <TabBoxNavbar tab={currentElement} />
+                  ) : null;
+                }
               })}
             </div>
           )}
