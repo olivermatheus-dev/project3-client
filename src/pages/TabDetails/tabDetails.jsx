@@ -136,8 +136,8 @@ export function TabDetails() {
                           userLikes={tab.likesUserId}
                         />
                       </div>
-                      <p
-                        className="pb-6 dark:text-zinc-50 text-zinc-800"
+                      <div
+                        className="tabs-content pb-6 dark:text-zinc-50 text-zinc-800"
                         dangerouslySetInnerHTML={{ __html: tab.content }}
                       />
                     </div>
@@ -151,6 +151,22 @@ export function TabDetails() {
           </div>
         </div>
       )}
+      <style>
+        {`
+          .tabs-content h1 {
+            font-size: 2em;
+          }
+          .tabs-content h2 {
+            font-size: 1.5em
+          }
+          .tabs-content  ul {
+            list-style-type: disc
+          }
+          .tabs-content ol{
+          list-style-type: decimal
+          }
+        `}
+      </style>
       {!loading && <Loading />}
     </>
   );
