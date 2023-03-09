@@ -185,7 +185,7 @@ export function Profile() {
             </div>
             <div className="  sm:w-4/6 ">
               <div className="container rounded-md shadow-2xl dark:bg-zinc-600 bg-zinc-50">
-                <h1 className="text-2xl font-bold dark:text-zinc-100 pt-4">
+                <h1 className="text-2xl font-bold dark:text-zinc-100 pt-4 ml-7">
                   Tabs recentes
                 </h1>
                 <div
@@ -193,7 +193,7 @@ export function Profile() {
                   className="flex flex-col gap-2 py-5 px-5 scrollbar-thin dark:scrollbar-thumb-emerald-600 scrollbar-thumb-emerald-500 scrollbar-track-gray-200 dark:scrollbar-track-zinc-500 scrollbar-thumb-rounded-full scrollbar-track-rounded-full"
                 >
                   {tabs.map((tab) => (
-                    <TabBoxProfile key={tab._id} tab={tab} />
+                    <TabBoxProfile key={tab._id} tab={tab} user={user} />
                   ))}
                 </div>
               </div>
