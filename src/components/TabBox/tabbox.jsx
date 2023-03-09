@@ -4,7 +4,7 @@ import { dateConverter } from "../../config/functions/dateConverter.js";
 export function TabBox({ tab }) {
   return (
     <>
-      <div className="max-w-2xl sm:w-[700px] px-8 py-3 bg-white rounded-lg dark:bg-zinc-800  shadow-md hover:scale-105 transition duration-300 ease-in-out">
+      <div className="max-w-2xl  w-[380px] sm:w-[700px] px-8 py-3 bg-white rounded-lg dark:bg-zinc-800  shadow-md hover:scale-105 transition duration-300 ease-in-out">
         <div className="flex items-center justify-between mt-1">
           <span className="text-xs font-light text-gray-600 dark:text-gray-400">
             {dateConverter(tab.createdAt)}
@@ -20,14 +20,14 @@ export function TabBox({ tab }) {
         <div className="">
           <Link
             to={`/tab/${tab._id}`}
-            className="text-lg font-bold text-gray-700 dark:text-white hover:text-gray-600 dark:hover:text-gray-200 hover:underline"
+            className=" text-lg font-bold text-gray-700 dark:text-white hover:text-gray-600 dark:hover:text-gray-200 hover:underline"
             role="link"
           >
             {tab.title}
           </Link>
           <p
             dangerouslySetInnerHTML={{ __html: tab.content }}
-            className="text-sm mt-2 text-gray-600 dark:text-gray-300 line-clamp-2"
+            className=" text-sm mt-2 text-gray-600 dark:text-gray-300 line-clamp-2"
           ></p>
         </div>
 
@@ -57,7 +57,7 @@ export function TabBox({ tab }) {
               />
             </svg>
             <span className="flex">
-              <p className="ml-1 font-bold text-gray-700 dark:text-gray-200 hidden sm:block">
+              <p className="ml-1 font-bold text-gray-700 dark:text-gray-200 ">
                 {tab.commentsId.length}
               </p>
               <p className="ml-1 font-bold text-gray-700 dark:text-gray-200 hidden sm:block">
