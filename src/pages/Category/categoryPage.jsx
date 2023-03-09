@@ -5,6 +5,7 @@ import { motion, useViewportScroll } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { Loading } from "../../components/Loading";
 import { useParams } from "react-router-dom";
+import { Pagination } from "../../components/Pagination/pagination";
 
 function AnimatedTabBox({ tab }) {
   const [ref, inView] = useInView();
@@ -73,6 +74,7 @@ export function CategoryPage() {
       <div className="py-6 w-full flex flex-col items-center gap-6 ">
         {loading && tabs.map((e) => <AnimatedTabBox key={e._id} tab={e} />)}
       </div>
+      <Pagination />
     </motion.div>
   );
 }

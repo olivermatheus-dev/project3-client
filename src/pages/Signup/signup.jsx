@@ -7,6 +7,8 @@ export function Signup() {
   const [usernameCheck, setUsernameCheck] = useState("");
 
   const [emailCheck, setEmailCheck] = useState("");
+  const [passwordCheck, setPasswordCheck] = useState("");
+  const [notification, setNotification] = useState("");
   const navigate = useNavigate();
   const [form, setForm] = useState({
     name: "",
@@ -44,15 +46,20 @@ export function Signup() {
 
   async function handleSubmit(e) {
     e.preventDefault();
+    if (passwordCheck && passwordCheck === form.password) {
+      try {
+        const imgURL = await handleUpload();
 
-    try {
-      const imgURL = await handleUpload();
-      await api.post("/user/sign-up", { ...form, img: imgURL });
-      // await api.post("/user/sign-up", { ...form });
-      navigate("/login");
-    } catch (error) {
-      console.log(error.response.data);
-      setUsernameCheck(error.response.data.keyValue);
+        await api.post("/user/sign-up", { ...form, img: imgURL });
+
+        // await api.post("/user/sign-up", { ...form, img: imgURL });
+
+        navigate("/login");
+      } catch (error) {
+        setUsernameCheck(error.response.data.keyValue);
+      }
+    } else {
+      setNotification("*Senhas não conferem");
     }
   }
 
@@ -152,6 +159,7 @@ export function Signup() {
 
               <div className="w-full mt-4">
                 <input
+                  required="required"
                   type="name"
                   name="name"
                   value={form.name}
@@ -162,6 +170,7 @@ export function Signup() {
               </div>
               <div className="w-full mt-4">
                 <input
+                  required="required"
                   type="username"
                   name="username"
                   value={form.username}
@@ -177,6 +186,7 @@ export function Signup() {
               </div>
               <div className="w-full mt-4">
                 <input
+                  required="required"
                   type="email"
                   name="email"
                   value={form.email}
@@ -193,6 +203,7 @@ export function Signup() {
 
               <div className="w-full mt-4">
                 <input
+                  required="required"
                   type="password"
                   name="password"
                   value={form.password}
@@ -203,14 +214,22 @@ export function Signup() {
               </div>
               <div className="w-full mt-4">
                 <input
+                  required="required"
                   id="formConfirmPassword"
                   type="password"
                   name="confirmPassword"
-                  value={form.confirmPassword}
-                  onChange={handleChange}
+                  value={passwordCheck}
+                  onChange={(e) => {
+                    setPasswordCheck(e.target.value);
+                  }}
                   placeholder="Confirme sua senha..."
                   className="block w-full px-4 py-2 mt-2 text-gray-700 dark:text-gray-200 placeholder-gray-500 bg-white border rounded-lg dark:bg-zinc-700 dark:border-gray-600 dark:placeholder-gray-400 focus:border-emerald-400 dark:focus:border-emerald-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-emerald-300"
                 />
+                {notification && (
+                  <p className="text-red-500 font-semibold text-sm pl-2">
+                    {notification}
+                  </p>
+                )}
               </div>
 
               <div className="flex items-center justify-between mt-4">

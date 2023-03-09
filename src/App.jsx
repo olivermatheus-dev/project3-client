@@ -17,9 +17,27 @@ import { Footer } from "./components/Footer/footer.jsx";
 import { UserInfoContextComponent } from "./config/context/userInfoHook.jsx";
 import { CategoryPage } from "./pages/Category/categoryPage.jsx";
 import { Feed } from "./pages/Feed/feed.jsx";
+import { useEffect } from "react";
 
 function App() {
-  //const navigate = useNavigate();
+  // useEffect(() => {
+  //   async function fetchUser() {
+  //     try {
+  //       if (loggedInUser) {
+  //         const response = await api.get(
+  //           `/user/profile/${loggedInUser.user.username}`
+  //         );
+
+  //         setUserInfo(response.data);
+  //       }
+  //     } catch (err) {
+  //       console.log(err);
+
+  //     }
+  //   }
+
+  //   fetchUser();
+  // }, [loggedInUser]);
   return (
     <motion.div
       initial={{ opacity: 0 }}
