@@ -4,6 +4,8 @@ import { apiNoToken } from "../../config/api/apiNoToken";
 import { motion, useViewportScroll } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { Loading } from "../../components/Loading";
+import { Pagination } from "../../components/Pagination/pagination";
+import { useParams } from "react-router-dom";
 
 function AnimatedTabBox({ tab }) {
   const [ref, inView] = useInView();
@@ -44,11 +46,11 @@ function AnimatedTabBox({ tab }) {
 export function Home() {
   const [tabs, setTabs] = useState("");
   const [loading, setLoading] = useState(false);
-
+  const params = useParams();
   useEffect(() => {
     async function fetchTabs() {
       try {
-        const res = await apiNoToken.get("/tab/all-tabs");
+        const res = await apiNoToken.get(`/tab/home/${params.page}`);
 
         setTabs(res.data);
         setLoading(!loading);
