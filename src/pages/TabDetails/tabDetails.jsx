@@ -30,8 +30,9 @@ export function TabDetails() {
   useEffect(() => {
     async function updateViews() {
       try {
-        await apiNoToken.get(`/tab/views/${params.tabId}`);
+        const response = await apiNoToken.get(`/tab/views/${params.tabId}`);
         console.log("visualização adicionada");
+        console.log(response.data);
       } catch (error) {
         console.log(error);
       }

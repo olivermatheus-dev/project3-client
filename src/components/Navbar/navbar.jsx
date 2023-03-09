@@ -12,6 +12,7 @@ export function Navbar() {
   const navigate = useNavigate();
   const { loggedInUser, setLoggedInUser } = useContext(AuthContext);
   const { userInfo, setUserInfo } = useUserInfo();
+  console.log(userInfo);
 
   const [user, setUser] = useState({ name: "", email: "" });
 
@@ -57,7 +58,7 @@ export function Navbar() {
               </Link>
             </div>
 
-            <div className="hidden md:block">
+            <div className="hidden lg:block">
               <nav aria-label="Site Nav">
                 <ul className="flex items-center gap-6 text-sm">
                   <li>
@@ -71,11 +72,37 @@ export function Navbar() {
                   <li>
                     <Link
                       className="text-base font-medium text-gray-500 transition hover:text-gray-500/75 dark:text-gray-200 dark:hover:text-emerald-300"
-                      to="/"
+                      to="/curtidos/1"
                     >
                       Mais Curtidos
                     </Link>
                   </li>
+                  <li>
+                    <Link
+                      className="text-base font-medium text-gray-500 transition hover:text-gray-500/75 dark:text-gray-200 dark:hover:text-emerald-300"
+                      to="/recentes/1"
+                    >
+                      Recentes
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      className="text-base font-medium text-gray-500 transition hover:text-gray-500/75 dark:text-gray-200 dark:hover:text-emerald-300"
+                      to="/relevant/1"
+                    >
+                      Mais Relevantes
+                    </Link>
+                  </li>
+                  {userInfo.username && (
+                    <li>
+                      <Link
+                        className="text-base font-medium text-gray-500 transition hover:text-gray-500/75 dark:text-gray-200 dark:hover:text-emerald-300"
+                        to="/feed"
+                      >
+                        Feed
+                      </Link>
+                    </li>
+                  )}
                 </ul>
               </nav>
             </div>
