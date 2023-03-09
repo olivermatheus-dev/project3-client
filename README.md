@@ -24,7 +24,7 @@ Para adicionar todas as bibliotecas usadas no projeto.
 ## Como usar 
 
 
-O Ceos Tabs é uma rede social volta para tecnologia onde você poderá seguir seus colegas e também curtir suas mensagens!
+O Ceos Tabs é uma rede social voltada para tecnologia onde você poderá seguir seus colegas e também curtir suas mensagens!
 
 **Crie sua conta!**
 
