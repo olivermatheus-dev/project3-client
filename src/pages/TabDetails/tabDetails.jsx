@@ -70,8 +70,8 @@ export function TabDetails() {
   return (
     <>
       {loading && (
-        <>
-          <div className="h-full">
+        <div className="w-full flex justify-center">
+          <div className="h-full w-full sm:w-[700px] md:w-[850px] lg:w-[1200px]">
             <main className="container w-5/6 dark:bg-zinc-600 bg-gray-50 my-5 shadow-xl">
               <div className="flex justify-between   py-5 px-2 ">
                 <article className="mx-auto w-full">
@@ -145,9 +145,11 @@ export function TabDetails() {
                 </article>
               </div>
             </main>
-            <TabComment comments={comment} setUpdatePage={setUpdatePage} />
+            <div className="h-full w-full sm:w-[700px] md:w-[850px] lg:w-[1200px]">
+              <TabComment comments={comment} setUpdatePage={setUpdatePage} />
+            </div>
           </div>
-        </>
+        </div>
       )}
       {!loading && <Loading />}
     </>
