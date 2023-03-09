@@ -337,22 +337,6 @@ export function Footer() {
             <div className="text-center sm:flex sm:justify-between sm:text-left">
               <p className="text-sm text-gray-500 dark:text-gray-400">
                 <span className="block sm:inline">All rights reserved.</span>
-
-                <a
-                  className="inline-block text-emerald-600 underline transition hover:text-emerald-600/75 dark:text-emerald-500 dark:hover:text-emerald-500/75"
-                  href="/"
-                >
-                  Terms & Conditions
-                </a>
-
-                <span>&middot;</span>
-
-                <a
-                  className="inline-block text-emerald-600 underline transition hover:text-emerald-600/75 dark:text-emerald-500 dark:hover:text-emerald-500/75"
-                  href="/"
-                >
-                  Privacy Policy
-                </a>
               </p>
 
               <p className="mt-4 text-sm text-gray-500 dark:text-gray-400 sm:order-first sm:mt-0">
