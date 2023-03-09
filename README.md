@@ -1,6 +1,6 @@
 ## Ceos Tab
 
-Ceos Tab é o projeto que foi criado por Danilo Shinzato, Matheus Oliveira e Pedro Henrique G Barbosa para atender os requisitos no projeto 3 do curso de **Web development** da **Ironhack** criado utilizando **Vite**.
+Ceos Tab é o projeto que foi criado por Danilo Shinzato, Matheus Oliveira e Pedro Henrique G Barbosa para atender os requisitos no projeto 3 do curso de **Web development** da **Ironhack** projeto criado utilizando **Vite**.
 
  ## Tecnologias usadas 
 - **React**
