@@ -26,11 +26,11 @@ function App() {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
     >
-      <div className="App bg-slate-100 dark:bg-zinc-700">
+      <div className="App bg-slate-100 dark:bg-zinc-700  ">
         <UserInfoContextComponent>
           <AuthContextComponent>
             <Navbar />
-            <div className=" pt-20  ">
+            <div className=" pt-20 max-w-[1920px] flex flex-col items-center mx-auto">
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/feed" element={<Feed />} />
@@ -59,8 +59,8 @@ function App() {
                 />
                 <Route path="/redirect/:userId" element={<Redirect />} />
               </Routes>
-              <Footer />
             </div>
+            <Footer />
           </AuthContextComponent>
         </UserInfoContextComponent>
       </div>
