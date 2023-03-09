@@ -88,6 +88,7 @@ Caso queira é possível deletar seu usuário e automaticamente todas suas posta
 ## Features
 
 - Publicar, atualizar, curtir, comentar, seguir e deletar posts.
+- Site responsivo.
 - Feeds organizados por mais curtidas, mais recente, mais relevante e relevância de quem você segue.
 - Barra de busca pelo título do tab.
   
