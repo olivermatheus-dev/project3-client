@@ -2,6 +2,8 @@
 
 Ceos Tab é o projeto que foi criado por Danilo Shinzato, Matheus Oliveira e Pedro Henrique G Barbosa para atender os requisitos no projeto 3 do curso de **Web development** da **Ironhack** projeto criado utilizando **Vite**.
 
+O projeto foi inspirado no Tab News de Filipe Deschamps o qual todo o grupo acessa quase que diariamente.
+
  ## Tecnologias usadas 
 - **React**
 - **Javascript**
