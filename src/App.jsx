@@ -14,6 +14,7 @@ import { Redirect } from "./pages/Redirect/index.jsx";
 import { motion } from "framer-motion";
 import { LoadingTeste } from "./pages/teste/teste.jsx";
 import { Footer } from "./components/Footer/footer.jsx";
+import { UserInfoContextComponent } from "./config/context/userInfoHook.jsx";
 
 function App() {
   //const navigate = useNavigate();
@@ -24,38 +25,40 @@ function App() {
       exit={{ opacity: 0 }}
     >
       <div className="App bg-slate-100 dark:bg-zinc-700">
-        <AuthContextComponent>
-          <Navbar />
-          <div className=" pt-20  ">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="*" element={<NotFound />} />
-              <Route path="/sign-up" element={<Signup />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/tab/:tabId" element={<TabDetails />} />
-              <Route path="/teste" element={<LoadingTeste />} />
-              <Route
-                path="/create/tab"
-                element={
-                  <ProtectedRoute>
-                    <CreateTab />
-                  </ProtectedRoute>
-                }
-              />
-              {/* <Route path="/profile" element={<Profile />} /> */}
-              <Route
-                path="/profile/:username/user"
-                element={
-                  <ProtectedRoute>
-                    <Profile />
-                  </ProtectedRoute>
-                }
-              />
-              <Route path="/redirect/:userId" element={<Redirect />} />
-            </Routes>
-            <Footer />
-          </div>
-        </AuthContextComponent>
+        <UserInfoContextComponent>
+          <AuthContextComponent>
+            <Navbar />
+            <div className=" pt-20  ">
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="*" element={<NotFound />} />
+                <Route path="/sign-up" element={<Signup />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/tab/:tabId" element={<TabDetails />} />
+                <Route path="/teste" element={<LoadingTeste />} />
+                <Route
+                  path="/create/tab"
+                  element={
+                    <ProtectedRoute>
+                      <CreateTab />
+                    </ProtectedRoute>
+                  }
+                />
+                {/* <Route path="/profile" element={<Profile />} /> */}
+                <Route
+                  path="/profile/:username/user"
+                  element={
+                    <ProtectedRoute>
+                      <Profile />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route path="/redirect/:userId" element={<Redirect />} />
+              </Routes>
+              <Footer />
+            </div>
+          </AuthContextComponent>
+        </UserInfoContextComponent>
       </div>
     </motion.div>
   );

@@ -4,7 +4,7 @@ import { dateConverter } from "../../config/functions/dateConverter.js";
 export function TabBoxProfile({ tab }) {
   return (
     <>
-      <div className="max-w-2xl sm:w-[700px] px-8 py-3  bg-white rounded-lg dark:bg-zinc-800  shadow-md hover:scale-105 transition duration-300 ease-in-out">
+      <div className="max-w-2xl sm:w-[700px] px-8 py-3  bg-zinc-50 rounded-lg dark:bg-zinc-800  shadow-md hover:scale-105 transition duration-300 ease-in-out">
         <div className="flex items-center justify-between">
           <span className="text-sm font-light text-gray-600 dark:text-gray-400">
             {dateConverter(tab.createdAt)}
@@ -20,7 +20,7 @@ export function TabBoxProfile({ tab }) {
         <div className="mt-1">
           <Link
             to={`/tab/${tab._id}`}
-            className="text-lg font-bold text-gray-700 dark:text-white hover:text-gray-600 dark:hover:text-gray-200 hover:underline"
+            className="text-lg font-bold text-gray-700 dark:text-zinc-50 hover:text-gray-600 dark:hover:text-gray-200 hover:underline"
             role="link"
           >
             {tab.title}
