@@ -35,9 +35,23 @@ export function TabBoxProfile({ tab, user }) {
           />
         </div>
         <div className="flex justify-between mt-2 ">
-          <div className="flex gap-1 ">
+          <div className="hidden sm:flex gap-1">
             {tagsModelation(tab.tags)
               .slice(0, 6)
+              .map((e) => {
+                return (
+                  <p
+                    key={Math.random()}
+                    className="text-sm italic font-semibold text-emerald-600 dark:text-emerald-400 "
+                  >
+                    {e}
+                  </p>
+                );
+              })}
+          </div>
+          <div className="sm:hidden flex gap-1">
+            {tagsModelation(tab.tags)
+              .slice(0, 3)
               .map((e) => {
                 return (
                   <p
