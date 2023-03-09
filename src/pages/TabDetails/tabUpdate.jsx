@@ -61,7 +61,7 @@ export function TabUpdate({ setUpdatePage, updatePage, setIsOpen }) {
     >
       <div className="px-6 py-4">
         <h3 className="mt-3 text-xl font-medium text-center text-zinc-600 dark:text-emerald-400">
-          Atualize suas informações
+          Atualize sua Tab
         </h3>
 
         <form onSubmit={handleSubmit}>
