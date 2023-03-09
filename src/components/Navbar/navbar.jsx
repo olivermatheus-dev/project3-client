@@ -6,10 +6,12 @@ import { AuthContext } from "../../config/context/authContext";
 import { api } from "../../config/api/api";
 import { MenuToggle } from "./dropdownmenu.jsx";
 import { SearchBar } from "./searchbar";
+import { useUserInfo } from "../../config/context/userInfoHook";
 
 export function Navbar() {
   const navigate = useNavigate();
   const { loggedInUser, setLoggedInUser } = useContext(AuthContext);
+  const { userInfo, setUserInfo } = useUserInfo();
 
   const [user, setUser] = useState({ name: "", email: "" });
 
@@ -21,6 +23,7 @@ export function Navbar() {
             `/user/profile/${loggedInUser.user.username}`
           );
           setUser(response.data);
+          setUserInfo(response.data);
         }
       } catch (err) {
         console.log(err);

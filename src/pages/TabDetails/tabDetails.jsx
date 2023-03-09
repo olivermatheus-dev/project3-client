@@ -8,6 +8,7 @@ import { Loading } from "../../components/Loading";
 import { TabUpdate } from "./tabUpdate";
 import { Modal } from "../../components/Modal/modal";
 import { ButtonLike } from "./buttonLike";
+import { api } from "../../config/api/api";
 
 export function TabDetails() {
   const [tab, setTab] = useState();
@@ -16,6 +17,14 @@ export function TabDetails() {
   const [updatePage, setUpdatePage] = useState(false);
   const params = useParams();
   const [isOpen, setIsOpen] = useState(false);
+  const [user, setUser] = useState({ role: "USER" });
+
+  let userId;
+  let userComplete;
+  if (localStorage.getItem("loggedInUser")) {
+    userId = JSON.parse(localStorage.getItem("loggedInUser") || '""').user._id;
+    userComplete = JSON.parse(localStorage.getItem("loggedInUser") || '""');
+  }
 
   useEffect(() => {
     async function fetchTab() {
@@ -30,13 +39,20 @@ export function TabDetails() {
       }
     }
     fetchTab();
+
+    async function fetchUser() {
+      try {
+        const response = await api.get(
+          `/user/profile/${userComplete.user.username}`
+        );
+        setUser(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchUser();
   }, [updatePage]);
 
-  let userId;
-  if (localStorage.getItem("loggedInUser")) {
-    userId = JSON.parse(localStorage.getItem("loggedInUser") || '""').user._id;
-  }
-  // console.log(updatePage);
   return (
     <>
       {loading && (
@@ -60,7 +76,9 @@ export function TabDetails() {
                             <p className="text-base font-light text-gray-500 dark:text-gray-400">
                               <time>{dateConverter(tab.createdAt)}</time>
                             </p>
-                            {userId === tab.authorId._id && (
+
+                            {userId === tab.authorId._id ||
+                            user.role === "ADMIN" ? (
                               <div className="mt-5">
                                 <Link
                                   className="rounded-sm shadow-xl bg-emerald-500 py-2 px-3"
@@ -78,7 +96,7 @@ export function TabDetails() {
                                   </Modal>
                                 )}
                               </div>
-                            )}
+                            ) : null}
                           </div>
                         </div>
                       </address>
@@ -107,11 +125,7 @@ export function TabDetails() {
                 </article>
               </div>
             </main>
-            <TabComment
-              comments={comment}
-              setUpdatePage={setUpdatePage}
-              user={tab.authorId}
-            />
+            <TabComment comments={comment} setUpdatePage={setUpdatePage} />
           </div>
         </>
       )}

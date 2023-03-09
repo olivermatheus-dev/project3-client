@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
 import { dateConverter } from "../../config/functions/dateConverter";
 import { api } from "../../config/api/api";
+import { useUserInfo } from "../../config/context/userInfoHook";
 
 export function CommentBox({ comment, userId, setUpdatePage }) {
-  // console.log(comment);
+  const { userInfo } = useUserInfo();
 
   async function handleDelete() {
     try {
@@ -23,7 +24,7 @@ export function CommentBox({ comment, userId, setUpdatePage }) {
           <span className="text-xs font-light text-gray-600 dark:text-gray-400">
             {dateConverter(comment.createdAt)}
           </span>
-          {comment.authorId._id === userId && (
+          {comment.authorId._id === userId || userInfo.role === "ADMIN" ? (
             <button
               className=" w-7 h-7 dark:hover:bg-white/40 hover:bg-black/40 rounded-sm flex items-center justify-center transition"
               onClick={handleDelete}
@@ -43,7 +44,7 @@ export function CommentBox({ comment, userId, setUpdatePage }) {
                 />
               </svg>
             </button>
-          )}
+          ) : null}
         </div>
 
         <div className="mt-1">
