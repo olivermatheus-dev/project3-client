@@ -9,6 +9,7 @@ export function UpdateProfile({ setUpdated, updated, setIsOpen }) {
   const { setLoggedInUser } = useContext(AuthContext);
   const { userInfo } = useUserInfo();
   const navigate = useNavigate();
+  const [usernameCheck, setUsernameCheck] = useState("");
 
   const params = useParams();
   const [userForm, setUserForm] = useState({
@@ -72,6 +73,7 @@ export function UpdateProfile({ setUpdated, updated, setIsOpen }) {
       navigate(`/profile/${userForm.username}/user`);
     } catch (err) {
       console.log(err);
+      setUsernameCheck(err.response.data.keyValue);
     }
   }
   async function handleDelete() {
@@ -200,6 +202,11 @@ export function UpdateProfile({ setUpdated, updated, setIsOpen }) {
               placeholder="Seu username"
               className="block w-full px-4 py-2 mt-2 text-gray-700 dark:text-gray-200 placeholder-gray-500 bg-white border rounded-lg dark:bg-zinc-700 dark:border-gray-600 dark:placeholder-gray-400 focus:border-emerald-400 dark:focus:border-emerald-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-emerald-300"
             />
+            {usernameCheck && (
+              <p className="text-red-500 font-semibold text-sm pl-2">
+                *Username já utilizado
+              </p>
+            )}
           </div>
           <div className="w-full mt-4">
             <input
