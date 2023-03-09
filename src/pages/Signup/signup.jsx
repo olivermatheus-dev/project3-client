@@ -171,7 +171,7 @@ export function Signup() {
                 />
                 {usernameCheck.username && (
                   <p className="text-red-500 font-semibold text-sm pl-2">
-                    *Nome de usuário já utilizado
+                    *Esse username já sendo utilizado
                   </p>
                 )}
               </div>

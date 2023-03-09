@@ -26,6 +26,20 @@ export function TabDetails() {
     userComplete = JSON.parse(localStorage.getItem("loggedInUser") || '""');
   }
 
+  //adicionando visualização
+  useEffect(() => {
+    async function updateViews() {
+      try {
+        const response = await apiNoToken.get(`/tab/views/${params.tabId}`);
+        console.log("visualização adicionada");
+        console.log(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    updateViews();
+  }, []);
+
   useEffect(() => {
     async function fetchTab() {
       try {
@@ -66,13 +80,19 @@ export function TabDetails() {
                       <address className="flex items-center not-italic ">
                         <div className=" inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">
                           <div className="">
-                            <img
-                              src={tab.authorId.img}
-                              className="rounded-full w-16 h-16"
-                            />
-                            <p className="text-xl font-bold text-gray-900 dark:text-white">
-                              {tab.authorId.name}
-                            </p>
+                            <Link to={`/profile/${tab.authorId.username}/user`}>
+                              <img
+                                src={tab.authorId.img}
+                                className="rounded-full w-16 h-16 hover:scale-105 transition-all duration-200 cursor-pointer"
+                                style={{
+                                  objectFit: "cover",
+                                  objectPosition: "center",
+                                }}
+                              />
+                              <p className="text-xl font-bold text-gray-900 dark:text-white">
+                                {tab.authorId.name}
+                              </p>
+                            </Link>
                             <p className="text-base font-light text-gray-500 dark:text-gray-400">
                               <time>{dateConverter(tab.createdAt)}</time>
                             </p>

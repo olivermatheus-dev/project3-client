@@ -15,6 +15,8 @@ import { motion } from "framer-motion";
 import { LoadingTeste } from "./pages/teste/teste.jsx";
 import { Footer } from "./components/Footer/footer.jsx";
 import { UserInfoContextComponent } from "./config/context/userInfoHook.jsx";
+import { CategoryPage } from "./pages/Category/categoryPage.jsx";
+import { Feed } from "./pages/Feed/feed.jsx";
 
 function App() {
   //const navigate = useNavigate();
@@ -31,6 +33,8 @@ function App() {
             <div className=" pt-20  ">
               <Routes>
                 <Route path="/" element={<Home />} />
+                <Route path="/feed" element={<Feed />} />
+                <Route path="/:category/:page" element={<CategoryPage />} />
                 <Route path="*" element={<NotFound />} />
                 <Route path="/sign-up" element={<Signup />} />
                 <Route path="/login" element={<Login />} />
