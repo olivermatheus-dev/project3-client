@@ -27,39 +27,62 @@ Para adicionar todas as bibliotecas usadas no projeto.
 O Ceos Tabs é uma rede social volta para tecnologia onde você poderá seguir seus colegas e também curtir suas mensagens!
 
 **Crie sua conta!**
+
 ![enter image description here](https://i.imgur.com/OThSRiB.png)
 
 **Faça seu login**
+
 ![enter image description here](https://i.imgur.com/mr5wXtw.png)
 
 **Crie sua Tab**
+
 Você pode criar uma tab preenchendo título, conteúdo, adicionar tags e selecionar uma categoria e assim que a clicar em criar a mesma já iria aparecer na Home!
+
+
 ![enter image description here](https://i.imgur.com/shT6MLl.png)
 
 **De um Lamp para as postagens que gostar mais!**
+
 Selecionando a tab criada temos um botão de "Lamp" que equivale a uma curtida do Instagram.
+
+
 ![enter image description here](https://i.imgur.com/9fiKnVB.png)
 
 
 **Errou na criação? Sem problemas**
+
 Na postagem temos um botão para realizar a edição do conteúdo caso você seja o criador da tab  e tenha percebido algum erro no momento da criação. Também é possível deletar a tab caso tenha percebido que ela não será mais útil.
+
+
 ![enter image description here](https://i.imgur.com/5pXE4iG.png)
 
 
 **Comentários nas postagens**
+
 Comente nas tabs de seus amigos e acrescente na discussão!
+
+
 ![enter image description here](https://i.imgur.com/3GNnaIX.png)
 
 **Siga seus amigos e criadores de tabs favoritos!**
+
 No perfil de outro usuário você pode segui-lo para ver mais tabs do mesmo em seu feed.
+
+
 ![enter image description here](https://i.imgur.com/vwd1Iex.png)
 
 **Um perfil mais completo**
-Posteriormente a criação de seu perfil você pode adicionar novas informações como sua área de atuação e nível de senioridade além claro de falar um pouco mais sobre você e deixar um link externo para contato como por exemplo seu LinkedIn
+
+Posteriormente a criação de seu perfil você pode adicionar novas informações como sua área de atuação e nível de senioridade além claro de falar um pouco mais sobre você e deixar um link externo para contato como por exemplo seu LinkedIn.
+
+
 ![enter image description here](https://i.imgur.com/u5lqVBT.png)
 
 **Não se vá :(**
-Caso queira é possível deletar seu usuário e automaticamente todas suas postagens e comentários serão apagados
+
+Caso queira é possível deletar seu usuário e automaticamente todas suas postagens e comentários serão apagados.
+
+
 ![enter image description here](https://i.imgur.com/NwsoB8N.png)
 
 ## Features
@@ -70,6 +93,7 @@ Caso queira é possível deletar seu usuário e automaticamente todas suas posta
   
 
 ## Link do deploy e apresentação
+
 [Ceos](https://ceos-tab.vercel.app/)
 
 
