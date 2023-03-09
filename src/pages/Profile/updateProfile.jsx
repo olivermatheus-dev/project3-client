@@ -63,9 +63,13 @@ export function UpdateProfile({ setUpdated, updated, setIsOpen }) {
     e.preventDefault();
     try {
       const imgURL = await handleUpload();
-      await api.put("/user/update", { ...userForm, img: imgURL });
+      await api.put(`/user/update/${params.username}`, {
+        ...userForm,
+        img: imgURL,
+      });
       setUpdated(!updated);
       setIsOpen((state) => !state);
+      navigate(`/profile/${userForm.username}/user`);
     } catch (err) {
       console.log(err);
     }
