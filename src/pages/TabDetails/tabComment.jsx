@@ -2,12 +2,8 @@ import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { api } from "../../config/api/api.jsx";
 import { CommentBox } from "./commentbox.jsx";
-import { useUserInfo } from "../../config/context/userInfoHook.jsx";
 
 export function TabComment({ comments, setUpdatePage }) {
-  const { userInfo } = useUserInfo();
-  console.log(userInfo);
-
   const [content, setContent] = useState("");
   const params = useParams();
   async function handleSubmit(e) {

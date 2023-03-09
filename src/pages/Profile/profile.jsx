@@ -11,8 +11,10 @@ import { ButtonFollow } from "./btnFollow.jsx";
 import { ButtonLogout } from "./btnlogout.jsx";
 import { motion } from "framer-motion";
 import { Loading } from "../../components/Loading/index.jsx";
+import { useUserInfo } from "../../config/context/userInfoHook.jsx";
 
 export function Profile() {
+  const { userInfo } = useUserInfo();
   const [loading, setLoading] = useState(false);
   const [updated, setUpdated] = useState(false);
   const [tabs, setTabs] = useState([]);
@@ -21,7 +23,7 @@ export function Profile() {
 
   const params = useParams();
 
-  const { loggedInUser, setLoggedInUser } = useContext(AuthContext);
+  const { loggedInUser } = useContext(AuthContext);
 
   useEffect(() => {
     async function fetchUserPerfil() {
@@ -43,12 +45,6 @@ export function Profile() {
   let userId;
   if (localStorage.getItem("loggedInUser")) {
     userId = JSON.parse(localStorage.getItem("loggedInUser") || '""').user._id;
-  }
-
-  function handleLogOut() {
-    localStorage.removeItem("loggedInUser");
-    setLoggedInUser(null);
-    navigate("/");
   }
 
   const [isOpen, setIsOpen] = useState(false);
@@ -78,7 +74,10 @@ export function Profile() {
                       setIsOpen(true);
                     }}
                   >
-                    {user._id === userId && <ButtonEditProfile />}
+                    {userInfo &&
+                      (user._id === userId || userInfo.role === "ADMIN") && (
+                        <ButtonEditProfile />
+                      )}
                   </span>
                   {isOpen && (
                     <Modal setIsOpen={setIsOpen}>
@@ -102,7 +101,7 @@ export function Profile() {
 
                   <img
                     src={user.img}
-                    className="w-20 rounded-full outline  outline-offset-4 outline-emerald-400"
+                    className="w-32 rounded-full outline  outline-offset-4 outline-emerald-400"
                   />
                   <div className="flex gap-3">
                     <div className="pt-2 font-bold flex flex-col items-center ">
@@ -131,16 +130,26 @@ export function Profile() {
                       setUpdated={setUpdated}
                     />
                   )}
-                  <div className="flex gap-1">
-                    <h1 className="text-emerald-600 text-base dark:text-zinc-100 font-medium italic py-1">
-                      {user.seniority} -
-                    </h1>
+                  {user && (user.seniority || user.specialization) && (
+                    <>
+                      <div className="flex gap-1">
+                        <h1 className="text-emerald-600 text-base dark:text-zinc-100 font-medium italic py-1">
+                          {user.seniority}
+                        </h1>
+                        {user.seniority && user.specialization ? (
+                          <h1 className="text-emerald-600 text-base dark:text-zinc-100 font-medium italic py-1">
+                            -
+                          </h1>
+                        ) : null}
 
-                    <h1 className="text-emerald-600 text-base dark:text-zinc-100 font-medium italic py-1">
-                      {user.specialization}
-                    </h1>
-                  </div>
-                  <div className="w-5/6 rounded-xl h-[2px] bg-zinc-100/40 my-1" />
+                        <h1 className="text-emerald-600 text-base dark:text-zinc-100 font-medium italic py-1">
+                          {user.specialization}
+                        </h1>
+                      </div>
+                      <div className="w-5/6 rounded-xl h-[2px] bg-emerald-600 dark:bg-zinc-100/40 my-1" />
+                    </>
+                  )}
+
                   <h1 className="text-lg font-bold dark:text-zinc-100">
                     {user.name}
                   </h1>
@@ -148,17 +157,25 @@ export function Profile() {
                   <h1 className=" dark:text-zinc-100 font-medium">
                     @{user.username}
                   </h1>
-                  <p className="w-5/6 text-center my-1 dark:text-zinc-100">
-                    {" "}
-                    {user.aboutMe}
-                  </p>
-                  <div className="w-5/6 rounded-xl h-[2px] bg-zinc-100/40 my-1" />
-                  <a
-                    className="text-sm font-semibold dark:text-zinc-100"
-                    href={user.externalURL}
-                  >
-                    {semHttps}
-                  </a>
+                  {user.aboutMe && (
+                    <>
+                      <div className="w-5/6 rounded-xl h-[2px] bg-emerald-600 dark:bg-zinc-100/40 my-1" />
+                      <p className="w-5/6 text-center my-1 dark:text-zinc-100">
+                        {user.aboutMe}
+                      </p>
+                    </>
+                  )}
+                  {user.externalURL && (
+                    <>
+                      <div className="w-5/6 rounded-xl h-[2px] bg-emerald-600 dark:bg-zinc-100/40 my-1" />
+                      <a
+                        className="text-sm font-semibold dark:text-zinc-100"
+                        href={user.externalURL}
+                      >
+                        {semHttps}
+                      </a>
+                    </>
+                  )}
 
                   <p className="dark:text-zinc-100 text-xs pt-2">
                     User desde: {dateConverter(user.createdAt)}

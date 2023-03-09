@@ -1,10 +1,15 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { api } from "../../config/api/api.jsx";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
+import { AuthContext } from "../../config/context/authContext.jsx";
+import { useUserInfo } from "../../config/context/userInfoHook.jsx";
 
 export function UpdateProfile({ setUpdated, updated, setIsOpen }) {
-  const storedUser = localStorage.getItem("loggedInUser");
+  const { setLoggedInUser } = useContext(AuthContext);
+  const { userInfo } = useUserInfo();
+  const navigate = useNavigate();
+
   const params = useParams();
   const [userForm, setUserForm] = useState({
     name: "seu nome",
@@ -65,14 +70,29 @@ export function UpdateProfile({ setUpdated, updated, setIsOpen }) {
       console.log(err);
     }
   }
+  async function handleDelete() {
+    try {
+      await api.delete(`user/delete/${params.username}`);
+      if (userInfo.username === params.username) {
+        localStorage.removeItem("loggedInUser");
+        setLoggedInUser(null);
+      }
+
+      navigate("/");
+      setIsOpen((state) => !state);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
     >
-      <div className="px-6 h-auto">
-        <h3 className=" text-xl font-medium text-center text-zinc-600 dark:text-emerald-400">
+      <div className="px-6 h-auto ">
+        <h3 className="-mt-2 text-xl font-medium text-center text-zinc-600 dark:text-emerald-400">
           Atualize suas informações
         </h3>
 
@@ -245,6 +265,12 @@ export function UpdateProfile({ setUpdated, updated, setIsOpen }) {
             </button>
           </div>
         </form>
+        <p
+          onClick={handleDelete}
+          className="-mb-4 mt-5 cursor-pointer text-sm text-gray-600/30 dark:text-gray-200/30 hover:text-gray-500 w-2/3 transition-all "
+        >
+          Quer deletar sua conta? Clique aqui
+        </p>
       </div>
     </motion.div>
   );
