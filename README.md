@@ -30,7 +30,7 @@ O Ceos Tabs é uma rede social voltada para tecnologia onde você poderá seguir
 
 **Crie sua conta!**
 
-![enter image description here](https://i.imgur.com/OThSRiB.png)
+![enter image description here](https://i.imgur.com/GCyvbXl.png)
 
 **Faça seu login**
 
