@@ -1,9 +1,16 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { TabBox } from "../../components/TabBox/tabbox";
 import { apiNoToken } from "../../config/api/apiNoToken";
 import { motion, useViewportScroll } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { Loading } from "../../components/Loading";
+import { useNavigate, useParams } from "react-router-dom";
+import { SearchBar } from "../../components/Navbar/searchbar.jsx";
+import { AuthContext } from "../../config/context/authContext";
+import { useUserInfo } from "../../config/context/userInfoHook";
+import { api } from "../../config/api/api";
+
+// import backgroundImage from "../../assets/images/Background/background.svg";
 
 function AnimatedTabBox({ tab }) {
   const [ref, inView] = useInView();
@@ -42,13 +49,38 @@ function AnimatedTabBox({ tab }) {
 }
 
 export function Home() {
+  const { loggedInUser, setLoggedInUser } = useContext(AuthContext);
+  const { userInfo, setUserInfo } = useUserInfo();
+  const navigate = useNavigate();
+
+  const [user, setUser] = useState({ name: "", email: "" });
+
+  useEffect(() => {
+    async function fetchUser() {
+      try {
+        if (loggedInUser) {
+          const response = await api.get(
+            `/user/profile/${loggedInUser.user.username}`
+          );
+          setUser(response.data);
+          setUserInfo(response.data);
+        }
+      } catch (err) {
+        console.log(err);
+        navigate("/erro");
+      }
+    }
+
+    fetchUser();
+  }, []);
+
   const [tabs, setTabs] = useState("");
   const [loading, setLoading] = useState(false);
-
+  const params = useParams();
   useEffect(() => {
     async function fetchTabs() {
       try {
-        const res = await apiNoToken.get("/tab/all-tabs");
+        const res = await apiNoToken.get(`/tab/home/${params.page}`);
 
         setTabs(res.data);
         setLoading(!loading);
@@ -63,9 +95,13 @@ export function Home() {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
+      exit={{ opacity: 0, transition: { duration: 0.5 } }}
     >
       {!loading && <Loading />}
+      <div className="w-full pl-5  ">
+        <SearchBar />
+      </div>
+
       <div className="py-6 w-full flex flex-col items-center gap-6 ">
         {loading &&
           tabs.map((e) => <AnimatedTabBox key={e._id} tab={e} />).reverse()}

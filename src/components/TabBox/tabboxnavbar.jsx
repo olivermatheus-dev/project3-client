@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 export function TabBoxNavbar({ tab }) {
   return (
     <Link to={`/tab/${tab._id}`} className="">
-      <div className="flex items-center gap-1 bg-zinc-100 dark:bg-zinc-800 rounded-md px-4 py-2  shadow-md  relative overflow-hidden transition duration-300 hover:scale-105">
+      <div className="w-[250px] flex items-center gap-1 bg-zinc-100 dark:bg-zinc-800 rounded-md px-4 py-2  shadow-md  relative overflow-hidden transition duration-300 hover:scale-105">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"

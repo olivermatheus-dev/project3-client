@@ -70,7 +70,8 @@ export function Feed() {
     >
       {!loading && <Loading />}
       <div className="py-6 w-full flex flex-col items-center gap-6 ">
-        {loading && tabs.map((e) => <AnimatedTabBox key={e._id} tab={e} />)}
+        {loading &&
+          tabs.map((e) => <AnimatedTabBox key={e._id} tab={e} />).reverse()}
       </div>
     </motion.div>
   );

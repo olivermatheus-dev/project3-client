@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { api } from "../../config/api/api";
 import { motion } from "framer-motion";
 
@@ -6,6 +5,12 @@ export function ButtonFollow({ user, perfil, setUpdated, follower }) {
   const filterFollower = follower.find(
     (currentElement) => currentElement._id === user
   );
+
+  console.log("user", user);
+  console.log("perfil", perfil);
+
+  console.log("follower", follower);
+  console.log(filterFollower);
 
   const isFollowing = !!filterFollower;
 
@@ -29,21 +34,21 @@ export function ButtonFollow({ user, perfil, setUpdated, follower }) {
 
   return (
     <>
-      {!isFollowing && (
+      {!filterFollower && (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
         >
           <button
-            className="bg-sky-500 text-sm py-1 px-3 rounded-md shadow-md my-2"
+            className="bg-emerald-500 text-sm py-1 px-3 rounded-md shadow-md my-2"
             onClick={handleFollow}
           >
             Follow
           </button>
         </motion.div>
       )}
-      {isFollowing && (
+      {filterFollower && (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
