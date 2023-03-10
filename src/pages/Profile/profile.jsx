@@ -87,8 +87,8 @@ export function Profile() {
       {loading && (
         <div className="py-4 w-full h-full">
           <div className="container w-full block sm:flex gap-4">
-            <div className="md:w-[480px] flex flex-col gap-4 items-center  py-6 container rounded-md shadow-2xl   bg-zinc-50 dark:bg-zinc-600 transition duration-300 ease-in-out">
-              <div className=" py-6 container rounded-md shadow-xl bg-zinc-50 dark:bg-zinc-800 w-auto h-auto">
+            <div className="md:w-[480px]  flex flex-col gap-4 items-center  py-6 container rounded-md shadow-2xl   bg-zinc-50 dark:bg-zinc-800/80 transition duration-300 ease-in-out">
+              <div className="w-full py-6 container rounded-md shadow-xl bg-zinc-50 dark:bg-zinc-800 ">
                 <div className=" w-full flex justify-end pb-1">
                   <span
                     onClick={() => {
@@ -123,7 +123,7 @@ export function Profile() {
 
                   <img
                     src={user.img}
-                    className="w-32 rounded-full outline  outline-offset-4 outline-emerald-400"
+                    className=" object-cover  w-32 h-32 rounded-full outline  outline-offset-4 outline-emerald-400"
                   />
                   <div className="flex gap-3">
                     <div className="pt-2 font-bold flex flex-col items-center ">
@@ -206,7 +206,7 @@ export function Profile() {
               </div>
             </div>
             <div className=" w-auto lg:w-[800px] ">
-              <div className="container rounded-md shadow-2xl dark:bg-zinc-600 bg-zinc-50">
+              <div className="container rounded-md shadow-2xl dark:bg-zinc-800/80 bg-zinc-50">
                 <h1 className="text-2xl font-bold dark:text-zinc-100 pt-4 ml-7">
                   Tabs recentes
                 </h1>

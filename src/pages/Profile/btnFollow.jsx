@@ -36,7 +36,7 @@ export function ButtonFollow({ user, perfil, setUpdated, follower }) {
           exit={{ opacity: 0 }}
         >
           <button
-            className="bg-sky-500 text-sm py-1 px-3 rounded-md shadow-md my-2"
+            className="bg-emerald-500 text-sm py-1 px-3 rounded-md shadow-md my-2"
             onClick={handleFollow}
           >
             Follow

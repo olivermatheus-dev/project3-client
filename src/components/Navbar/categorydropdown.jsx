@@ -6,7 +6,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export function CategoryDropDown() {
+export function CategoryDropDown({ loggedInUser }) {
   return (
     <Menu as="div" className="  lg:hidden relative inline-block text-left  ">
       <div>
@@ -107,19 +107,21 @@ export function CategoryDropDown() {
                 </Link>
               )}
             </Menu.Item>
-            <Menu.Item>
-              {({ active }) => (
-                <Link
-                  className={classNames(
-                    active ? "bg-gray-100 text-gray-900" : "text-gray-500",
-                    "block px-4 py-2 text-sm"
-                  )}
-                  to="/feed"
-                >
-                  Feed
-                </Link>
-              )}
-            </Menu.Item>
+            {loggedInUser && (
+              <Menu.Item>
+                {({ active }) => (
+                  <Link
+                    className={classNames(
+                      active ? "bg-gray-100 text-gray-900" : "text-gray-500",
+                      "block px-4 py-2 text-sm"
+                    )}
+                    to="/feed"
+                  >
+                    Feed
+                  </Link>
+                )}
+              </Menu.Item>
+            )}
           </div>
         </Menu.Items>
       </Transition>
