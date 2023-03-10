@@ -241,8 +241,8 @@ export function Profile() {
                   </div>
                 </div>
               </div>
-              <div className=" w-auto lg:w-[800px] ">
-                <div className="container rounded-md shadow-2xl dark:bg-zinc-800/80 bg-zinc-50">
+              <div className=" w-auto lg:w-[800px] xl:w-2/3 ">
+                <div className="container  2xl:w-[780px]  rounded-md shadow-2xl dark:bg-zinc-800/80 bg-zinc-50">
                   <h1 className="text-2xl font-bold dark:text-zinc-100 pt-4 ml-7">
                     Tabs recentes
                   </h1>
