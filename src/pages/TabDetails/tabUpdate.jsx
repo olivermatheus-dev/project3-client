@@ -47,7 +47,7 @@ export function TabUpdate({ setUpdatePage, updatePage, setIsOpen }) {
 
   async function handleDelete() {
     try {
-      await api.delete(`/tab/delete/${params.tabId}`, {});
+      await api.delete(`/tab/delete/${params.tabId}`);
       navigate("/");
     } catch (err) {
       console.log(err);
@@ -65,7 +65,7 @@ export function TabUpdate({ setUpdatePage, updatePage, setIsOpen }) {
             Atualize sua Tab
           </h3>
 
-          <form onSubmit={handleSubmit}>
+          <form>
             <div className="flex flex-col sm:gap-2 sm:flex-row ">
               <div className="w-full mt-2">
                 <input
@@ -122,21 +122,23 @@ export function TabUpdate({ setUpdatePage, updatePage, setIsOpen }) {
                 />
               </div>
             </div>
-            <div className="flex items-center justify-center  mt-20 sm:mt-4 gap-3 ">
-              <button
-                type="submit"
-                className="px-6 py-2 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-emerald-500 rounded-lg hover:bg-emerald-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50"
-              >
-                Atualizar
-              </button>
-              <button
-                onClick={handleDelete}
-                className="px-6 py-2  text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-red-500 rounded-lg hover:bg-red-700 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50"
-              >
-                Deletar
-              </button>
-            </div>
+            <div className="flex items-center justify-center  mt-20 sm:mt-4 gap-3 "></div>
           </form>
+          <div className="w-full flex justify-between ">
+            <button
+              onClick={handleDelete}
+              className="px-6 py-2  text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-red-500 rounded-lg hover:bg-red-700 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50"
+            >
+              Deletar
+            </button>
+            <button
+              onClick={handleSubmit}
+              type="submit"
+              className="px-6 py-2 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-emerald-500 rounded-lg hover:bg-emerald-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50"
+            >
+              Atualizar
+            </button>
+          </div>
         </div>
       </motion.div>
       <style>
