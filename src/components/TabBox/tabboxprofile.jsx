@@ -14,7 +14,7 @@ export function TabBoxProfile({ tab, user }) {
             {dateConverter(tab.createdAt)}
           </span>
           <div
-            className="z-0 px-3 text-zinc-700 text-xs font-bold transition-colors duration-300 transform bg-emerald-500 rounded cursor-pointer hover:bg-gray-500"
+            className="-z-0 px-3 text-zinc-700 text-xs font-bold transition-colors duration-300 transform bg-emerald-500 rounded cursor-pointer hover:bg-gray-500"
             role="button"
           >
             {tab.category.toUpperCase()}

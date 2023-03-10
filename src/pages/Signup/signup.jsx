@@ -63,9 +63,9 @@ export function Signup() {
 
   return (
     <div className=" flex h-screen items-center justify-center  w-full sm:w-[700px] md:w-[850px] lg:w-[1200px]">
-      <div className="-mt-20 w-11/12 sm:w-3/6 mx-auto overflow-hidden bg-white rounded-lg shadow-md dark:bg-zinc-800">
+      <div className="-mt-20 w-11/12 sm:w-3/6 mx-auto overflow-hidden bg-white/70 rounded-lg shadow-md dark:bg-zinc-800/70">
         <div className="px-6 py-4">
-          <h3 className="mt-3 text-xl font-medium text-center text-zinc-600 dark:text-emerald-400">
+          <h3 className="mt-3 text-xl font-medium text-center text-emerald-500 dark:text-emerald-400">
             Crie sua Conta
           </h3>
 
@@ -252,7 +252,7 @@ export function Signup() {
               </button>
               <button
                 type="submit"
-                className="hidden sm:block ml-5 px-6 py-2 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-emerald-500 rounded-lg hover:bg-emerald-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50"
+                className="hidden shadow-md sm:block ml-5 px-6 py-2 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-emerald-500 rounded-lg hover:bg-emerald-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50"
               >
                 Sign In
               </button>

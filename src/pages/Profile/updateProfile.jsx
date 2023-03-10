@@ -4,7 +4,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { AuthContext } from "../../config/context/authContext.jsx";
 import { useUserInfo } from "../../config/context/userInfoHook.jsx";
-import { ModalConfirmDelete } from "./modalConfirmDelete.jsx";
 
 export function UpdateProfile({
   setUpdated,
@@ -12,8 +11,6 @@ export function UpdateProfile({
   setIsOpen,
   setDeleteModal,
 }) {
-  const { setLoggedInUser } = useContext(AuthContext);
-  const { userInfo } = useUserInfo();
   const navigate = useNavigate();
   const [usernameCheck, setUsernameCheck] = useState("");
 
