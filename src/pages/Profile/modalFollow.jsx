@@ -56,35 +56,34 @@ export function ModalFollow({
               >
                 {array.map((e) => {
                   return (
-                    <Link to={`/profile/${e.username}/user`}>
-                      <div className="w-full h-12 bg-zinc-50 dark:bg-zinc-700 rounded-md flex gap-2 shadow-xl">
+                    <div className="w-full flex flex-row items-center justify-center h-12 bg-zinc-50 dark:bg-zinc-700 rounded-md flex gap-2 shadow-xl">
+                      <img
+                        className=" object-cover  w-5 h-5  sm:w-8 sm:h-8  mx-1  sm:mx-4 rounded-full sm:block"
+                        src={e.img}
+                        alt="avatar"
+                      />
+                      <div
+                        className="grow font-bold text-gray-700 cursor-pointer dark:text-gray-200"
+                        role="link"
+                      >
                         <Link
+                          onClick={() => setVisibility(false)}
                           to={`/profile/${e.username}/user`}
-                          className="flex items-center "
                         >
-                          <img
-                            className=" object-cover  w-5 h-5  sm:w-8 sm:h-8  mx-1  sm:mx-4 rounded-full sm:block"
-                            src={e.img}
-                            alt="avatar"
-                          />
-                          <div
-                            className="font-bold text-gray-700 cursor-pointer dark:text-gray-200"
-                            role="link"
-                          >
-                            @{e.username}
-                          </div>
+                          @{e.username}
                         </Link>
-
-                        {/* {e._id !== user && (
-                        <ButtonFollow
-                          user={user}
-                          perfil={e._id}
-                          follower={e.follower}
-                          setUpdated={setUpdated}
-                        />
-                      )} */}
                       </div>
-                    </Link>
+                      <div className="pr-2">
+                        {e._id !== user && (
+                          <ButtonFollow
+                            user={user}
+                            perfil={e._id}
+                            follower={e.follower}
+                            setUpdated={setUpdated}
+                          />
+                        )}
+                      </div>
+                    </div>
                   );
                 })}
               </div>

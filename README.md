@@ -30,7 +30,7 @@ O Ceos Tabs é uma rede social voltada para tecnologia onde você poderá seguir
 
 **Crie sua conta!**
 
-![enter image description here](https://i.imgur.com/OThSRiB.png)
+![enter image description here](https://i.imgur.com/GCyvbXl.png)
 
 **Faça seu login**
 
@@ -64,21 +64,27 @@ Na postagem temos um botão para realizar a edição do conteúdo caso você sej
 Comente nas tabs de seus amigos e acrescente na discussão!
 
 
-![enter image description here](https://i.imgur.com/3GNnaIX.png)
+![enter image description here](https://i.imgur.com/KUcwcTa.png)
 
 **Siga seus amigos e criadores de tabs favoritos!**
 
 No perfil de outro usuário você pode segui-lo para ver mais tabs do mesmo em seu feed.
 
 
-![enter image description here](https://i.imgur.com/vwd1Iex.png)
+![enter image description here](https://i.imgur.com/FTSVLyg.png)
 
 **Um perfil mais completo**
 
 Posteriormente a criação de seu perfil você pode adicionar novas informações como sua área de atuação e nível de senioridade além, claro de falar um pouco mais sobre você e deixar um link externo para contato como por exemplo seu LinkedIn.
 
 
-![enter image description here](https://i.imgur.com/u5lqVBT.png)
+![enter image description here](https://i.imgur.com/790vpXV.png)
+
+**Procure por Tabs ou por usuários!**
+
+Uma barra de pesquisa interativa que atualiza na hora mostrando os usuários ou postagens.
+![enter image description here](https://i.imgur.com/dh98S0o.png)
+
 
 **Não se vá :(**
 
