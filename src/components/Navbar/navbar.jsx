@@ -34,6 +34,8 @@ export function Navbar() {
     fetchUser();
   }, [loggedInUser]);
 
+  console.log(user);
+
   return (
     <div>
       <header
@@ -106,7 +108,7 @@ export function Navbar() {
               </nav>
             </div>
             <div className="flex items-center gap-1">
-              {!loggedInUser && (
+              {!userInfo && (
                 <div className="flex gap-4">
                   <Link
                     className="my-auto rounded-md bg-emerald-600 px-5 py-2.5 text-sm font-medium text-white shadow"
@@ -128,18 +130,18 @@ export function Navbar() {
               {loggedInUser && (
                 <div className="flex sm:w-24 md:w-48 gap-2 sm:gap-3">
                   <Link
-                    to={`/redirect/${user.username}/`}
+                    to={`/redirect/${userInfo.username}/`}
                     className="flex gap-3"
                   >
                     <img
-                      src={user.img}
+                      src={userInfo.img}
                       className="w-8 h-8 object-cover rounded-full outline outline-offset-2 outline-2 outline-emerald-500"
                     />
                     <h1 className="dark:text-zinc-100 my-auto hidden md:block ">
-                      {user.username}
+                      {userInfo.username}
                     </h1>
                   </Link>
-                  <MenuToggle username={user.username} />
+                  <MenuToggle username={userInfo.username} />
                 </div>
               )}
 
