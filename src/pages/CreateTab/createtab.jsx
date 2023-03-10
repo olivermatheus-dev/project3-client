@@ -15,7 +15,7 @@ function TextEditor({ setValue, value }) {
         value={value}
         onChange={setValue}
         className="dark:teste"
-        style={{ height: "200px" }}
+        style={{ height: "250px" }}
       />
     </div>
   );
@@ -55,9 +55,9 @@ export function CreateTab() {
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
       >
-        <div>
-          <div className="h-screen flex items-center justify-center">
-            <div className="-mt-20 w-5/6 sm:w-4/6  h-5/6  sm:h-6/6 mx-auto overflow-hidden bg-white rounded-lg shadow-md dark:bg-zinc-800">
+        <div className="h-screen flex items-center justify-center">
+          <div className="-mt-20 h-[780px] sm:h-[650px] sm:w-[600px] md:w-[800px] lg:w-[1000px] flex items-center justify-center">
+            <div className="-mt-20 w-11/12   h-5/6  sm:h-6/6 mx-auto overflow-hidden bg-white rounded-lg shadow-md dark:bg-zinc-800">
               <div className="px-6 py-4">
                 <div className="flex justify-center mx-auto"></div>
 
