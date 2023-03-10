@@ -32,8 +32,8 @@ export function TabDetails() {
     async function updateViews() {
       try {
         const response = await apiNoToken.get(`/tab/views/${params.tabId}`);
-        console.log("visualização adicionada");
-        console.log(response.data);
+
+        response.data;
       } catch (error) {
         console.log(error);
       }
@@ -47,7 +47,7 @@ export function TabDetails() {
         const response = await apiNoToken.get(`/tab/details/${params.tabId}`);
         setTab(response.data);
         setComment(response.data.commentsId);
-        // console.log(response.data);
+        // (response.data);
         setLoading(true);
       } catch (error) {
         console.log(error);
