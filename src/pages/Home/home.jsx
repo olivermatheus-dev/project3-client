@@ -95,7 +95,7 @@ export function Home() {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
+      exit={{ opacity: 0, transition: { duration: 0.5 } }}
     >
       {!loading && <Loading />}
       <div className="w-full pl-5  ">

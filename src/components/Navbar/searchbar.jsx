@@ -67,9 +67,6 @@ export function SearchBar() {
           {results.length > 0 && (
             <>
               <div className="flex flex-col gap-2 absolute z-20">
-                {/* {results.map((currentElement) => {
-                  return <TabBoxNavbar tab={currentElement} />;
-                })} */}
                 {results.map((currentElement) => {
                   return (
                     <div>
@@ -77,7 +74,7 @@ export function SearchBar() {
                         <TabBoxNavbar tab={currentElement} />
                       ) : (
                         <Link to={`/profile/${currentElement.username}/user`}>
-                          <div className="hover:scale-105 transition duration-300 w-[250px] h-10 bg-zinc-50 dark:bg-emerald-600 rounded-md flex gap-1 shadow-xl">
+                          <div className="hover:scale-105 transition duration-300 w-[250px] h-10 bg-emerald-500 dark:bg-emerald-600 rounded-md flex gap-1 shadow-xl">
                             <Link
                               to={`/profile/${currentElement.username}/user`}
                               className="flex items-center gap-2 "
@@ -88,7 +85,7 @@ export function SearchBar() {
                                 alt="avatar"
                               />
                               <div
-                                className="font-semibold text-sm text-gray-700 cursor-pointer dark:text-gray-200"
+                                className="font-semibold text-sm text-zinc-700 cursor-pointer dark:text-gray-200"
                                 role="link"
                               >
                                 @{currentElement.username}
