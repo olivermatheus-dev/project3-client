@@ -88,7 +88,7 @@ export function MenuToggle({ username }) {
                 </Link>
               )}
             </Menu.Item>
-            <Menu.Item>
+            {/* <Menu.Item>
               {({ active }) => (
                 <Link
                   className={classNames(
@@ -99,7 +99,7 @@ export function MenuToggle({ username }) {
                   Meus tabs
                 </Link>
               )}
-            </Menu.Item>
+            </Menu.Item> */}
 
             <Menu.Item>
               {({ active }) => (
