@@ -46,7 +46,7 @@ export function TabComment({ comments, setUpdatePage }) {
                 );
               })}
             {userId && (
-              <form onSubmit={handleSubmit} className="flex w-full">
+              <form onSubmit={handleSubmit} className="flex w-full justify-end">
                 <input
                   type="text"
                   name="content"
