@@ -5,8 +5,6 @@ export function Pagination() {
   const pagePrev =
     Number(params.page) > 1 ? Number(params.page) - 1 : Number(params.page);
 
-  console.log(pagePrev);
-
   return (
     <div className="flex flex-col items-center mt-5 pb-8">
       <div className="inline-flex mt-2 xs:mt-0 gap-3">

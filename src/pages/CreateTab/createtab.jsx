@@ -90,11 +90,19 @@ export function CreateTab() {
                         name="category"
                         onChange={(e) => setCategory(e.target.value)}
                       >
-                        <option value="outro">Selecione uma categoria</option>
-                        <option value="react">React</option>
-                        <option value="javascript">JavaScript</option>
-                        <option value="nextjs">NextJs</option>
-                        <option value="outros">Outros</option>
+                        <option value="outro">Categoria</option>
+                        <option value="Tecnologia">Tecnologia</option>
+                        <option value="Front-End">Front-End</option>
+                        <option value="Back-End">Back-End</option>
+                        <option value="Estilização">Estilização</option>
+                        <option value="Java">Java</option>
+                        <option value="React">React</option>
+                        <option value="JavaScript">JavaScript</option>
+                        <option value="Bibliotecas">Bibliotecas</option>
+                        <option value="Angular">Angular</option>
+                        <option value="VueJs">VueJs</option>
+                        <option value="NextJs">NextJs</option>
+                        <option value="Outros">Outros</option>
                       </select>
                     </div>
                     <div className="w-full mt-2">

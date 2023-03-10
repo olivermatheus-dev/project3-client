@@ -29,7 +29,6 @@ export function Login() {
 
       localStorage.setItem("loggedInUser", JSON.stringify(response.data));
 
-      console.log(response.data);
       navigate(`/profile/${response.data.user.username}/user`);
 
       //

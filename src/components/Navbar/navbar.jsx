@@ -12,7 +12,6 @@ export function Navbar() {
   const navigate = useNavigate();
   const { loggedInUser, setLoggedInUser } = useContext(AuthContext);
   const { userInfo, setUserInfo } = useUserInfo();
-  console.log(userInfo);
 
   const [user, setUser] = useState({ name: "", email: "" });
 
