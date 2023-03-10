@@ -9,7 +9,7 @@ import { ProtectedRoute } from "./pages/ProtectedRoute/protectedRoute.jsx";
 import { Navbar } from "./components/Navbar/navbar.jsx";
 import { CreateTab } from "./pages/CreateTab/createtab.jsx";
 import { TabDetails } from "./pages/TabDetails/tabDetails.jsx";
-import { useNavigate } from "react-router-dom";
+
 import { Redirect } from "./pages/Redirect/index.jsx";
 import { motion } from "framer-motion";
 import { LoadingTeste } from "./pages/teste/teste.jsx";
@@ -17,8 +17,6 @@ import { Footer } from "./components/Footer/footer.jsx";
 import { UserInfoContextComponent } from "./config/context/userInfoHook.jsx";
 import { CategoryPage } from "./pages/Category/categoryPage.jsx";
 import { Feed } from "./pages/Feed/feed.jsx";
-import { useEffect } from "react";
-
 import "./App.css";
 
 function App() {

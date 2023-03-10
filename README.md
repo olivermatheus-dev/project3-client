@@ -109,7 +109,7 @@ Caso queira é possível deletar seu usuário e automaticamente todas suas posta
 
 
 
-[Apresentação](https://docs.google.com/presentation/d/1C9CTV23978u2TRAckSKa9F0SR5VrpoKOpCM-i5UEBdw/edit?usp=sharing)
+[Apresentação](https://docs.google.com/presentation/d/1X5XJvqsbVIp_xe-vMlGx0xCswnzbDMeYw6UdaN5d7xs/edit#slide=id.g8794a74c9d_0_2475)
 
 ## Contatos
 
