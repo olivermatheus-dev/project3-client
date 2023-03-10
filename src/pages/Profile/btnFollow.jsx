@@ -1,23 +1,17 @@
+import { useState } from "react";
 import { api } from "../../config/api/api";
 import { motion } from "framer-motion";
 
-export function ButtonFollow({ user, perfil, setUpdated, follower }) {
-  const filterFollower = follower.find(
-    (currentElement) => currentElement._id === user
+export function ButtonFollow({ user, perfil, follower, setUpdated }) {
+  const [isFollowing, setIsFollowing] = useState(
+    !!follower.find((i) => i === user)
   );
-
-  console.log("user", user);
-  console.log("perfil", perfil);
-
-  console.log("follower", follower);
-  console.log(filterFollower);
-
-  const isFollowing = !!filterFollower;
 
   async function handleFollow() {
     try {
-      await api.put(`/follow/add/${perfil}`);
-      setUpdated((state) => !state);
+      const data = await api.put(`/follow/add/${perfil}`);
+      setIsFollowing(!!data.data.follower.find((item) => item === user));
+      setUpdated(Math.random());
     } catch (error) {
       console.log(error);
     }
@@ -25,8 +19,9 @@ export function ButtonFollow({ user, perfil, setUpdated, follower }) {
 
   async function handleUnfollow() {
     try {
-      await api.put(`/follow/remove/${perfil}`);
-      setUpdated((state) => !state);
+      const data = await api.put(`/follow/remove/${perfil}`);
+      setIsFollowing(!!data.data.follower.find((item) => item === user));
+      setUpdated(Math.random());
     } catch (error) {
       console.log(error);
     }
@@ -34,7 +29,7 @@ export function ButtonFollow({ user, perfil, setUpdated, follower }) {
 
   return (
     <>
-      {!filterFollower && (
+      {!isFollowing ? (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -47,8 +42,7 @@ export function ButtonFollow({ user, perfil, setUpdated, follower }) {
             Follow
           </button>
         </motion.div>
-      )}
-      {filterFollower && (
+      ) : (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}

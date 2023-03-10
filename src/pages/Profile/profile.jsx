@@ -45,7 +45,7 @@ export function Profile() {
     }
 
     fetchUserPerfil();
-  }, [loggedInUser, updated]);
+  }, [loggedInUser, updated, params.username]);
 
   let userId;
   if (localStorage.getItem("loggedInUser")) {
@@ -184,7 +184,7 @@ export function Profile() {
                       <ButtonFollow
                         user={userId}
                         perfil={user._id}
-                        follower={user.follower}
+                        follower={user.follower.map((i) => i._id)}
                         setUpdated={setUpdated}
                       />
                     )}
