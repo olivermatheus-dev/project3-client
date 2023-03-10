@@ -44,7 +44,7 @@ function App() {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
     >
-      <div className="App bg-slate-100 dark:bg-zinc-700  ">
+      <div className="App bg-slate-100/80 dark:bg-zinc-800/80  ">
         <UserInfoContextComponent>
           <AuthContextComponent>
             <Navbar />

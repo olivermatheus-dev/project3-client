@@ -82,20 +82,6 @@ export function UpdateProfile({
       setUsernameCheck(err.response.data.keyValue);
     }
   }
-  async function handleDelete() {
-    try {
-      await api.delete(`user/delete/${params.username}`);
-      if (userInfo.username === params.username) {
-        localStorage.removeItem("loggedInUser");
-        setLoggedInUser(null);
-      }
-
-      navigate("/");
-      setIsOpen((state) => !state);
-    } catch (err) {
-      console.log(err);
-    }
-  }
 
   return (
     <motion.div
