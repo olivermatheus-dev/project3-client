@@ -75,7 +75,7 @@ export function SearchBar() {
         </div>
       </div>
       {results.length > 0 && (
-        <div className="fixed inset-0 bg-black/20 w-screen h-screen transition-all z-10"></div>
+        <div className="fixed inset-0 bg-black/20 w-screen h-screen transition-all z-10" />
       )}
     </>
   );

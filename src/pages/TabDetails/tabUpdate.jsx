@@ -59,8 +59,8 @@ export function TabUpdate({ setUpdatePage, updatePage, setIsOpen }) {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
     >
-      <div className="px-6 py-4">
-        <h3 className="mt-3 text-xl font-medium text-center text-zinc-600 dark:text-emerald-400">
+      <div className="px-6 w-full">
+        <h3 className=" text-xl font-medium text-center text-zinc-600 dark:text-emerald-400">
           Atualize sua Tab
         </h3>
 
@@ -113,7 +113,7 @@ export function TabUpdate({ setUpdatePage, updatePage, setIsOpen }) {
               />
             </div>
           </div>
-          <div className="flex items-center justify-center mt-4 gap-3">
+          <div className="flex items-center justify-center  mt-20 sm:mt-4 gap-3 ">
             <button
               type="submit"
               className="px-6 py-2 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-emerald-500 rounded-lg hover:bg-emerald-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50"

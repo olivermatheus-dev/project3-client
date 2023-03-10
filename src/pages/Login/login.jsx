@@ -45,8 +45,8 @@ export function Login() {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
     >
-      <div className="h-screen flex items-center justify-center">
-        <div className="-mt-20 w-11/12 sm:w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-md dark:bg-zinc-800">
+      <div className="w-full  h-screen sm:w-[700px] md:w-[850px] lg:w-[1200px] flex items-center justify-center">
+        <div className="-mt-44  w-[350px] max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-md dark:bg-zinc-800">
           <div className="px-6 py-4">
             <div className="flex justify-center mx-auto">
               <img className="h-8 sm:h-20" src={logo} alt="" />

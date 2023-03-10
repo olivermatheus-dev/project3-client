@@ -12,6 +12,7 @@ import { ButtonLogout } from "./btnlogout.jsx";
 import { motion } from "framer-motion";
 import { Loading } from "../../components/Loading/index.jsx";
 import { useUserInfo } from "../../config/context/userInfoHook.jsx";
+import { ModalConfirmDelete } from "./modalConfirmDelete.jsx";
 
 export function Profile() {
   const { userInfo } = useUserInfo();
@@ -19,11 +20,12 @@ export function Profile() {
   const [updated, setUpdated] = useState(false);
   const [tabs, setTabs] = useState([]);
   const [user, setUser] = useState({ name: "", email: "" });
+  const [deleteModal, setDeleteModal] = useState(false);
   const navigate = useNavigate();
 
   const params = useParams();
 
-  const { loggedInUser } = useContext(AuthContext);
+  const { loggedInUser, setLoggedInUser } = useContext(AuthContext);
 
   useEffect(() => {
     async function fetchUserPerfil() {
@@ -56,6 +58,19 @@ export function Profile() {
     semHttps = url.replace(/^https?:\/\//i, "");
   }
 
+  async function handleDelete() {
+    try {
+      await api.delete(`user/delete/${params.username}`);
+      if (userInfo.username === params.username) {
+        localStorage.removeItem("loggedInUser");
+        setLoggedInUser(null);
+      }
+      navigate("/");
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -63,6 +78,12 @@ export function Profile() {
       exit={{ opacity: 0 }}
     >
       {!loading && <Loading />}
+      {deleteModal && (
+        <ModalConfirmDelete
+          handleDelete={handleDelete}
+          setDeleteModal={setDeleteModal}
+        />
+      )}
       {loading && (
         <div className="py-4 w-full h-full">
           <div className="container w-full block sm:flex gap-4">
@@ -82,6 +103,7 @@ export function Profile() {
                   {isOpen && (
                     <Modal setIsOpen={setIsOpen}>
                       <UpdateProfile
+                        setDeleteModal={setDeleteModal}
                         updated={updated}
                         setUpdated={setUpdated}
                         setIsOpen={setIsOpen}
