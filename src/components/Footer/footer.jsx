@@ -73,7 +73,7 @@ export function Footer() {
                 </p>
 
                 <nav aria-label="Footer About Nav" className="mt-8">
-                  <ul className="space-y-4 text-sm">
+                  <ul className="mt-8 flex flex-col items-center justify-center  gap-6 sm:justify-start md:gap-8">
                     <li className="flex items-center gap-2">
                       <span className="sr-only">GitHub</span>
                       <svg
@@ -130,7 +130,7 @@ export function Footer() {
                 </p>
 
                 <nav aria-label="Footer Services Nav" className="mt-8">
-                  <ul className="space-y-4 text-sm">
+                  <ul className="mt-8 flex flex-col items-center justify-center  gap-6 sm:justify-start md:gap-8">
                     <li className="flex items-center gap-2">
                       <span className="sr-only">GitHub</span>
                       <svg
@@ -186,7 +186,7 @@ export function Footer() {
                 </p>
 
                 <nav aria-label="Footer Helpful Nav" className="mt-8">
-                  <ul className="space-y-4 text-sm">
+                  <ul className="mt-8 flex flex-col items-center justify-center  gap-6 sm:justify-start md:gap-8">
                     <li className="flex items-center gap-2">
                       <span className="sr-only">GitHub</span>
                       <svg

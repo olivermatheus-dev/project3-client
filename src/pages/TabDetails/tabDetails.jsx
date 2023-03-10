@@ -70,8 +70,8 @@ export function TabDetails() {
   return (
     <>
       {loading && (
-        <>
-          <div className="h-full">
+        <div className="w-full flex justify-center">
+          <div className="h-full w-full sm:w-[700px] md:w-[850px] lg:w-[1200px]">
             <main className="container w-5/6 dark:bg-zinc-600 bg-gray-50 my-5 shadow-xl">
               <div className="flex justify-between   py-5 px-2 ">
                 <article className="mx-auto w-full">
@@ -136,8 +136,8 @@ export function TabDetails() {
                           userLikes={tab.likesUserId}
                         />
                       </div>
-                      <p
-                        className="pb-6 dark:text-zinc-50 text-zinc-800"
+                      <div
+                        className="tabs-content pb-6 dark:text-zinc-50 text-zinc-800"
                         dangerouslySetInnerHTML={{ __html: tab.content }}
                       />
                     </div>
@@ -145,10 +145,28 @@ export function TabDetails() {
                 </article>
               </div>
             </main>
-            <TabComment comments={comment} setUpdatePage={setUpdatePage} />
+            <div className="h-full w-full sm:w-[700px] md:w-[850px] lg:w-[1200px]">
+              <TabComment comments={comment} setUpdatePage={setUpdatePage} />
+            </div>
           </div>
-        </>
+        </div>
       )}
+      <style>
+        {`
+          .tabs-content h1 {
+            font-size: 2em;
+          }
+          .tabs-content h2 {
+            font-size: 1.5em
+          }
+          .tabs-content  ul {
+            list-style-type: disc
+          }
+          .tabs-content ol{
+          list-style-type: decimal
+          }
+        `}
+      </style>
       {!loading && <Loading />}
     </>
   );

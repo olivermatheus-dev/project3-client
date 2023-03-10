@@ -4,6 +4,9 @@ import { apiNoToken } from "../../config/api/apiNoToken";
 import { motion, useViewportScroll } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { Loading } from "../../components/Loading";
+import { Pagination } from "../../components/Pagination/pagination";
+import { useParams } from "react-router-dom";
+import { SearchBar } from "../../components/Navbar/searchbar.jsx";
 
 function AnimatedTabBox({ tab }) {
   const [ref, inView] = useInView();
@@ -44,11 +47,11 @@ function AnimatedTabBox({ tab }) {
 export function Home() {
   const [tabs, setTabs] = useState("");
   const [loading, setLoading] = useState(false);
-
+  const params = useParams();
   useEffect(() => {
     async function fetchTabs() {
       try {
-        const res = await apiNoToken.get("/tab/all-tabs");
+        const res = await apiNoToken.get(`/tab/home/${params.page}`);
 
         setTabs(res.data);
         setLoading(!loading);
@@ -66,7 +69,11 @@ export function Home() {
       exit={{ opacity: 0 }}
     >
       {!loading && <Loading />}
-      <div className="py-6 w-full flex flex-col items-center gap-6 ">
+      <div className="w-full pl-5">
+        <SearchBar />
+      </div>
+
+      <div className="py-6 w-full flex flex-col items-center gap-6 z-10">
         {loading &&
           tabs.map((e) => <AnimatedTabBox key={e._id} tab={e} />).reverse()}
       </div>

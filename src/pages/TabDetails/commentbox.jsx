@@ -19,7 +19,7 @@ export function CommentBox({ comment, userId, setUpdatePage }) {
 
   return (
     <>
-      <div className="max-w-2xl sm:w-[700px] px-8 py-3 bg-zinc-50 rounded-lg dark:bg-zinc-700  shadow-md  transition duration-300 ease-in-out">
+      <div className="w-full px-8 py-3 bg-zinc-50 rounded-lg dark:bg-zinc-700  shadow-md  transition duration-300 ease-in-out">
         <div className="flex items-center justify-between">
           <span className="text-xs font-light text-gray-600 dark:text-gray-400">
             {dateConverter(comment.createdAt)}
