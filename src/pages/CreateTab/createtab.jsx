@@ -14,6 +14,7 @@ function TextEditor({ setValue, value }) {
         theme="snow"
         value={value}
         onChange={setValue}
+        className="dark:teste"
         style={{ height: "200px" }}
       />
     </div>
@@ -124,6 +125,34 @@ export function CreateTab() {
           </div>
         </div>
       </motion.div>
+      <style>
+        {`
+        .quill {
+          border: none;
+        }
+        .quill .ql-toolbar {
+          border: none;        
+          border-radius: 10px 10px 0px 0px;
+        }
+        .dark .quill .ql-toolbar {
+          background-color: #181818;
+        }
+        .quill .ql-toolbar {
+          background-color: #eee;
+        }
+        .quill .ql-container {
+          border: none;
+          overflow: auto;
+        }
+        .quill .ql-container {
+          background-color: #f8f8f8;
+        }
+        .dark .quill .ql-container {
+          background-color: #333;
+        }
+
+      `}
+      </style>
     </>
   );
 }

@@ -1,13 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import { apiNoToken } from "../../config/api/apiNoToken";
-import _ from "lodash";
 import { TabBoxNavbar } from "../TabBox/tabboxnavbar";
 import { Link } from "react-router-dom";
 
 export function SearchBar() {
   const [search, setSearch] = useState("");
   const [results, setResults] = useState([]);
-  const debouncedSearch = _.debounce(searchContent, 500); // debounce de 500ms
   const searchBarRef = useRef();
 
   useEffect(() => {
@@ -24,9 +22,12 @@ export function SearchBar() {
     }
   };
 
+  const timeoutId = useRef(null);
+
   useEffect(() => {
     if (search !== "") {
-      debouncedSearch();
+      if (timeoutId.current) clearTimeout(timeoutId.current);
+      timeoutId.current = setTimeout(searchContent, 700);
     } else {
       setResults([]);
     }

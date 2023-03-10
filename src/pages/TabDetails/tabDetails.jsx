@@ -9,6 +9,7 @@ import { TabUpdate } from "./tabUpdate";
 import { Modal } from "../../components/Modal/modal";
 import { ButtonLike } from "./buttonLike";
 import { api } from "../../config/api/api";
+import Pusher from "pusher-js";
 
 export function TabDetails() {
   const [tab, setTab] = useState();
@@ -65,6 +66,15 @@ export function TabDetails() {
       }
     }
     fetchUser();
+
+    var pusher = new Pusher("07fcbd11feb1e589ab0e", {
+      cluster: "sa1",
+    });
+
+    var channel = pusher.subscribe(`tab_${params.tabId}`);
+    channel.bind("update", function (data) {
+      fetchTab();
+    });
   }, [updatePage]);
 
   return (
@@ -161,9 +171,11 @@ export function TabDetails() {
           }
           .tabs-content  ul {
             list-style-type: disc
+            padding-left: 15px;
           }
           .tabs-content ol{
-          list-style-type: decimal
+            list-style-type: decimal;
+            padding-left: 15px;
           }
         `}
       </style>
