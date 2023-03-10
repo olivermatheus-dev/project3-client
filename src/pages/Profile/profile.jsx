@@ -111,8 +111,8 @@ export function Profile() {
 
         {loading && (
           <div className="py-4 w-full h-full">
-            <div className="container w-full block sm:flex gap-4">
-              <div className="md:w-[480px]  flex flex-col gap-4 items-center  py-6 container rounded-md shadow-2xl   bg-zinc-50 dark:bg-zinc-800/80 transition duration-300 ease-in-out">
+            <div className="container w-full block lg:flex gap-4">
+              <div className="  flex flex-col gap-4 items-center  py-6 container rounded-md shadow-2xl   bg-zinc-50 dark:bg-zinc-800/80 transition duration-300 ease-in-out">
                 <div className="w-full py-6 container rounded-md shadow-xl bg-zinc-50 dark:bg-zinc-800 ">
                   <div className=" w-full flex justify-end pb-1">
                     <span
@@ -136,7 +136,7 @@ export function Profile() {
                       </Modal>
                     )}
                   </div>
-                  <div className="flex flex-col items-center">
+                  <div className="flex flex-col items-center -mt-8">
                     {user.role === "ADMIN" && (
                       <div className="flex flex-col items-center">
                         <p>👑</p>
