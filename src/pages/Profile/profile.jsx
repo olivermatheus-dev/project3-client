@@ -227,7 +227,7 @@ export function Profile() {
                       <>
                         <div className="w-5/6 rounded-xl h-[2px] bg-emerald-600 dark:bg-zinc-100/40 my-1" />
                         <a
-                          className="text-sm font-semibold dark:text-zinc-100"
+                          className="text-sm  text-center font-semibold dark:text-zinc-100"
                           href={user.externalURL}
                         >
                           {semHttps}
