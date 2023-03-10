@@ -1,12 +1,15 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { TabBox } from "../../components/TabBox/tabbox";
 import { apiNoToken } from "../../config/api/apiNoToken";
 import { motion, useViewportScroll } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { Loading } from "../../components/Loading";
-import { Pagination } from "../../components/Pagination/pagination";
+
 import { useParams } from "react-router-dom";
 import { SearchBar } from "../../components/Navbar/searchbar.jsx";
+import { AuthContext } from "../../config/context/authContext";
+import { useUserInfo } from "../../config/context/userInfoHook";
+import { api } from "../../config/api/api";
 
 function AnimatedTabBox({ tab }) {
   const [ref, inView] = useInView();
@@ -45,6 +48,30 @@ function AnimatedTabBox({ tab }) {
 }
 
 export function Home() {
+  const { loggedInUser, setLoggedInUser } = useContext(AuthContext);
+  const { userInfo, setUserInfo } = useUserInfo();
+
+  const [user, setUser] = useState({ name: "", email: "" });
+
+  useEffect(() => {
+    async function fetchUser() {
+      try {
+        if (loggedInUser) {
+          const response = await api.get(
+            `/user/profile/${loggedInUser.user.username}`
+          );
+          setUser(response.data);
+          setUserInfo(response.data);
+        }
+      } catch (err) {
+        console.log(err);
+        navigate("/erro");
+      }
+    }
+
+    fetchUser();
+  }, []);
+
   const [tabs, setTabs] = useState("");
   const [loading, setLoading] = useState(false);
   const params = useParams();
