@@ -8,7 +8,7 @@ export function TabBoxProfile({ tab, user }) {
   const params = useParams();
   return (
     <>
-      <div className="max-w-2xl  px-8 py-3  bg-zinc-50 rounded-lg dark:bg-zinc-800  shadow-md hover:scale-105 transition duration-300 ease-in-out">
+      <div className="max-w-2xl w-[380px] sm:w-[700px] px-8 py-3  bg-zinc-50 rounded-lg dark:bg-zinc-800  shadow-md hover:scale-105 transition duration-300 ease-in-out">
         <div className="flex items-center justify-between">
           <span className="text-sm font-light text-zinc-600 dark:text-zinc-400">
             {dateConverter(tab.createdAt)}
