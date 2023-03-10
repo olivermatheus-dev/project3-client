@@ -64,7 +64,7 @@ Na postagem temos um botão para realizar a edição do conteúdo caso você sej
 Comente nas tabs de seus amigos e acrescente na discussão!
 
 
-![enter image description here](https://i.imgur.com/3GNnaIX.png)
+![enter image description here](https://i.imgur.com/KUcwcTa.png)
 
 **Siga seus amigos e criadores de tabs favoritos!**
 
