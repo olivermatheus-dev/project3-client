@@ -55,7 +55,7 @@ export function Navbar() {
                   Tab
                 </h1>
               </Link>
-              <CategoryDropDown />
+              <CategoryDropDown loggedInUser={loggedInUser} />
             </div>
 
             <div className="hidden lg:block">

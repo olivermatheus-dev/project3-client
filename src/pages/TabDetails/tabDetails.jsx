@@ -72,7 +72,7 @@ export function TabDetails() {
       {loading && (
         <div className="w-full flex justify-center">
           <div className="h-full w-full sm:w-[700px] md:w-[850px] lg:w-[1200px]">
-            <main className="container w-5/6 dark:bg-zinc-600 bg-gray-50 my-5 shadow-xl">
+            <main className="container w-5/6 dark:bg-zinc-800 bg-gray-50 my-5 shadow-xl">
               <div className="flex justify-between   py-5 px-2 ">
                 <article className="mx-auto w-full">
                   <div className="flex flex-col sm:flex-row gap-2">
@@ -126,8 +126,8 @@ export function TabDetails() {
                       <h1 className="mb-1 text-3xl font-semibold leading-tight text-gray-900 lg:mb-2 lg:text-4xl dark:text-emerald-500">
                         {tab.title}
                       </h1>
-                      <div className="flex gap-2 items-center justify-center rounded-md shadow-md w-20 h-8">
-                        <p className="text-base px-3 font-semibold w-4">
+                      <div className="flex gap-2 items-center justify-center rounded-md rounded-l-none my-4 dark:bg-zinc-700 shadow-md w-20 h-8 border-l-4 border-emerald-500 ">
+                        <p className="text-emerald-600 text-base px-3 font-semibold w-4">
                           {tab.likesUserId.length}
                         </p>
                         <ButtonLike

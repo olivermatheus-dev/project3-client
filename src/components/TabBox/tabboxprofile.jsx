@@ -8,13 +8,13 @@ export function TabBoxProfile({ tab, user }) {
   const params = useParams();
   return (
     <>
-      <div className="max-w-2xl  px-8 py-3  bg-zinc-50 rounded-lg dark:bg-zinc-800  shadow-md hover:scale-105 transition duration-300 ease-in-out">
+      <div className="max-w-2xl w-[380px] sm:w-[700px] px-8 py-3  bg-zinc-50 rounded-lg dark:bg-zinc-800  shadow-md hover:scale-105 transition duration-300 ease-in-out">
         <div className="flex items-center justify-between">
           <span className="text-sm font-light text-zinc-600 dark:text-zinc-400">
             {dateConverter(tab.createdAt)}
           </span>
           <div
-            className="z-0 px-3 text-zinc-700 text-xs font-bold transition-colors duration-300 transform bg-emerald-500 rounded cursor-pointer hover:bg-gray-500"
+            className="-z-0 px-3 text-zinc-700 text-xs font-bold transition-colors duration-300 transform bg-emerald-500 rounded cursor-pointer hover:bg-gray-500"
             role="button"
           >
             {tab.category.toUpperCase()}

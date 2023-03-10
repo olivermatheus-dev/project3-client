@@ -29,7 +29,7 @@ export function TabBox({ tab }) {
           <p
             dangerouslySetInnerHTML={{ __html: tab.content }}
             className=" text-sm mt-2 text-gray-600 dark:text-gray-300 line-clamp-2"
-          ></p>
+          />
         </div>
 
         <div className="flex items-center justify-between mt-4">
@@ -50,7 +50,7 @@ export function TabBox({ tab }) {
             </div>
           </div>
 
-          <div className="flex ">
+          <div className="flex mb-2 justify-between sm:justify-end w-full sm:w-3/6">
             <div className="flex ">
               <div className="flex items-center mr-2 text-gray-500">
                 <svg
@@ -94,7 +94,7 @@ export function TabBox({ tab }) {
             </div>
             <Link
               to={`/profile/${tab.authorId.username}/user`}
-              className="flex items-center"
+              className="flex items-center "
             >
               <img
                 className=" object-cover  w-5 h-5  sm:w-8 sm:h-8  mx-1  sm:mx-4 rounded-full sm:block"

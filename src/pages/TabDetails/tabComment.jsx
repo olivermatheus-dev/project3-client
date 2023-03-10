@@ -32,7 +32,7 @@ export function TabComment({ comments, setUpdatePage }) {
       <div className="py-20 flex items-center justify-center">
         <div className="-mt-20 h-full w-5/6 sm:w-[500px] md:w-[600px] lg:w-[800px] mx-auto overflow-hidden bg-white rounded-lg shadow-md dark:bg-zinc-800">
           <div className="px-8 py-8 flex flex-col gap-5">
-            <h1 className=" text-gray-500 dark:text-gray-400 text-xl w-5/6 sm:w-[500px] ">
+            <h1 className="font-semibold text-emerald-500 dark:text-emerald-500 text-xl w-5/6 sm:w-[500px] ">
               Comentários
             </h1>
             {comments &&
@@ -46,7 +46,7 @@ export function TabComment({ comments, setUpdatePage }) {
                 );
               })}
             {userId && (
-              <form onSubmit={handleSubmit} className="flex w-full">
+              <form onSubmit={handleSubmit} className="flex w-full justify-end">
                 <input
                   type="text"
                   name="content"

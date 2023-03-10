@@ -5,9 +5,12 @@ import { motion } from "framer-motion";
 import { AuthContext } from "../../config/context/authContext.jsx";
 import { useUserInfo } from "../../config/context/userInfoHook.jsx";
 
-export function UpdateProfile({ setUpdated, updated, setIsOpen }) {
-  const { setLoggedInUser } = useContext(AuthContext);
-  const { userInfo } = useUserInfo();
+export function UpdateProfile({
+  setUpdated,
+  updated,
+  setIsOpen,
+  setDeleteModal,
+}) {
   const navigate = useNavigate();
   const [usernameCheck, setUsernameCheck] = useState("");
 
@@ -74,20 +77,6 @@ export function UpdateProfile({ setUpdated, updated, setIsOpen }) {
     } catch (err) {
       console.log(err);
       setUsernameCheck(err.response.data.keyValue);
-    }
-  }
-  async function handleDelete() {
-    try {
-      await api.delete(`user/delete/${params.username}`);
-      if (userInfo.username === params.username) {
-        localStorage.removeItem("loggedInUser");
-        setLoggedInUser(null);
-      }
-
-      navigate("/");
-      setIsOpen((state) => !state);
-    } catch (err) {
-      console.log(err);
     }
   }
 
@@ -183,89 +172,108 @@ export function UpdateProfile({ setUpdated, updated, setIsOpen }) {
               </label>
             </div>
           )}
-          <div className="w-full mt-4">
-            <input
-              type="text"
-              name="name"
-              value={userForm.name}
-              onChange={handleChange}
-              placeholder="Seu nome"
-              className="block w-full px-4 py-2 mt-2 text-gray-700 dark:text-gray-200 placeholder-gray-500 bg-white border rounded-lg dark:bg-zinc-700 dark:border-gray-600 dark:placeholder-gray-400 focus:border-emerald-400 dark:focus:border-emerald-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-emerald-300"
-            />
-          </div>
-          <div className="w-full mt-4">
-            <input
-              type="text"
-              name="username"
-              value={userForm.username}
-              onChange={handleChange}
-              placeholder="Seu username"
-              className="block w-full px-4 py-2 mt-2 text-gray-700 dark:text-gray-200 placeholder-gray-500 bg-white border rounded-lg dark:bg-zinc-700 dark:border-gray-600 dark:placeholder-gray-400 focus:border-emerald-400 dark:focus:border-emerald-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-emerald-300"
-            />
-            {usernameCheck.username && (
-              <p className="text-red-500 font-semibold text-sm pl-2">
-                *Username já utilizado
+          <div className="grid sm:grid-cols-2 gap-x-3">
+            <div className="w-full mt-4">
+              <p className="text-gray-700 dark:text-gray-200 font-semibold text-sm pl-2">
+                Nome:
               </p>
-            )}
-          </div>
-          <div className="w-full mt-4">
-            <input
-              type="text"
-              name="specialization"
-              value={userForm.specialization}
-              onChange={handleChange}
-              placeholder="Sua especialização profissional, ex: Front-end Developer"
-              className="block w-full px-4 py-2 mt-2 text-gray-700 dark:text-gray-200 placeholder-gray-500 bg-white border rounded-lg dark:bg-zinc-700 dark:border-gray-600 dark:placeholder-gray-400 focus:border-emerald-400 dark:focus:border-emerald-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-emerald-300"
-            />
-          </div>
-          <div className="w-full mt-4">
-            <select
-              value={userForm.seniority}
-              className="block w-full px-4 py-2 mt-2 text-gray-700 dark:text-gray-200 placeholder-gray-500 bg-white border rounded-lg dark:bg-zinc-700 dark:border-gray-600 dark:placeholder-gray-400 focus:border-emerald-400 dark:focus:border-emerald-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-emerald-300"
-              id="seniority"
-              name="seniority"
-              onChange={handleChange}
-            >
-              <option value="">Selecione sua senioridade</option>
-              <option value="Entusiasta">Entusiasta</option>
-              <option value="Estudante">Estudante</option>
-              <option value="Estagiário">Estagiário</option>
-              <option value="Júnior">Júnior</option>
-              <option value="Pleno">Pleno</option>
-              <option value="Sênior">Sênior</option>
-              <option value="Especialista">Especialista</option>
-            </select>
-          </div>
-          <div className="w-full mt-4">
-            <input
-              type="text"
-              name="aboutMe"
-              value={userForm.aboutMe}
-              onChange={handleChange}
-              placeholder="Fale brevemente sobre você..."
-              className="block w-full px-4 py-2 mt-2 text-gray-700 dark:text-gray-200 placeholder-gray-500 bg-white border rounded-lg dark:bg-zinc-700 dark:border-gray-600 dark:placeholder-gray-400 focus:border-emerald-400 dark:focus:border-emerald-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-emerald-300"
-            />
-          </div>
+              <input
+                type="text"
+                name="name"
+                value={userForm.name}
+                onChange={handleChange}
+                placeholder="Seu nome"
+                className="block w-full px-4 py-2 mt-2 text-gray-700 dark:text-gray-200 placeholder-gray-500 bg-white border rounded-lg dark:bg-zinc-700 dark:border-gray-600 dark:placeholder-gray-400 focus:border-emerald-400 dark:focus:border-emerald-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-emerald-300"
+              />
+            </div>
+            <div className="w-full mt-4">
+              <p className="text-gray-700 dark:text-gray-200 font-semibold text-sm pl-2">
+                Username:
+              </p>
+              <input
+                type="text"
+                name="username"
+                value={userForm.username}
+                onChange={handleChange}
+                placeholder="Seu username"
+                className="block w-full px-4 py-2 mt-2 text-gray-700 dark:text-gray-200 placeholder-gray-500 bg-white border rounded-lg dark:bg-zinc-700 dark:border-gray-600 dark:placeholder-gray-400 focus:border-emerald-400 dark:focus:border-emerald-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-emerald-300"
+              />
+              {usernameCheck.username && (
+                <p className="text-red-500 font-semibold text-sm pl-2">
+                  *Username já utilizado
+                </p>
+              )}
+            </div>
+            <div className="w-full mt-4">
+              <p className="text-gray-700 dark:text-gray-200 font-semibold text-sm pl-2">
+                Especialização:
+              </p>
+              <input
+                type="text"
+                name="specialization"
+                value={userForm.specialization}
+                onChange={handleChange}
+                placeholder="Sua especialização profissional, ex: Front-end Developer"
+                className="block w-full px-4 py-2 mt-2 text-gray-700 dark:text-gray-200 placeholder-gray-500 bg-white border rounded-lg dark:bg-zinc-700 dark:border-gray-600 dark:placeholder-gray-400 focus:border-emerald-400 dark:focus:border-emerald-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-emerald-300"
+              />
+            </div>
+            <div className="w-full mt-4">
+              <p className="text-gray-700 dark:text-gray-200 font-semibold text-sm pl-2">
+                Senioridade:
+              </p>
+              <select
+                value={userForm.seniority}
+                className="block w-full px-4 py-2 mt-2 text-gray-700 dark:text-gray-200 placeholder-gray-500 bg-white border rounded-lg dark:bg-zinc-700 dark:border-gray-600 dark:placeholder-gray-400 focus:border-emerald-400 dark:focus:border-emerald-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-emerald-300"
+                id="seniority"
+                name="seniority"
+                onChange={handleChange}
+              >
+                <option value="">Clique e selecione</option>
+                <option value="Entusiasta">Entusiasta</option>
+                <option value="Estudante">Estudante</option>
+                <option value="Estagiário">Estagiário</option>
+                <option value="Júnior">Júnior</option>
+                <option value="Pleno">Pleno</option>
+                <option value="Sênior">Sênior</option>
+                <option value="Especialista">Especialista</option>
+              </select>
+            </div>
+            <div className="w-full mt-4">
+              <p className="text-gray-700 dark:text-gray-200 font-semibold text-sm pl-2">
+                Sobre você:
+              </p>
+              <input
+                type="text"
+                name="aboutMe"
+                value={userForm.aboutMe}
+                onChange={handleChange}
+                placeholder="Fale brevemente sobre você..."
+                className="block w-full px-4 py-2 mt-2 text-gray-700 dark:text-gray-200 placeholder-gray-500 bg-white border rounded-lg dark:bg-zinc-700 dark:border-gray-600 dark:placeholder-gray-400 focus:border-emerald-400 dark:focus:border-emerald-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-emerald-300"
+              />
+            </div>
 
-          <div className="w-full mt-4">
-            <input
-              type="text"
-              name="externalURL"
-              value={userForm.externalURL}
-              onChange={handleChange}
-              placeholder="Url externa que ficará visível no seu pc, sugerimos o seu perfil profissional."
-              className="block w-full px-4 py-2 mt-2 text-gray-700 dark:text-gray-200 placeholder-gray-500 bg-white border rounded-lg dark:bg-zinc-700 dark:border-gray-600 dark:placeholder-gray-400 focus:border-emerald-400 dark:focus:border-emerald-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-emerald-300"
-            />
+            <div className="w-full mt-4">
+              <p className="text-gray-700 dark:text-gray-200 font-semibold text-sm pl-2">
+                Link do perfil:
+              </p>
+              <input
+                type="text"
+                name="externalURL"
+                value={userForm.externalURL}
+                onChange={handleChange}
+                placeholder="Url externa que ficará visível no seu pc, sugerimos o seu perfil profissional."
+                className="block w-full px-4 py-2 mt-2 text-gray-700 dark:text-gray-200 placeholder-gray-500 bg-white border rounded-lg dark:bg-zinc-700 dark:border-gray-600 dark:placeholder-gray-400 focus:border-emerald-400 dark:focus:border-emerald-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-emerald-300"
+              />
+            </div>
           </div>
-
           <div className="flex items-center justify-between  mt-4">
-            <p
-              href="#"
-              className="text-sm text-gray-600/30 dark:text-gray-200/30 hover:text-gray-500 w-2/3 transition-all "
-            >
+            <p className="hidden sm:block  text-sm text-gray-600/30 dark:text-gray-200/30 hover:text-gray-500 w-2/3 transition-all ">
               *Um perfil completo ajuda a expandir suas conexões com outras
               pessoas. Dedique um pouco do seu tempo para deixar o seu perfil
               atualizado.
+            </p>
+            <p className="sm:hidden  text-sm text-gray-600/30 dark:text-gray-200/30 hover:text-gray-500 w-2/3 transition-all ">
+              *Complete o seu perfil
             </p>
 
             <button
@@ -277,7 +285,10 @@ export function UpdateProfile({ setUpdated, updated, setIsOpen }) {
           </div>
         </form>
         <p
-          onClick={handleDelete}
+          onClick={() => {
+            setIsOpen((state) => !state);
+            setDeleteModal((state) => !state);
+          }}
           className="-mb-4 mt-5 cursor-pointer text-sm text-gray-600/30 dark:text-gray-200/30 hover:text-gray-500 w-2/3 transition-all "
         >
           Quer deletar sua conta? Clique aqui
