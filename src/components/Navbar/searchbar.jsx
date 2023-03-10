@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { apiNoToken } from "../../config/api/apiNoToken";
 import _ from "lodash";
 import { TabBoxNavbar } from "../TabBox/tabboxnavbar";
+import { Link } from "react-router-dom";
 
 export function SearchBar() {
   const [search, setSearch] = useState("");
@@ -67,7 +68,34 @@ export function SearchBar() {
             <>
               <div className="flex flex-col gap-2 absolute z-20">
                 {results.map((currentElement) => {
-                  return <TabBoxNavbar tab={currentElement} />;
+                  return (
+                    <div>
+                      {currentElement.authorId ? (
+                        <TabBoxNavbar tab={currentElement} />
+                      ) : (
+                        <Link to={`/profile/${currentElement.username}/user`}>
+                          <div className="hover:scale-105 transition duration-300 w-[250px] h-10 bg-emerald-500 dark:bg-emerald-600 rounded-md flex gap-1 shadow-xl">
+                            <Link
+                              to={`/profile/${currentElement.username}/user`}
+                              className="flex items-center gap-2 "
+                            >
+                              <img
+                                className=" object-cover w-6 h-6 ml-3.5 rounded-full sm:block"
+                                src={currentElement.img}
+                                alt="avatar"
+                              />
+                              <div
+                                className="font-semibold text-sm text-zinc-700 cursor-pointer dark:text-gray-200"
+                                role="link"
+                              >
+                                @{currentElement.username}
+                              </div>
+                            </Link>
+                          </div>
+                        </Link>
+                      )}
+                    </div>
+                  );
                 })}
               </div>
             </>
