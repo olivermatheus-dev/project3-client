@@ -80,7 +80,7 @@ export function Home() {
   useEffect(() => {
     async function fetchTabs() {
       try {
-        const res = await apiNoToken.get(`/tab/home/${params.page}`);
+        const res = await apiNoToken.get(`/tab/home/`);
 
         setTabs(res.data);
         setLoading(!loading);

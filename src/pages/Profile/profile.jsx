@@ -111,8 +111,8 @@ export function Profile() {
 
         {loading && (
           <div className="py-4 w-full h-full">
-            <div className="container w-full block sm:flex gap-4">
-              <div className="md:w-[480px]  flex flex-col gap-4 items-center  py-6 container rounded-md shadow-2xl   bg-zinc-50 dark:bg-zinc-800/80 transition duration-300 ease-in-out">
+            <div className="container w-full block lg:flex gap-4">
+              <div className="  flex flex-col gap-4 items-center  py-6 container rounded-md shadow-2xl   bg-zinc-50 dark:bg-zinc-800/80 transition duration-300 ease-in-out">
                 <div className="w-full py-6 container rounded-md shadow-xl bg-zinc-50 dark:bg-zinc-800 ">
                   <div className=" w-full flex justify-end pb-1">
                     <span
@@ -136,7 +136,7 @@ export function Profile() {
                       </Modal>
                     )}
                   </div>
-                  <div className="flex flex-col items-center">
+                  <div className="flex flex-col items-center -mt-8">
                     {user.role === "ADMIN" && (
                       <div className="flex flex-col items-center">
                         <p>👑</p>
@@ -227,7 +227,7 @@ export function Profile() {
                       <>
                         <div className="w-5/6 rounded-xl h-[2px] bg-emerald-600 dark:bg-zinc-100/40 my-1" />
                         <a
-                          className="text-sm font-semibold dark:text-zinc-100"
+                          className="text-sm  text-center font-semibold dark:text-zinc-100"
                           href={user.externalURL}
                         >
                           {semHttps}
@@ -241,8 +241,8 @@ export function Profile() {
                   </div>
                 </div>
               </div>
-              <div className=" w-auto lg:w-[800px] ">
-                <div className="container rounded-md shadow-2xl dark:bg-zinc-800/80 bg-zinc-50">
+              <div className=" w-auto lg:w-[800px] xl:w-2/3 ">
+                <div className="container  2xl:w-[780px]  rounded-md shadow-2xl dark:bg-zinc-800/80 bg-zinc-50">
                   <h1 className="text-2xl font-bold dark:text-zinc-100 pt-4 ml-7">
                     Tabs recentes
                   </h1>
